@@ -1,0 +1,488 @@
+{
+  "en": {
+    "hero": {
+      "name": "Ahmed G3far Kamal",
+      "title": "Full-Stack Software Engineer",
+      "tagline": "I design and build scalable web products with clean architecture and delightful motion.",
+      "skills": [
+        {
+          "id": 1,
+          "name": "HTML",
+          "icon": "html.png"
+        },
+        {
+          "id": 2,
+          "name": "CSS",
+          "icon": "css.png"
+        },
+        {
+          "id": 3,
+          "name": "Tailwind CSS",
+          "icon": "tailwindcss.png"
+        },
+        {
+          "id": 4,
+          "name": "React",
+          "icon": "reactjs.png"
+        },
+        {
+          "id": 5,
+          "name": "Next.js",
+          "icon": "nextjs.png"
+        },
+        {
+          "id": 6,
+          "name": "Node.js",
+          "icon": "nodejs.png"
+        },
+        {
+          "id": 7,
+          "name": "Express JS",
+          "icon": "expressjs.png"
+        },
+        {
+          "id": 8,
+          "name": "MongoDB",
+          "icon": "mongo.png"
+        },
+        {
+          "id": 9,
+          "name": "Docker",
+          "icon": "docker.png"
+        },
+        {
+          "id": 10,
+          "name": "AWS",
+          "icon": "aws.png"
+        },
+        {
+          "id": 11,
+          "name": "Git",
+          "icon": "git.png"
+        },
+        {
+          "id": 12,
+          "name": "GitHub",
+          "icon": "github.png"
+        },
+
+        {
+          "id": 13,
+          "name": "TypeScript",
+          "icon": "typescript.png"
+        },
+        {
+          "id": 14,
+          "name": "MYSQL",
+          "icon": "mysql.png"
+        },
+        {
+          "id": 15,
+          "name": "Nginx",
+          "icon": "nginx.png"
+        }
+      ],
+      "cta": "Explore My Work"
+    },
+    "about": {
+      "shortBio": "Full-stack engineer with a strong focus on frontend architecture, performance, and developer experience. I enjoy turning complex problems into elegant, maintainable systems.",
+      "highlights": [
+        "Clean Architecture & Scalable Systems",
+        "Modern Frontend (React, Next.js, Animations)",
+        "Backend APIs, Databases & DevOps"
+      ]
+    },
+    "projects": [
+      {
+        "id": "deployify",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "title": "Deployify",
+        "tagline": "One-click deployment platform for GitHub repositories",
+        "type": "SaaS Platform",
+        "description": "A platform that allows developers to deploy frontend and backend projects directly from GitHub by configuring environment variables, build commands, and runtime settings.",
+        "techStack": [
+          "Next.js",
+          "Node.js",
+          "Docker",
+          "Nginx",
+          "PostgreSQL",
+          "AWS"
+        ],
+        "features": [
+          "GitHub repository integration",
+          "Environment variable management",
+          "Automated build & deploy pipelines",
+          "Live logs and status tracking"
+        ],
+        "role": "Founder & Full-Stack Engineer",
+        "year": "2025",
+        "links": {
+          "github": "https://github.com/example/deployify",
+          "demo": "https://deployify.app"
+        }
+      },
+
+      {
+        "id": "smart-diet-ai",
+        "title": "SmartDiet AI",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "Personalized diet plans powered by AI",
+        "type": "AI Web Application",
+        "description": "An AI-driven application that generates personalized diet plans based on user goals, preferences, and health constraints, with exportable PDFs and grocery lists.",
+        "techStack": ["React", "Python", "FastAPI", "OpenAI API", "PostgreSQL"],
+        "features": [
+          "AI-generated diet plans",
+          "Recipe generation",
+          "Weekly grocery list export",
+          "PDF download"
+        ],
+        "role": "Full-Stack Engineer",
+        "year": "2024",
+        "links": {
+          "github": "https://github.com/example/smart-diet-ai"
+        }
+      },
+
+      {
+        "id": "ecommerce-next",
+        "title": "NextCommerce",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "High-performance e-commerce platform",
+        "type": "E-commerce Web App",
+        "description": "A modern e-commerce application built with performance, scalability, and clean UX in mind. Supports product management, carts, checkout, and order tracking.",
+        "techStack": ["Next.js", "MongoDB", "Stripe", "Tailwind CSS"],
+        "features": [
+          "Product catalog & search",
+          "Cart & checkout flow",
+          "Stripe payment integration",
+          "Admin dashboard"
+        ],
+        "role": "Full-Stack Engineer",
+        "year": "2024",
+        "links": {
+          "github": "https://github.com/example/nextcommerce",
+          "demo": "https://nextcommerce.app"
+        }
+      },
+
+      {
+        "id": "traffic-weather-analytics",
+        "title": "Urban Traffic Analytics",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "Predicting traffic patterns using weather data",
+        "type": "Data Analytics Platform",
+        "description": "A data analytics system that studies the impact of weather conditions on urban traffic using synthetic data, simulations, and layered data storage.",
+        "techStack": [
+          "Python",
+          "Pandas",
+          "MinIO",
+          "HDFS",
+          "Monte Carlo Simulation"
+        ],
+        "features": [
+          "Synthetic data generation",
+          "Bronze/Silver/Gold data layers",
+          "Traffic prediction modeling",
+          "Analytical dashboards"
+        ],
+        "role": "Data Engineer / Analyst",
+        "year": "2023",
+        "links": {
+          "github": "https://github.com/example/traffic-analytics"
+        }
+      },
+
+      {
+        "id": "portfolio-motion",
+        "title": "Animated Portfolio",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "A motion-first developer portfolio experience",
+        "type": "Personal Website",
+        "description": "A highly animated, one-page portfolio designed to showcase projects using horizontal scrolling, motion storytelling, and clean UI.",
+        "techStack": ["React", "Framer Motion", "GSAP", "CSS Modules"],
+        "features": [
+          "Horizontal scroll navigation",
+          "Scroll-based animations",
+          "JSON-driven content",
+          "Multi-language support"
+        ],
+        "role": "Designer & Developer",
+        "year": "2025",
+        "links": {
+          "github": "https://github.com/example/animated-portfolio"
+        }
+      },
+
+      {
+        "id": "dev-dashboard",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "title": "DevOps Monitoring Dashboard",
+        "tagline": "Real-time monitoring for backend services",
+        "type": "Internal Tool",
+        "description": "A dashboard for monitoring backend services, server health, and application logs in real time, designed for small engineering teams.",
+        "techStack": ["Vue.js", "Node.js", "WebSockets", "Prometheus"],
+        "features": [
+          "Live server metrics",
+          "Log streaming",
+          "Alert system",
+          "Role-based access"
+        ],
+        "role": "Full-Stack Engineer",
+        "year": "2023",
+        "links": {
+          "github": "https://github.com/example/dev-dashboard"
+        }
+      }
+    ],
+    "contact": {
+      "email": "ahmedjaafarbadri@gmail.com",
+      "github": "https://github.com/ahmedG3far44",
+      "linkedin": "https://www.linkedin.com/in/ahmedg3far44",
+      "location": "Alexandria, Egypt",
+      "resume": "ahmed-gaafar-resume.pdf"
+    }
+  },
+
+  "ar": {
+    "hero": {
+      "name": "أحمد جعفر كمال",
+      "title": "مهندس برمجيات متكامل (Full-Stack)",
+      "tagline": "أصمم وأبني منتجات ويب قابلة للتوسع بهندسة نظيفة وحركة جذابة.",
+      "skills": [
+        {
+          "id": 1,
+          "name": "HTML",
+          "icon": "html.png"
+        },
+        {
+          "id": 2,
+          "name": "CSS",
+          "icon": "css.png"
+        },
+        {
+          "id": 3,
+          "name": "Tailwind CSS",
+          "icon": "tailwindcss.png"
+        },
+        {
+          "id": 4,
+          "name": "React",
+          "icon": "reactjs.png"
+        },
+        {
+          "id": 5,
+          "name": "Next.js",
+          "icon": "nextjs.png"
+        },
+        {
+          "id": 6,
+          "name": "Node.js",
+          "icon": "nodejs.png"
+        },
+        {
+          "id": 7,
+          "name": "Express JS",
+          "icon": "expressjs.png"
+        },
+        {
+          "id": 8,
+          "name": "MongoDB",
+          "icon": "mongo.png"
+        },
+        {
+          "id": 9,
+          "name": "Docker",
+          "icon": "docker.png"
+        },
+        {
+          "id": 10,
+          "name": "AWS",
+          "icon": "aws.png"
+        },
+        {
+          "id": 11,
+          "name": "Git",
+          "icon": "git.png"
+        },
+        {
+          "id": 12,
+          "name": "GitHub",
+          "icon": "github.png"
+        },
+
+        {
+          "id": 13,
+          "name": "TypeScript",
+          "icon": "typescript.png"
+        },
+        {
+          "id": 14,
+          "name": "MYSQL",
+          "icon": "mysql.png"
+        },
+        {
+          "id": 15,
+          "name": "Nginx",
+          "icon": "nginx.png"
+        }
+      ],
+      "cta": "استعرض أعمالي"
+    },
+    "about": {
+      "shortBio": "مهندس برمجيات متكامل مع تركيز قوي على هندسة الواجهة الأمامية، الأداء، وتجربة المطور. أستمتع بتحويل المشاكل المعقدة إلى أنظمة أنيقة وسهلة الصيانة.",
+      "highlights": [
+        "هندسة نظيفة وأنظمة قابلة للتوسع",
+        "واجهات حديثة (React، Next.js، الحركات)",
+        "واجهات خلفية، قواعد بيانات و DevOps"
+      ]
+    },
+    "projects": [
+      {
+        "id": "deployify",
+        "title": "Deployify",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "منصة نشر المشاريع بضغطة واحدة من GitHub",
+        "type": "منصة SaaS",
+        "description": "منصة تتيح للمطورين نشر مشاريع الواجهة الأمامية والخلفية مباشرة من GitHub عبر إعداد متغيرات البيئة، أوامر البناء، وإعدادات التشغيل.",
+        "techStack": [
+          "Next.js",
+          "Node.js",
+          "Docker",
+          "Nginx",
+          "PostgreSQL",
+          "AWS"
+        ],
+        "features": [
+          "تكامل مع مستودعات GitHub",
+          "إدارة متغيرات البيئة",
+          "عمليات بناء ونشر آلية",
+          "سجلات مباشرة وتتبع الحالة"
+        ],
+        "role": "المؤسس ومهندس برمجيات متكامل",
+        "year": "2025",
+        "links": {
+          "github": "https://github.com/example/deployify",
+          "demo": "https://deployify.app"
+        }
+      },
+
+      {
+        "id": "smart-diet-ai",
+        "title": "SmartDiet AI",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "خطط غذائية مخصصة مدعومة بالذكاء الاصطناعي",
+        "type": "تطبيق ويب بالذكاء الاصطناعي",
+        "description": "تطبيق يعتمد على الذكاء الاصطناعي لإنشاء خطط غذائية مخصصة بناءً على أهداف المستخدم وتفضيلاته وقيوده الصحية، مع إمكانية تصدير ملفات PDF وقوائم تسوق.",
+        "techStack": ["React", "Python", "FastAPI", "OpenAI API", "PostgreSQL"],
+        "features": [
+          "خطط غذائية مولدة بالذكاء الاصطناعي",
+          "توليد وصفات",
+          "تصدير قائمة التسوق الأسبوعية",
+          "تحميل ملفات PDF"
+        ],
+        "role": "مهندس برمجيات متكامل",
+        "year": "2024",
+        "links": {
+          "github": "https://github.com/example/smart-diet-ai"
+        }
+      },
+      {
+        "id": "ecommerce-next",
+        "title": "NextCommerce",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "منصة تجارة إلكترونية عالية الأداء",
+        "type": "تطبيق ويب للتجارة الإلكترونية",
+        "description": "تطبيق تجارة إلكترونية حديث مبني مع التركيز على الأداء، القابلية للتوسع، وتجربة مستخدم نظيفة. يدعم إدارة المنتجات، السلة، الدفع، وتتبع الطلبات.",
+        "techStack": ["Next.js", "MongoDB", "Stripe", "Tailwind CSS"],
+        "features": [
+          "كتالوج المنتجات والبحث",
+          "سلة المشتريات وإتمام الشراء",
+          "تكامل بوابة الدفع Stripe",
+          "لوحة تحكم إدارية"
+        ],
+        "role": "مهندس برمجيات متكامل",
+        "year": "2024",
+        "links": {
+          "github": "https://github.com/example/nextcommerce",
+          "demo": "https://nextcommerce.app"
+        }
+      },
+
+      {
+        "id": "traffic-weather-analytics",
+        "title": "تحليلات المرور الحضرية",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "التنبؤ بأنماط المرور باستخدام بيانات الطقس",
+        "type": "منصة تحليل بيانات",
+        "description": "نظام تحليلي يدرس تأثير الظروف الجوية على حركة المرور في المدن باستخدام بيانات اصطناعية، محاكاة، وتخزين بيانات متعدد الطبقات.",
+        "techStack": [
+          "Python",
+          "Pandas",
+          "MinIO",
+          "HDFS",
+          "محاكاة مونتي كارلو"
+        ],
+        "features": [
+          "توليد بيانات اصطناعية",
+          "طبقات بيانات Bronze / Silver / Gold",
+          "نمذجة التنبؤ بحركة المرور",
+          "لوحات تحكم تحليلية"
+        ],
+        "role": "مهندس بيانات / محلل بيانات",
+        "year": "2023",
+        "links": {
+          "github": "https://github.com/example/traffic-analytics"
+        }
+      },
+
+      {
+        "id": "portfolio-motion",
+        "title": "معرض أعمال متحرك",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "تجربة معرض أعمال للمطور تعتمد على الحركة",
+        "type": "موقع شخصي",
+        "description": "معرض أعمال متحرك من صفحة واحدة، مصمم لعرض المشاريع باستخدام تمرير أفقي، سرد بصري بالحركة، وواجهة مستخدم نظيفة.",
+        "techStack": ["React", "Framer Motion", "GSAP", "CSS Modules"],
+        "features": [
+          "تنقل بالتمرير الأفقي",
+          "حركات مبنية على التمرير",
+          "محتوى مُدار عبر JSON",
+          "دعم تعدد اللغات"
+        ],
+        "role": "المصمم والمطور",
+        "year": "2025",
+        "links": {
+          "github": "https://github.com/example/animated-portfolio"
+        }
+      },
+
+      {
+        "id": "dev-dashboard",
+        "title": "لوحة مراقبة DevOps",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
+        "tagline": "مراقبة فورية لخدمات الخوادم الخلفية",
+        "type": "أداة داخلية",
+        "description": "لوحة تحكم لمراقبة خدمات الخلفية، صحة الخوادم، وسجلات التطبيقات بشكل فوري، مصممة لفرق هندسية صغيرة.",
+        "techStack": ["Vue.js", "Node.js", "WebSockets", "Prometheus"],
+        "features": [
+          "مقاييس الخوادم المباشرة",
+          "بث السجلات",
+          "نظام تنبيهات",
+          "صلاحيات حسب الدور"
+        ],
+        "role": "مهندس برمجيات متكامل",
+        "year": "2023",
+        "links": {
+          "github": "https://github.com/example/dev-dashboard"
+        }
+      }
+    ],
+    "contact": {
+      "email": "ahmedjaafarbadri@gmail.com",
+      "github": "https://github.com/ahmedG3far44",
+      "linkedin": "https://www.linkedin.com/in/ahmedg3far44",
+      "location": "الاسكندرية, مصر",
+      "resume": "ahmed-gaafar-resume.pdf"
+    }
+  }
+}
