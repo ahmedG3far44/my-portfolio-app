@@ -13,7 +13,7 @@ interface PageType {
   path: string;
 }
 
-type IndexPageType = number | 0 | 1 | 2;
+type IndexPageType = number | 0 | 1 | 2 | 3;
 
 export default function Home() {
   const clientLayout = [
@@ -25,7 +25,7 @@ export default function Home() {
     {
       id: "2",
       component: ProjectsPage,
-      path: "/projects"
+      path: "/project"
     }
   ]
 

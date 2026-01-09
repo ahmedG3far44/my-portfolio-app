@@ -94,144 +94,242 @@
     },
     "projects": [
       {
-        "id": "deployify",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "title": "Deployify",
-        "tagline": "One-click deployment platform for GitHub repositories",
-        "type": "SaaS Platform",
-        "description": "A platform that allows developers to deploy frontend and backend projects directly from GitHub by configuring environment variables, build commands, and runtime settings.",
-        "techStack": [
-          "Next.js",
-          "Node.js",
-          "Docker",
-          "Nginx",
-          "PostgreSQL",
-          "AWS"
+        "id": "1",
+        "title": "Folio App",
+        "tagline": "Customizable Portfolio Builder for Developers & Designers",
+        "description": "A full-stack SaaS platform that allows users to create, customize, and publish professional portfolio websites with flexible layouts and themes.",
+        "fullDescription": [
+          "Folio App is a customizable portfolio builder designed for developers and designers who want full control over their personal brand.",
+          "The platform supports flexible layouts, theme customization, and secure authentication using JWT.",
+          "Performance was optimized using React Context for state management and Sharp for efficient image processing, ensuring fast load times even with media-heavy portfolios."
         ],
+        "thumbnail": "https://miro.medium.com/v2/resize:fit:1280/1*8uleb75powGpvzpgEk7mWA.gif",
+        "images": [
+          "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=1200&h=600&fit=crop"
+        ],
+        "techStack": [
+          { "name": "React", "category": "frontend" },
+          { "name": "TypeScript", "category": "frontend" },
+          { "name": "Tailwind CSS", "category": "frontend" },
+          { "name": "Express.js", "category": "backend" },
+          { "name": "Prisma ORM", "category": "backend" },
+          { "name": "NeonDB", "category": "database" },
+          { "name": "AWS S3", "category": "database" },
+          { "name": "AWS EC2", "category": "devops" },
+          { "name": "NGINX", "category": "devops" },
+          { "name": "JWT", "category": "other" },
+          { "name": "Zod", "category": "other" }
+        ],
+        "githubUrl": "https://github.com/ahmedG3far44/folio-app",
+        "liveDemoUrl": "https://presento.cloud",
+        "deployment": {
+          "platform": "AWS EC2 + NGINX",
+          "url": "https://presento.cloud",
+          "status": "live",
+          "lastDeployed": "2024-01-10"
+        },
+        "startDate": "2023-07-01",
+        "endDate": "2023-11-30",
+        "status": "maintained",
         "features": [
-          "GitHub repository integration",
+          "Customizable portfolio layouts and themes",
+          "JWT-based authentication and authorization",
+          "Schema validation using Zod",
+          "Optimized image handling with Sharp",
+          "Secure HTTPS deployment using Certbot"
+        ],
+        "challenges": [
+          "Designing a flexible layout system without sacrificing performance",
+          "Optimizing image processing for user-uploaded media",
+          "Maintaining type safety across the full stack"
+        ],
+        "learnings": [
+          "Advanced schema validation strategies with Zod",
+          "Performance optimization using React Context",
+          "Deploying and securing production apps on AWS EC2"
+        ]
+      },
+
+      {
+        "id": "2",
+        "title": "TechPad",
+        "tagline": "Scalable Full-Stack E-Commerce Platform",
+        "description": "A full-featured e-commerce web application with shopping cart, order management, and admin dashboard.",
+        "fullDescription": [
+          "TechPad is a scalable e-commerce platform built to handle product management, user authentication, and order processing.",
+          "The application includes a complete shopping cart experience, order history, and an admin dashboard for managing products and users.",
+          "RESTful APIs were designed with secure authentication, and AWS S3 was integrated for reliable media storage."
+        ],
+        "thumbnail": "https://zenxpod.com/wp-content/uploads/2024/12/UI-UX-1.gif",
+        "images": [
+          "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=1200&h=600&fit=crop"
+        ],
+        "techStack": [
+          { "name": "React", "category": "frontend" },
+          { "name": "TypeScript", "category": "frontend" },
+          { "name": "Tailwind CSS", "category": "frontend" },
+          { "name": "Express.js", "category": "backend" },
+          { "name": "MongoDB", "category": "database" },
+          { "name": "JWT", "category": "other" },
+          { "name": "AWS EC2", "category": "devops" },
+          { "name": "NGINX", "category": "devops" },
+          { "name": "AWS S3", "category": "database" }
+        ],
+        "githubUrl": "https://github.com/ahmedG3far44/e-commerce-store",
+        "liveDemoUrl": "",
+        "deployment": {
+          "platform": "AWS EC2 + NGINX",
+          "url": "",
+          "status": "offline",
+          "lastDeployed": "2023-12-01"
+        },
+        "startDate": "2023-04-01",
+        "endDate": "2023-08-15",
+        "status": "completed",
+        "features": [
+          "Shopping cart and checkout flow",
+          "Order history and order management",
+          "Admin dashboard for products and users",
+          "Secure RESTful APIs with JWT authentication",
+          "Media storage using AWS S3"
+        ],
+        "challenges": [
+          "Designing scalable REST APIs",
+          "Handling authentication and authorization securely",
+          "Managing media uploads efficiently"
+        ],
+        "learnings": [
+          "Building admin dashboards with role-based access",
+          "Structuring scalable e-commerce backends",
+          "Deploying secure production systems with NGINX and SSL"
+        ]
+      },
+      {
+        "id": "3",
+        "title": "DevPilot",
+        "tagline": "Self-Hosted GitHub Deployment & Monitoring Platform",
+        "description": "A lightweight SaaS platform that connects to GitHub, allowing users to deploy and monitor repositories on their own cloud infrastructure from a single dashboard.",
+        "fullDescription": [
+          "DevPilot is a developer-focused SaaS platform designed to simplify application deployment and monitoring.",
+          "It integrates directly with GitHub, enabling users to select repositories, configure environment variables, and deploy projects with a single click.",
+          "The platform also provides real-time monitoring features, including logs, request metrics, and traffic analytics, giving developers full visibility into their running applications."
+        ],
+        "thumbnail": "https://line25.com/wp-content/uploads/2015/gifs/1.gif",
+        "images": [
+          "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=1200&h=600&fit=crop"
+        ],
+        "techStack": [
+          { "name": "React", "category": "frontend" },
+          { "name": "TypeScript", "category": "frontend" },
+          { "name": "Tailwind CSS", "category": "frontend" },
+          { "name": "Node.js", "category": "backend" },
+          { "name": "Express", "category": "backend" },
+          { "name": "MongoDB", "category": "database" },
+          { "name": "PostgreSQL", "category": "database" },
+          { "name": "PM2", "category": "devops" },
+          { "name": "Docker", "category": "devops" },
+          { "name": "AWS EC2", "category": "devops" },
+          { "name": "Nginx", "category": "devops" },
+          { "name": "GitHub OAuth", "category": "other" }
+        ],
+        "githubUrl": "https://github.com/ahmedG3far44/DevPilot-App",
+        "liveDemoUrl": "",
+        "deployment": {
+          "platform": "AWS EC2 + Docker + Nginx",
+          "url": "",
+          "status": "in-progress",
+          "lastDeployed": "2024-02-01"
+        },
+        "startDate": "2023-10-01",
+        "endDate": "",
+        "status": "maintained",
+        "features": [
+          "GitHub OAuth authentication",
+          "Repository selection and deployment",
           "Environment variable management",
-          "Automated build & deploy pipelines",
-          "Live logs and status tracking"
+          "One-click deployment to EC2",
+          "Real-time logs and traffic monitoring",
+          "CI-ready deployment on new commits"
         ],
-        "role": "Founder & Full-Stack Engineer",
-        "year": "2025",
-        "links": {
-          "github": "https://github.com/example/deployify",
-          "demo": "https://deployify.app"
-        }
-      },
-
-      {
-        "id": "smart-diet-ai",
-        "title": "SmartDiet AI",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "Personalized diet plans powered by AI",
-        "type": "AI Web Application",
-        "description": "An AI-driven application that generates personalized diet plans based on user goals, preferences, and health constraints, with exportable PDFs and grocery lists.",
-        "techStack": ["React", "Python", "FastAPI", "OpenAI API", "PostgreSQL"],
-        "features": [
-          "AI-generated diet plans",
-          "Recipe generation",
-          "Weekly grocery list export",
-          "PDF download"
+        "challenges": [
+          "Safely executing deployments from untrusted repositories",
+          "Designing a flexible deployment pipeline for different app types",
+          "Providing real-time monitoring with minimal overhead"
         ],
-        "role": "Full-Stack Engineer",
-        "year": "2024",
-        "links": {
-          "github": "https://github.com/example/smart-diet-ai"
-        }
+        "learnings": [
+          "Building GitHub OAuth flows securely",
+          "Managing Node.js processes using PM2",
+          "Designing deployment automation for self-hosted infrastructure"
+        ]
       },
-
       {
-        "id": "ecommerce-next",
-        "title": "NextCommerce",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "High-performance e-commerce platform",
-        "type": "E-commerce Web App",
-        "description": "A modern e-commerce application built with performance, scalability, and clean UX in mind. Supports product management, carts, checkout, and order tracking.",
-        "techStack": ["Next.js", "MongoDB", "Stripe", "Tailwind CSS"],
-        "features": [
-          "Product catalog & search",
-          "Cart & checkout flow",
-          "Stripe payment integration",
-          "Admin dashboard"
+        "id": "4",
+        "title": "EventX Studio",
+        "tagline": "Full-Stack Event Management & Ticketing Platform",
+        "description": "A full-stack event management system that enables organizers to manage events, sell tickets, track attendees, and analyze engagement through a modern dashboard.",
+        "fullDescription": [
+          "EventX Studio is a comprehensive event management platform designed for both event organizers and attendees.",
+          "The system supports role-based access for Admins and Users, allowing administrators to manage events, tickets, and analytics, while users can browse events and book tickets.",
+          "Built with a modern UI and scalable backend, EventX provides real-time insights into revenue, attendance, and user engagement through interactive analytics dashboards."
         ],
-        "role": "Full-Stack Engineer",
-        "year": "2024",
-        "links": {
-          "github": "https://github.com/example/nextcommerce",
-          "demo": "https://nextcommerce.app"
-        }
-      },
-
-      {
-        "id": "traffic-weather-analytics",
-        "title": "Urban Traffic Analytics",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "Predicting traffic patterns using weather data",
-        "type": "Data Analytics Platform",
-        "description": "A data analytics system that studies the impact of weather conditions on urban traffic using synthetic data, simulations, and layered data storage.",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/0b225263544731.5ab4c4408e64a.gif",
+        "images": [
+          "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=600&fit=crop"
+        ],
         "techStack": [
-          "Python",
-          "Pandas",
-          "MinIO",
-          "HDFS",
-          "Monte Carlo Simulation"
+          { "name": "React", "category": "frontend" },
+          { "name": "Tailwind CSS", "category": "frontend" },
+          { "name": "Node.js", "category": "backend" },
+          { "name": "Express.js", "category": "backend" },
+          { "name": "MongoDB", "category": "database" },
+          { "name": "JWT", "category": "other" },
+          { "name": "Chart.js / Recharts", "category": "other" },
+          { "name": "QR Code Generator", "category": "other" },
+          { "name": "PM2", "category": "devops" },
+          { "name": "Netlify", "category": "devops" }
         ],
+        "githubUrl": "https://github.com/ahmedG3far44/EventX-web-app",
+        "liveDemoUrl": "https://reliable-churros-048f84.netlify.app/",
+        "deployment": {
+          "platform": "AWS EC2 (Backend) + Netlify (Frontend)",
+          "url": "https://reliable-churros-048f84.netlify.app/",
+          "status": "live",
+          "lastDeployed": "2024-02-01"
+        },
+        "startDate": "2023-09-01",
+        "endDate": "",
+        "status": "maintained",
         "features": [
-          "Synthetic data generation",
-          "Bronze/Silver/Gold data layers",
-          "Traffic prediction modeling",
-          "Analytical dashboards"
+          "Role-based access for Admins and Users",
+          "Event creation, editing, and deletion",
+          "Ticket booking with QR code generation",
+          "Admin analytics dashboard with charts",
+          "Revenue, attendance, and engagement tracking",
+          "Event search, filtering, and pagination",
+          "User ticket management and check-in support"
         ],
-        "role": "Data Engineer / Analyst",
-        "year": "2023",
-        "links": {
-          "github": "https://github.com/example/traffic-analytics"
-        }
-      },
-
-      {
-        "id": "portfolio-motion",
-        "title": "Animated Portfolio",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "A motion-first developer portfolio experience",
-        "type": "Personal Website",
-        "description": "A highly animated, one-page portfolio designed to showcase projects using horizontal scrolling, motion storytelling, and clean UI.",
-        "techStack": ["React", "Framer Motion", "GSAP", "CSS Modules"],
-        "features": [
-          "Horizontal scroll navigation",
-          "Scroll-based animations",
-          "JSON-driven content",
-          "Multi-language support"
+        "challenges": [
+          "Designing role-based access control across the application",
+          "Building scalable analytics APIs for dashboards",
+          "Ensuring secure ticket validation using QR codes"
         ],
-        "role": "Designer & Developer",
-        "year": "2025",
-        "links": {
-          "github": "https://github.com/example/animated-portfolio"
-        }
-      },
-
-      {
-        "id": "dev-dashboard",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "title": "DevOps Monitoring Dashboard",
-        "tagline": "Real-time monitoring for backend services",
-        "type": "Internal Tool",
-        "description": "A dashboard for monitoring backend services, server health, and application logs in real time, designed for small engineering teams.",
-        "techStack": ["Vue.js", "Node.js", "WebSockets", "Prometheus"],
-        "features": [
-          "Live server metrics",
-          "Log streaming",
-          "Alert system",
-          "Role-based access"
-        ],
-        "role": "Full-Stack Engineer",
-        "year": "2023",
-        "links": {
-          "github": "https://github.com/example/dev-dashboard"
-        }
+        "learnings": [
+          "Implementing analytics dashboards with Chart.js and Recharts",
+          "Designing REST APIs for multi-role systems",
+          "Deploying and managing Node.js apps using PM2 on EC2"
+        ]
       }
     ],
     "contact": {
@@ -317,8 +415,8 @@
         },
         {
           "id": 14,
-          "name": "MYSQL",
-          "icon": "mysql.png"
+          "name": "Astro",
+          "icon": "astro.png"
         },
         {
           "id": 15,
@@ -338,143 +436,241 @@
     },
     "projects": [
       {
-        "id": "deployify",
-        "title": "Deployify",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "منصة نشر المشاريع بضغطة واحدة من GitHub",
-        "type": "منصة SaaS",
-        "description": "منصة تتيح للمطورين نشر مشاريع الواجهة الأمامية والخلفية مباشرة من GitHub عبر إعداد متغيرات البيئة، أوامر البناء، وإعدادات التشغيل.",
-        "techStack": [
-          "Next.js",
-          "Node.js",
-          "Docker",
-          "Nginx",
-          "PostgreSQL",
-          "AWS"
+        "id": "1",
+        "title": "Folio-App",
+        "tagline": "منصة إنشاء بورتفوليو قابلة للتخصيص",
+        "description": "منصة SaaS متكاملة تتيح للمطورين والمصممين إنشاء وتخصيص مواقع بورتفوليو احترافية بتخطيطات وثيمات مرنة.",
+        "fullDescription": [
+          "Folio-App هي منصة لبناء البورتفوليو موجهة للمطورين والمصممين الذين يرغبون في التحكم الكامل في علامتهم الشخصية.",
+          "توفر المنصة تخطيطات مرنة، تخصيص الثيمات، ونظام مصادقة آمن باستخدام JWT.",
+          "تم تحسين الأداء باستخدام React Context وإدارة الصور بكفاءة عبر Sharp لضمان سرعة التحميل."
         ],
+        "thumbnail": "https://miro.medium.com/v2/resize:fit:1280/1*8uleb75powGpvzpgEk7mWA.gif",
+        "images": [
+          "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=1200&h=600&fit=crop"
+        ],
+        "techStack": [
+          { "name": "React", "category": "frontend" },
+          { "name": "TypeScript", "category": "frontend" },
+          { "name": "Tailwind CSS", "category": "frontend" },
+          { "name": "Express.js", "category": "backend" },
+          { "name": "Prisma ORM", "category": "backend" },
+          { "name": "NeonDB", "category": "database" },
+          { "name": "AWS S3", "category": "database" },
+          { "name": "AWS EC2", "category": "devops" },
+          { "name": "NGINX", "category": "devops" },
+          { "name": "JWT", "category": "other" },
+          { "name": "Zod", "category": "other" }
+        ],
+        "githubUrl": "https://github.com/yourusername/folio-app",
+        "liveDemoUrl": "https://folio-app.example.com",
+        "deployment": {
+          "platform": "AWS EC2 + NGINX",
+          "url": "https://folio-app.example.com",
+          "status": "live",
+          "lastDeployed": "2024-01-10"
+        },
+        "startDate": "2023-07-01",
+        "endDate": "2023-11-30",
+        "status": "maintained",
         "features": [
-          "تكامل مع مستودعات GitHub",
+          "تخطيطات وثيمات بورتفوليو قابلة للتخصيص",
+          "نظام مصادقة وتفويض باستخدام JWT",
+          "التحقق من البيانات باستخدام Zod",
+          "تحسين معالجة الصور باستخدام Sharp",
+          "نشر آمن عبر HTTPS باستخدام Certbot"
+        ],
+        "challenges": [
+          "تصميم نظام تخطيطات مرن مع الحفاظ على الأداء",
+          "تحسين معالجة الصور المرفوعة من المستخدمين",
+          "الحفاظ على سلامة الأنواع بين الواجهة والخادم"
+        ],
+        "learnings": [
+          "تطبيق التحقق المتقدم من البيانات باستخدام Zod",
+          "تحسين الأداء عبر React Context",
+          "نشر وتأمين التطبيقات الإنتاجية على AWS"
+        ]
+      },
+      {
+        "id": "2",
+        "title": "TechPad",
+        "tagline": "منصة تجارة إلكترونية متكاملة",
+        "description": "تطبيق تجارة إلكترونية متكامل يحتوي على عربة تسوق، إدارة الطلبات، ولوحة تحكم للمشرفين.",
+        "fullDescription": [
+          "TechPad هو تطبيق تجارة إلكترونية قابل للتوسع لإدارة المنتجات والمستخدمين والطلبات.",
+          "يتضمن تجربة تسوق كاملة، سجل الطلبات، ولوحة تحكم إدارية لإدارة المحتوى.",
+          "تم تصميم واجهات REST آمنة ودمج AWS S3 لتخزين الوسائط."
+        ],
+        "thumbnail": "https://zenxpod.com/wp-content/uploads/2024/12/UI-UX-1.gif",
+        "images": [
+          "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=1200&h=600&fit=crop"
+        ],
+        "techStack": [
+          { "name": "React", "category": "frontend" },
+          { "name": "TypeScript", "category": "frontend" },
+          { "name": "Tailwind CSS", "category": "frontend" },
+          { "name": "Express.js", "category": "backend" },
+          { "name": "MongoDB", "category": "database" },
+          { "name": "JWT", "category": "other" },
+          { "name": "AWS EC2", "category": "devops" },
+          { "name": "NGINX", "category": "devops" },
+          { "name": "AWS S3", "category": "database" }
+        ],
+        "githubUrl": "https://github.com/yourusername/techpad",
+        "liveDemoUrl": "",
+        "deployment": {
+          "platform": "AWS EC2 + NGINX",
+          "url": "",
+          "status": "offline",
+          "lastDeployed": "2023-12-01"
+        },
+        "startDate": "2023-04-01",
+        "endDate": "2023-08-15",
+        "status": "completed",
+        "features": [
+          "عربة تسوق وتجربة شراء متكاملة",
+          "إدارة الطلبات وسجل المشتريات",
+          "لوحة تحكم إدارية للمنتجات والمستخدمين",
+          "واجهات REST آمنة باستخدام JWT",
+          "تخزين الوسائط عبر AWS S3"
+        ],
+        "challenges": [
+          "تصميم واجهات REST قابلة للتوسع",
+          "تأمين المصادقة والصلاحيات",
+          "إدارة رفع وتخزين الملفات"
+        ],
+        "learnings": [
+          "بناء لوحات تحكم مع صلاحيات متعددة",
+          "هيكلة تطبيقات التجارة الإلكترونية",
+          "نشر تطبيقات آمنة باستخدام NGINX وSSL"
+        ]
+      },
+      {
+        "id": "3",
+        "title": "DevPilot",
+        "tagline": "منصة نشر ومراقبة التطبيقات من GitHub",
+        "description": "منصة SaaS خفيفة تتيح للمستخدمين ربط حساب GitHub ونشر المشاريع ومراقبتها على البنية التحتية الخاصة بهم من لوحة تحكم واحدة.",
+        "fullDescription": [
+          "DevPilot هي منصة موجهة للمطورين لتبسيط عمليات نشر التطبيقات ومراقبتها.",
+          "تتكامل المنصة مباشرة مع GitHub، مما يسمح باختيار المستودعات، إعداد متغيرات البيئة، والنشر بنقرة واحدة.",
+          "توفر المنصة ميزات مراقبة فورية تشمل السجلات، إحصائيات الطلبات، وتحليل حركة المرور للتطبيقات."
+        ],
+        "thumbnail": "https://line25.com/wp-content/uploads/2015/gifs/1.gif",
+        "images": [
+          "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=1200&h=600&fit=crop"
+        ],
+        "techStack": [
+          { "name": "React", "category": "frontend" },
+          { "name": "TypeScript", "category": "frontend" },
+          { "name": "Tailwind CSS", "category": "frontend" },
+          { "name": "Node.js", "category": "backend" },
+          { "name": "Express", "category": "backend" },
+          { "name": "MongoDB", "category": "database" },
+          { "name": "PostgreSQL", "category": "database" },
+          { "name": "PM2", "category": "devops" },
+          { "name": "Docker", "category": "devops" },
+          { "name": "AWS EC2", "category": "devops" },
+          { "name": "Nginx", "category": "devops" },
+          { "name": "GitHub OAuth", "category": "other" }
+        ],
+        "githubUrl": "https://github.com/your-username/devpilot",
+        "liveDemoUrl": "",
+        "deployment": {
+          "platform": "AWS EC2 + Docker + Nginx",
+          "url": "",
+          "status": "قيد التطوير",
+          "lastDeployed": "2024-02-01"
+        },
+        "startDate": "2023-10-01",
+        "endDate": "",
+        "status": "maintained",
+        "features": [
+          "تسجيل الدخول باستخدام GitHub OAuth",
+          "اختيار المستودعات ونشرها",
           "إدارة متغيرات البيئة",
-          "عمليات بناء ونشر آلية",
-          "سجلات مباشرة وتتبع الحالة"
+          "نشر بنقرة واحدة على EC2",
+          "مراقبة فورية للسجلات وحركة المرور",
+          "جاهزية للتكامل مع CI"
         ],
-        "role": "المؤسس ومهندس برمجيات متكامل",
-        "year": "2025",
-        "links": {
-          "github": "https://github.com/example/deployify",
-          "demo": "https://deployify.app"
-        }
-      },
-
-      {
-        "id": "smart-diet-ai",
-        "title": "SmartDiet AI",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "خطط غذائية مخصصة مدعومة بالذكاء الاصطناعي",
-        "type": "تطبيق ويب بالذكاء الاصطناعي",
-        "description": "تطبيق يعتمد على الذكاء الاصطناعي لإنشاء خطط غذائية مخصصة بناءً على أهداف المستخدم وتفضيلاته وقيوده الصحية، مع إمكانية تصدير ملفات PDF وقوائم تسوق.",
-        "techStack": ["React", "Python", "FastAPI", "OpenAI API", "PostgreSQL"],
-        "features": [
-          "خطط غذائية مولدة بالذكاء الاصطناعي",
-          "توليد وصفات",
-          "تصدير قائمة التسوق الأسبوعية",
-          "تحميل ملفات PDF"
+        "challenges": [
+          "تنفيذ عمليات نشر آمنة من مستودعات خارجية",
+          "تصميم نظام نشر مرن لأنواع تطبيقات مختلفة",
+          "توفير مراقبة فورية بأقل استهلاك للموارد"
         ],
-        "role": "مهندس برمجيات متكامل",
-        "year": "2024",
-        "links": {
-          "github": "https://github.com/example/smart-diet-ai"
-        }
+        "learnings": [
+          "بناء تكامل آمن مع GitHub OAuth",
+          "إدارة العمليات باستخدام PM2",
+          "أتمتة النشر على بنية تحتية مستضافة ذاتيًا"
+        ]
       },
       {
-        "id": "ecommerce-next",
-        "title": "NextCommerce",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "منصة تجارة إلكترونية عالية الأداء",
-        "type": "تطبيق ويب للتجارة الإلكترونية",
-        "description": "تطبيق تجارة إلكترونية حديث مبني مع التركيز على الأداء، القابلية للتوسع، وتجربة مستخدم نظيفة. يدعم إدارة المنتجات، السلة، الدفع، وتتبع الطلبات.",
-        "techStack": ["Next.js", "MongoDB", "Stripe", "Tailwind CSS"],
-        "features": [
-          "كتالوج المنتجات والبحث",
-          "سلة المشتريات وإتمام الشراء",
-          "تكامل بوابة الدفع Stripe",
-          "لوحة تحكم إدارية"
+        "id": "4",
+        "title": "EventX Studio",
+        "tagline": "منصة إدارة الفعاليات وبيع التذاكر",
+        "description": "نظام متكامل لإدارة الفعاليات يتيح للمنظمين إنشاء الأحداث، بيع التذاكر، تتبع الحضور، وتحليل التفاعل من خلال لوحة تحكم حديثة.",
+        "fullDescription": [
+          "EventX Studio هي منصة شاملة لإدارة الفعاليات موجهة للمنظمين والمستخدمين.",
+          "تدعم المنصة نظام صلاحيات يعتمد على الأدوار، حيث يمكن للمشرفين إدارة الفعاليات والتذاكر والتحليلات، بينما يمكن للمستخدمين تصفح الأحداث وحجز التذاكر.",
+          "تم بناء النظام بواجهة مستخدم حديثة وخلفية قابلة للتوسع، مع لوحات تحليل تعرض الإيرادات والحضور ومعدلات التفاعل."
         ],
-        "role": "مهندس برمجيات متكامل",
-        "year": "2024",
-        "links": {
-          "github": "https://github.com/example/nextcommerce",
-          "demo": "https://nextcommerce.app"
-        }
-      },
-
-      {
-        "id": "traffic-weather-analytics",
-        "title": "تحليلات المرور الحضرية",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "التنبؤ بأنماط المرور باستخدام بيانات الطقس",
-        "type": "منصة تحليل بيانات",
-        "description": "نظام تحليلي يدرس تأثير الظروف الجوية على حركة المرور في المدن باستخدام بيانات اصطناعية، محاكاة، وتخزين بيانات متعدد الطبقات.",
+        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/0b225263544731.5ab4c4408e64a.gif",
+        "images": [
+          "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=1200&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=600&fit=crop"
+        ],
         "techStack": [
-          "Python",
-          "Pandas",
-          "MinIO",
-          "HDFS",
-          "محاكاة مونتي كارلو"
+          { "name": "React", "category": "frontend" },
+          { "name": "Tailwind CSS", "category": "frontend" },
+          { "name": "Node.js", "category": "backend" },
+          { "name": "Express.js", "category": "backend" },
+          { "name": "MongoDB", "category": "database" },
+          { "name": "JWT", "category": "other" },
+          { "name": "Chart.js / Recharts", "category": "other" },
+          { "name": "QR Code Generator", "category": "other" },
+          { "name": "PM2", "category": "devops" },
+          { "name": "Netlify", "category": "devops" }
         ],
+        "githubUrl": "https://github.com/your-username/eventx",
+        "liveDemoUrl": "https://reliable-churros-048f84.netlify.app/",
+        "deployment": {
+          "platform": "AWS EC2 (الخلفية) + Netlify (الواجهة)",
+          "url": "https://reliable-churros-048f84.netlify.app/",
+          "status": "live",
+          "lastDeployed": "2024-02-01"
+        },
+        "startDate": "2023-09-01",
+        "endDate": "",
+        "status": "maintained",
         "features": [
-          "توليد بيانات اصطناعية",
-          "طبقات بيانات Bronze / Silver / Gold",
-          "نمذجة التنبؤ بحركة المرور",
-          "لوحات تحكم تحليلية"
+          "نظام صلاحيات للمشرفين والمستخدمين",
+          "إنشاء وتعديل وحذف الفعاليات",
+          "حجز التذاكر مع توليد QR Code",
+          "لوحة تحكم تحليلية للمشرفين",
+          "تحليل الإيرادات والحضور والتفاعل",
+          "بحث وتصفية الفعاليات",
+          "إدارة تذاكر المستخدمين وعمليات الدخول"
         ],
-        "role": "مهندس بيانات / محلل بيانات",
-        "year": "2023",
-        "links": {
-          "github": "https://github.com/example/traffic-analytics"
-        }
-      },
-
-      {
-        "id": "portfolio-motion",
-        "title": "معرض أعمال متحرك",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "تجربة معرض أعمال للمطور تعتمد على الحركة",
-        "type": "موقع شخصي",
-        "description": "معرض أعمال متحرك من صفحة واحدة، مصمم لعرض المشاريع باستخدام تمرير أفقي، سرد بصري بالحركة، وواجهة مستخدم نظيفة.",
-        "techStack": ["React", "Framer Motion", "GSAP", "CSS Modules"],
-        "features": [
-          "تنقل بالتمرير الأفقي",
-          "حركات مبنية على التمرير",
-          "محتوى مُدار عبر JSON",
-          "دعم تعدد اللغات"
+        "challenges": [
+          "تصميم نظام صلاحيات متعدد الأدوار",
+          "بناء واجهات تحليلية قابلة للتوسع",
+          "تأمين التذاكر باستخدام رموز QR"
         ],
-        "role": "المصمم والمطور",
-        "year": "2025",
-        "links": {
-          "github": "https://github.com/example/animated-portfolio"
-        }
-      },
-
-      {
-        "id": "dev-dashboard",
-        "title": "لوحة مراقبة DevOps",
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e8160767817393.5b472244e5149.gif",
-        "tagline": "مراقبة فورية لخدمات الخوادم الخلفية",
-        "type": "أداة داخلية",
-        "description": "لوحة تحكم لمراقبة خدمات الخلفية، صحة الخوادم، وسجلات التطبيقات بشكل فوري، مصممة لفرق هندسية صغيرة.",
-        "techStack": ["Vue.js", "Node.js", "WebSockets", "Prometheus"],
-        "features": [
-          "مقاييس الخوادم المباشرة",
-          "بث السجلات",
-          "نظام تنبيهات",
-          "صلاحيات حسب الدور"
-        ],
-        "role": "مهندس برمجيات متكامل",
-        "year": "2023",
-        "links": {
-          "github": "https://github.com/example/dev-dashboard"
-        }
+        "learnings": [
+          "بناء لوحات تحليل باستخدام Chart.js و Recharts",
+          "تصميم واجهات REST لأنظمة متعددة الصلاحيات",
+          "نشر وإدارة تطبيقات Node.js باستخدام PM2"
+        ]
       }
     ],
     "contact": {

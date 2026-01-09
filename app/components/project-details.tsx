@@ -2,7 +2,10 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Github, ExternalLink, Server, Calendar, Tag } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Github, ExternalLink, Server, Calendar, Tag, LucideArrowLeft } from 'lucide-react';
+import { useContent } from '../context/ContentContext';
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 
 
 interface TechStack {
@@ -17,7 +20,7 @@ interface DeploymentInfo {
     lastDeployed?: string;
 }
 
-interface ProjectData {
+export interface ProjectData {
     id: string;
     title: string;
     tagline: string;
@@ -103,13 +106,29 @@ const ProjectDetailsPage: React.FC = () => {
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
     const [imageLoaded, setImageLoaded] = useState(false);
 
+    const { content } = useContent();
+
+    const projectsList = content.projects;
+
+    const { id } = useParams()
+
+    if (!id) {
+        return <div>Project ID not found</div>
+    }
+    console.log(id, "project Id: ");
+
+    const project = projectsList.find((project) => project.id === id?.toString());
+
+
+    if (!project) return <div>Project not found</div>
+
     // Auto-play carousel
     useEffect(() => {
         if (!isAutoPlaying) return;
 
         const interval = setInterval(() => {
             setCurrentImageIndex((prev) =>
-                prev === mockProject.images.length - 1 ? 0 : prev + 1
+                prev === project.images.length - 1 ? 0 : prev + 1
             );
         }, 5000);
 
@@ -119,14 +138,14 @@ const ProjectDetailsPage: React.FC = () => {
     const nextImage = () => {
         setIsAutoPlaying(false);
         setCurrentImageIndex((prev) =>
-            prev === mockProject.images.length - 1 ? 0 : prev + 1
+            prev === project.images.length - 1 ? 0 : prev + 1
         );
     };
 
     const prevImage = () => {
         setIsAutoPlaying(false);
         setCurrentImageIndex((prev) =>
-            prev === 0 ? mockProject.images.length - 1 : prev - 1
+            prev === 0 ? project.images.length - 1 : prev - 1
         );
     };
 
@@ -150,7 +169,10 @@ const ProjectDetailsPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen ">
+        <div className="min-h-screen scroll-bar-none scroll-smooth">
+
+            <Link className='w-fit bg-card text-foreground fixed top-4 right-4 lg:left-8 z-50 flex items-center gap-2 text-sm cursor-pointer border border-border p-2 rounded-md  hover:opacity-80 transition-colors duration-300 shadow-md' href={"/"}> <LucideArrowLeft size={15} /> Back Home</Link>
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 
                 {/* Header */}
@@ -158,17 +180,17 @@ const ProjectDetailsPage: React.FC = () => {
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div>
                             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-2">
-                                {mockProject.title}
+                                {project.title}
                             </h1>
-                            <p className="text-lg sm:text-xl text-foreground">{mockProject.tagline}</p>
+                            <p className="text-lg sm:text-xl text-foreground">{project.tagline}</p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${mockProject.status === 'completed' ? 'bg-green-100 text-green-800' :
-                                mockProject.status === 'in-progress' ? 'bg-blue-100 text-blue-800' :
-                                    'bg-purple-100 text-purple-800'
+                            <span className={`px-3 py-1 rounded-full border border-border text-sm font-medium ${project.status === 'completed' ? 'bg-card text-green-800' :
+                                project.status === 'in-progress' ? 'bg-card text-blue-800' :
+                                    'bg-card text-purple-800'
                                 }`}>
-                                {mockProject.status === 'in-progress' ? 'In Progress' :
-                                    mockProject.status === 'completed' ? 'Completed' : 'Maintained'}
+                                {project.status === 'in-progress' ? 'In Progress' :
+                                    project.status === 'completed' ? 'Completed' : 'Maintained'}
                             </span>
                         </div>
                     </div>
@@ -181,11 +203,11 @@ const ProjectDetailsPage: React.FC = () => {
 
 
                         <div className="relative aspect-video ">
-                            {mockProject.images.map((image, index) => (
+                            {project.images.map((image, index) => (
                                 <img
                                     key={index}
                                     src={image}
-                                    alt={`${mockProject.title} screenshot ${index + 1}`}
+                                    alt={`${project.title} screenshot ${index + 1}`}
                                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${index === currentImageIndex
                                         ? 'opacity-100 scale-100'
                                         : 'opacity-0 scale-105'
@@ -212,14 +234,14 @@ const ProjectDetailsPage: React.FC = () => {
 
                             {/* Image Counter */}
                             <div className="absolute top-4 right-4 bg-card/70 text-white px-3 py-1 rounded-full text-sm">
-                                {currentImageIndex + 1} / {mockProject.images.length}
+                                {currentImageIndex + 1} / {project.images.length}
                             </div>
                         </div>
 
                         {/* Thumbnail Navigation */}
                         <div className=" space-x-4 p-2
                        ">
-                            {mockProject.images.map((image, index) => (
+                            {project.images.map((image, index) => (
                                 <button
                                     key={index}
                                     onClick={() => goToImage(index)}
@@ -249,7 +271,7 @@ const ProjectDetailsPage: React.FC = () => {
                         <div className="bg-card border border-border rounded-xl shadow-lg p-6 sm:p-8 animate-slide-up">
                             <h2 className="text-2xl font-bold text-foreground mb-4">About the Project</h2>
                             <div className="space-y-4 text-foreground leading-relaxed">
-                                {mockProject.fullDescription.map((paragraph, index) => (
+                                {project.fullDescription.map((paragraph, index) => (
                                     <p key={index}>{paragraph}</p>
                                 ))}
                             </div>
@@ -259,7 +281,7 @@ const ProjectDetailsPage: React.FC = () => {
                         <div className="bg-card border border-border rounded-xl shadow-lg p-6 sm:p-8 animate-slide-up" style={{ animationDelay: '100ms' }}>
                             <h2 className="text-2xl font-bold text-foreground mb-4">Key Features</h2>
                             <ul className="space-y-3">
-                                {mockProject.features.map((feature, index) => (
+                                {project.features.map((feature, index) => (
                                     <li key={index} className="flex items-start gap-3">
                                         <span className="flex-shrink-0 w-6 h-6 bg-accent text-foreground rounded-full flex items-center justify-center text-sm font-semibold mt-0.5">
                                             {index + 1}
@@ -270,13 +292,13 @@ const ProjectDetailsPage: React.FC = () => {
                             </ul>
                         </div>
 
-                        {(mockProject.challenges || mockProject.learnings) && (
+                        {(project.challenges || project.learnings) && (
                             <div className="grid sm:grid-cols-2 gap-6 animate-slide-up" style={{ animationDelay: '200ms' }}>
-                                {mockProject.challenges && (
+                                {project.challenges && (
                                     <div className="bg-card border border-border rounded-xl shadow-lg p-6">
                                         <h3 className="text-xl font-bold text-foreground mb-4">Technical Challenges</h3>
                                         <ul className="space-y-2">
-                                            {mockProject.challenges.map((challenge, index) => (
+                                            {project.challenges.map((challenge, index) => (
                                                 <li key={index} className="text-foreground text-sm pl-4 border-l-2 border-orange-500">
                                                     {challenge}
                                                 </li>
@@ -285,11 +307,11 @@ const ProjectDetailsPage: React.FC = () => {
                                     </div>
                                 )}
 
-                                {mockProject.learnings && (
+                                {project.learnings && (
                                     <div className="bg-card border border-border rounded-xl shadow-lg p-6">
                                         <h3 className="text-xl font-bold text-foreground mb-4">Key Learnings</h3>
                                         <ul className="space-y-2">
-                                            {mockProject.learnings.map((learning, index) => (
+                                            {project.learnings.map((learning, index) => (
                                                 <li key={index} className="text-foreground text-sm pl-4 border-l-2 border-green-500">
                                                     {learning}
                                                 </li>
@@ -309,7 +331,7 @@ const ProjectDetailsPage: React.FC = () => {
                             <h3 className="text-xl font-bold text-foreground mb-4">Project Links</h3>
                             <div className="space-y-3">
                                 <a
-                                    href={mockProject.githubUrl}
+                                    href={project.githubUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-3 p-3 bg-card border border-border
@@ -318,9 +340,9 @@ const ProjectDetailsPage: React.FC = () => {
                                     <Github className="w-5 h-5" />
                                     <span className="font-medium">View Repository</span>
                                 </a>
-                                {mockProject.liveDemoUrl && (
+                                {project.liveDemoUrl && (
                                     <a
-                                        href={mockProject.liveDemoUrl}
+                                        href={project.liveDemoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-3 p-3 bg-foreground border border-border
@@ -341,25 +363,25 @@ const ProjectDetailsPage: React.FC = () => {
                                     <Server className="w-5 h-5 text-accent mt-0.5" />
                                     <div>
                                         <p className="text-sm text-foreground">Platform</p>
-                                        <p className="font-medium text-foreground">{mockProject.deployment.platform}</p>
+                                        <p className="font-medium text-foreground">{project.deployment.platform}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3">
                                     <Tag className="w-5 h-5 text-accent mt-0.5" />
                                     <div>
                                         <p className="text-sm text-foreground">Status</p>
-                                        <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${statusColors[mockProject.deployment.status]}`}>
-                                            {mockProject.deployment.status.toUpperCase()}
+                                        <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${statusColors[project.deployment.status as keyof typeof statusColors]}`}>
+                                            {project.deployment.status.toUpperCase()}
                                         </span>
                                     </div>
                                 </div>
-                                {mockProject.deployment.lastDeployed && (
+                                {project.deployment.lastDeployed && (
                                     <div className="flex items-start gap-3">
                                         <Calendar className="w-5 h-5 text-accent mt-0.5" />
                                         <div>
                                             <p className="text-sm text-foreground">Last Deployed</p>
                                             <p className="font-medium text-foreground">
-                                                {new Date(mockProject.deployment.lastDeployed).toLocaleDateString()}
+                                                {new Date(project.deployment.lastDeployed).toLocaleDateString()}
                                             </p>
                                         </div>
                                     </div>
@@ -372,7 +394,7 @@ const ProjectDetailsPage: React.FC = () => {
                             <h3 className="text-xl font-bold text-foreground mb-4">Tech Stack</h3>
                             <div className="space-y-4">
                                 {['frontend', 'backend', 'database', 'devops', 'other'].map((category) => {
-                                    const techs = mockProject.techStack.filter(t => t.category === category);
+                                    const techs = project.techStack.filter(t => t.category === category);
                                     if (techs.length === 0) return null;
 
                                     return (
@@ -384,9 +406,9 @@ const ProjectDetailsPage: React.FC = () => {
                                                 {techs.map((tech, index) => (
                                                     <span
                                                         key={index}
-                                                        className={`px-3 py-1 rounded-full text-sm font-medium ${categoryColors[tech.category]}`}
+                                                        className={`px-3 py-1 rounded-full text-sm font-medium ${categoryColors[tech?.category as keyof typeof categoryColors]}`}
                                                     >
-                                                        {tech.name}
+                                                        {tech?.name}
                                                     </span>
                                                 ))}
                                             </div>
@@ -403,17 +425,17 @@ const ProjectDetailsPage: React.FC = () => {
                                 <div>
                                     <p className="text-sm text-foreground">Started</p>
                                     <p className="font-medium text-accent">
-                                        {new Date(mockProject.startDate).toLocaleDateString('en-US', {
+                                        {new Date(project.startDate).toLocaleDateString('en-US', {
                                             month: 'long',
                                             year: 'numeric'
                                         })}
                                     </p>
                                 </div>
-                                {mockProject.endDate && (
+                                {project.endDate && (
                                     <div>
                                         <p className="text-sm text-foreground">Completed</p>
                                         <p className="font-medium text-accent">
-                                            {new Date(mockProject.endDate).toLocaleDateString('en-US', {
+                                            {new Date(project.endDate).toLocaleDateString('en-US', {
                                                 month: 'long',
                                                 year: 'numeric'
                                             })}

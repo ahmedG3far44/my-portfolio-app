@@ -77,6 +77,17 @@ body {
     z-index: -1;
 }
 
+.text-stroke {
+    color: var(--foreground);
+}
+.text-stroke:hover {
+    -webkit-text-stroke-color: var(--accent);
+    -webkit-text-stroke-width: 1px;
+    color: transparent;
+}
+
+
+
 @keyframes blob {
     0%,
     100% {
@@ -198,10 +209,6 @@ body {
     animation-delay: 4s;
 }
 
-.bg-grid-pattern {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-}
 
 @keyframes gradient-shift {
     0%,

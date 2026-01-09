@@ -1,146 +1,83 @@
-import React from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import Link from "next/link";
 
-interface ProjectLinks {
-    github?: string;
-    live?: string;
-    demo?: string;
+interface StackType {
+    name: string;
+    category: string;
 }
 
-interface ProjectCardProps {
-    id: string;
-    title: string;
-    thumbnail: string;
-    tagline: string;
-    type: string;
-    description: string;
-    techStack: string[];
-    features: string[];
-    role: string;
-    year: string;
-    links: ProjectLinks;
-}
-
-const ProjectCard: React.FC<ProjectCardProps> = ({
+const ProjectCard = ({
+    id,
     title,
     thumbnail,
-    tagline,
-    type,
+    number,
     description,
-    techStack,
-    features,
-    role,
-    year,
-    links
-}) => {
-    const isArabic = /[\u0600-\u06FF]/.test(title);
-
+    stack
+}: { id: string, title: string, thumbnail: string, number: number, description: string, stack: StackType[] }) => {
     return (
-        <article
-            className="bg-zinc-800  rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 max-w-4xl"
-            dir={isArabic ? 'rtl' : 'ltr'}
+        <div 
+            id="projects" 
+            className="group p-3 sm:p-4 md:p-6 rounded-md hover:border border-border hover:my-4 sm:hover:my-6 md:hover:my-8 cursor-pointer w-full sm:w-4/5 md:w-3/4 lg:w-3/5 mx-auto flex flex-col items-start justify-center gap-2 sm:gap-3 hover:shadow-xl transition-all duration-300"
         >
-            {/* Thumbnail */}
-            <div className="relative h-64 overflow-hidden">
+            {/* Thumbnail - responsive sizing */}
+            <div className="hidden items-center justify-center group-hover:flex relative top-0 right-0 shadow-md z-50 rounded-xl sm:rounded-2xl w-full max-h-48 sm:max-h-64 md:max-h-80 lg:max-h-96 overflow-hidden animate-fill">
                 <img
                     src={thumbnail}
                     alt={title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
+                    className="w-full h-full object-cover object-center"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium ">
-                    {year}
-                </div>
             </div>
 
-            {/* Content */}
-            <div className="p-6 space-y-4">
-                {/* Header */}
-                <div className="space-y-2">
-                    <div className="flex items-center justify-between gap-3 flex-wrap">
-                        <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
-                        <span className="text-sm   px-3 py-1 rounded-full whitespace-nowrap">
-                            {type}
+            {/* Title - responsive text sizing */}
+            <div className="cursor-pointer w-full">
+                <Link 
+                    className="w-full text-stroke text-start text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black italic transition-colors duration-300 break-words" 
+                    href={`/project/${id}`}
+                >
+                    {number}.{title}
+                </Link>
+            </div>
+
+            {/* Description and Stack - responsive */}
+            <div className="w-full hidden group-hover:block transition-all duration-300 bg-card p-2 sm:p-3 md:p-4 shadow-sm rounded-md">
+                {/* Tech Stack */}
+                <div className="flex items-start justify-start gap-1 sm:gap-1.5 md:gap-2 flex-wrap my-1 sm:my-2">
+                    {stack.map((tech, index) => (
+                        <span 
+                            key={index} 
+                            className="text-xs sm:text-sm px-1.5 sm:px-2 py-0.5 sm:py-1 border border-border rounded-xl sm:rounded-2xl bg-card text-start text-accent"
+                        >
+                            {tech.name.toLocaleLowerCase()}
                         </span>
-                    </div>
-                    <p className="text-lg text-blue-600 font-medium">{tagline}</p>
+                    ))}
                 </div>
 
                 {/* Description */}
-                <p className=" leading-relaxed">{description}</p>
-
-                {/* Role */}
-                <div className="flex items-center gap-2 text-sm">
-                    <span className="font-semibold ">
-                        {isArabic ? 'الدور:' : 'Role:'}
-                    </span>
-                    <span className="">{role}</span>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="space-y-2">
-                    <h3 className="font-semibold text-gray-900 text-sm">
-                        {isArabic ? 'التقنيات المستخدمة' : 'Tech Stack'}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                        {techStack.map((tech, index) => (
-                            <span
-                                key={index}
-                                className="px-3 py-1 bg-blue-50 text-blue-700 rounded-md text-sm font-medium border border-blue-200"
-                            >
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Features */}
-                <div className="space-y-2">
-                    <h3 className="font-semibold text-gray-900 text-sm">
-                        {isArabic ? 'المميزات الرئيسية' : 'Key Features'}
-                    </h3>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {features.map((feature, index) => (
-                            <li
-                                key={index}
-                                className="flex items-start gap-2 text-sm "
-                            >
-                                <span className="text-green-500 mt-0.5">✓</span>
-                                <span>{feature}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                {/* Links */}
-                {(links.github || links.live || links.demo) && (
-                    <div className="flex gap-3 pt-4 border-t border-gray-200">
-                        {links.github && (
-                            <a
-                                href={links.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-4 py-2  rounded-lg  transition-colors font-medium text-sm"
-                            >
-                                <Github size={18} />
-                                <span>{isArabic ? 'الكود' : 'Code'}</span>
-                            </a>
-                        )}
-                        {(links.live || links.demo) && (
-                            <a
-                                href={links.live || links.demo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-4 py-2 bg-blue-600  rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
-                            >
-                                <ExternalLink size={18} />
-                                <span>{isArabic ? 'عرض حي' : 'Live Demo'}</span>
-                            </a>
-                        )}
-                    </div>
-                )}
+                <p className="text-xs sm:text-sm md:text-base text-start w-full text-accent leading-relaxed">
+                    {description}
+                </p>
             </div>
-        </article>
+
+            <style>
+                {`
+                    .animate-fill {
+                        animation: fill 0.5s ease-in-out forwards;
+                        transition: all 0.5s ease-in-out;
+                    }
+                    @keyframes fill {
+                        0% {
+                            height: 0%;
+                            width: 0%;
+                            display: none;
+                        }
+                        100% {
+                            height: 100%;
+                            width: 100%;
+                            display: block;
+                        }
+                    }
+                `}
+            </style>
+        </div>
     );
 };
 

@@ -6,6 +6,7 @@ import { ThemeProvider } from "./context/theme/ThemeProvider";
 import ContentProvider from "./context/ContentProvider";
 
 import "./globals.css";
+import Head from "next/head";
 
 
 const geistSans = Geist({
@@ -28,7 +29,9 @@ export const metadata: Metadata = {
       url: "https://ahmedg3far.com",
     },
   ],
-  icons: ["/public/images/avatar.png"],
+  icons: {
+    icon: "/images/avatar.png",
+  },
 };
 
 export default function RootLayout({
@@ -38,7 +41,8 @@ export default function RootLayout({
 }>) {
   return (
     <html data-theme="dark" lang="en" dir="ltr">
-      <body 
+
+      <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
