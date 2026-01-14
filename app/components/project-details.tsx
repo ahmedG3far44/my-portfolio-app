@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Github, ExternalLink, Server, Calendar, Tag, LucideArrowLeft } from 'lucide-react';
-import { useContent } from '../context/ContentContext';
+import { useContent } from '../context/content/ContentContext';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 

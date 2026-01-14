@@ -1,4 +1,4 @@
-import { useContent } from "../context/ContentContext";
+import { useContent } from "../../context/content/ContentContext";
 
 
 const DownloadCVButton = ({ text, icon, download }: { text: string, icon?: React.ReactNode, download?: string }) => {

@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import HeroPage from "./components/hero";
 import ProjectDetailsPage from "./components/project-details";
 import ProjectsPage from "./components/projects";
+import LanguageSelector from "./components/ui/language-selector";
+import ToggleTheme from "./components/ui/toggle-theme";
+
 
 
 interface PageType {
@@ -68,6 +71,12 @@ export default function Home() {
     })
   }, [])
   return (
-    <currentPage.component />
+    <div>
+      <div className="fixed flex items-center justify-center gap-2 top-4 right-4 z-50">
+        <LanguageSelector />
+        <ToggleTheme />
+      </div>
+      <currentPage.component />
+    </div>
   )
 }

@@ -77,13 +77,15 @@ body {
     z-index: -1;
 }
 
-.text-stroke {
-    color: var(--foreground);
-}
-.text-stroke:hover {
+
+.active {
     -webkit-text-stroke-color: var(--accent);
     -webkit-text-stroke-width: 1px;
+    color: var(--foreground);
+}
+.active:hover {
     color: transparent;
+    border:none;
 }
 
 

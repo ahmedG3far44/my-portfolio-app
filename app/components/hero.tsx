@@ -15,11 +15,11 @@ import {
 
 import React, { useState, useEffect } from "react";
 
-import { useContent } from "../context/ContentContext"
+import { useContent } from "../context/content/ContentContext"
 import { useTheme } from "../context/theme/ThemeProvider";
 
-import Card from "./card";
-import DownloadCVButton from './button';
+import Card from "./ui/card";
+import DownloadCVButton from './ui/button';
 import Skills from './skills';
 
 
@@ -99,13 +99,6 @@ const HeroPage = () => {
                 </div>
             </div>
 
-            {/* Theme and Language toggles - responsive positioning */}
-            <div className="fixed flex items-center justify-center gap-2 top-4 right-4 z-50">
-                <LanguageSelector />
-                <ToggleTheme />
-            </div>
-
-            {/* Main content */}
             <div
                 className="relative z-10 flex flex-col items-center gap-2 sm:gap-3 w-full max-w-5xl mx-auto text-center"
                 style={{
@@ -113,23 +106,17 @@ const HeroPage = () => {
                     transition: 'transform 0.3s ease-out'
                 }}
             >
-                {/* Avatar - responsive sizing */}
+                
                 <div id="avatar" className="relative cursor-pointer group">
                     <div className="absolute inset-0 rounded-full blur-xl group-hover:blur-2xl transition-all opacity-50"></div>
 
                     <div className="flex items-center justify-center text-5xl overflow-hidden rounded-full group-hover:scale-105 transition-transform w-15 h-15 sm:w-24 sm:h-24 md:w-48 md:h-48 lg:w-32 lg:h-32">
                         <img
                             alt="avatar profile photo"
-                            src={"/images/avatar.png"}
-                            className="w-full h-full object-center object-cover"
+                            src={"./profile.png"}
+                            className="w-full h-full object-center object-cover mix-blend-multiply"
                         />
                     </div>
-
-                    {/* Status badge - adjusted positioning for mobile */}
-                    {/* <div className="hidden group-hover:flex items-center justify-center absolute -top-2 sm:bottom-32 left-1/2 transform -translate-x-1/2 bg-emerald-500/20 backdrop-blur-sm py-1 px-3 sm:px-4 rounded-md gap-2 text-emerald-400 text-xs sm:text-sm font-medium animate-fade-in whitespace-nowrap">
-                        <span className='w-2 h-2 flex items-center justify-center bg-emerald-500 rounded-full border animate-pulse'></span>
-                        <span>Available for work</span>
-                    </div> */}
                 </div>
 
                 {/* Name - responsive text sizing */}
@@ -145,7 +132,7 @@ const HeroPage = () => {
                 </div>
 
                 {/* Tagline - responsive text sizing */}
-                <p className="text-base sm:text-lg md:text-xl text-accent max-w-2xl animate-slide-up animation-delay-400 px-4">
+                <p className="text-base sm:text-lg md:text-xl text-accent max-w-2xl animate-slide-up animation-delay-400 px-4 hover:text-foreground transition-colors">
                     {content.hero.tagline}
                 </p>
 
@@ -154,12 +141,6 @@ const HeroPage = () => {
                     <div className="relative border-t border-b border-border">
                         <div className="absolute left-0 top-0 bottom-0 w-10 sm:w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
                         <div className="absolute right-0 top-0 bottom-0 w-10 sm:w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
-
-                        {/* <div className="flex animate-scroll-right hover:pause-animation">
-                            {techStack.reverse().map((tech) => (
-                                <SkillCard key={tech.id} {...tech} />
-                            ))}
-                        </div> */}
 
                         <Skills />
                     </div>
@@ -217,50 +198,3 @@ const HeroPage = () => {
 export default HeroPage
 
 
-export function SkillCard({ name, icon }: { name: string; icon?: string }) {
-    return (
-        <div className="group flex justify-center items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-full transition-all cursor-pointer flex-shrink-0">
-            {
-                icon && (
-                    <img
-                        width={50}
-                        height={50}
-                        src={`../images/${icon}`}
-                        alt={name}
-                        className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
-                    />
-                )
-            }
-            <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold whitespace-nowrap">{name}</span>
-        </div>
-    )
-}
-
-function ToggleTheme() {
-    const { toggleTheme, theme } = useTheme();
-    return (
-        <Card>
-            <button
-                className="cursor-pointer flex items-center justify-center gap-2 group-hover:scale-110 transition-transform p-1 sm:p-0"
-                onClick={toggleTheme}
-            >
-                {theme === "light" ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}
-            </button>
-        </Card>
-    )
-}
-
-const LanguageSelector = () => {
-    const { language, changeLanguage } = useContent();
-    return (
-        <select
-            id="language-select"
-            value={language}
-            onChange={(e) => changeLanguage(e.target.value as "en" | "ar")}
-            className="w-full p-2 bg-card border border-border rounded-md text-foreground text-xs cursor-pointer transition-all duration-20 appearance-none"
-        >
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-        </select>
-    );
-}
