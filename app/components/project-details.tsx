@@ -1,12 +1,10 @@
 "use client";
 
-
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Github, ExternalLink, Server, Calendar, Tag, LucideArrowLeft } from 'lucide-react';
 import { useContent } from '../context/content/ContentContext';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-
 
 interface TechStack {
     name: string;
@@ -39,88 +37,22 @@ export interface ProjectData {
     learnings?: string[];
 }
 
-// Mock Data
-const mockProject: ProjectData = {
-    id: '1',
-    title: 'TaskFlow Pro',
-    tagline: 'AI-Powered Project Management Platform',
-    description: 'A modern project management SaaS with AI task prioritization, real-time collaboration, and advanced analytics.',
-    fullDescription: [
-        'TaskFlow Pro is a next-generation project management platform designed for modern teams. Built with scalability and user experience in mind, it combines powerful features with an intuitive interface.',
-        'The platform leverages AI to intelligently prioritize tasks based on deadlines, dependencies, and team capacity. Real-time collaboration features ensure teams stay synchronized, while comprehensive analytics provide actionable insights.',
-        'Built with a microservices architecture, TaskFlow Pro can scale from small teams to enterprise organizations. The system handles thousands of concurrent users with sub-100ms response times.',
-    ],
-    images: [
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop',
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop',
-        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=600&fit=crop',
-        'https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=1200&h=600&fit=crop',
-    ],
-    techStack: [
-        { name: 'React 18', category: 'frontend' },
-        { name: 'TypeScript', category: 'frontend' },
-        { name: 'Tailwind CSS', category: 'frontend' },
-        { name: 'Node.js', category: 'backend' },
-        { name: 'Express', category: 'backend' },
-        { name: 'PostgreSQL', category: 'database' },
-        { name: 'Redis', category: 'database' },
-        { name: 'Docker', category: 'devops' },
-        { name: 'AWS', category: 'devops' },
-        { name: 'WebSocket', category: 'other' },
-    ],
-    githubUrl: 'https://github.com/yourusername/taskflow-pro',
-    liveDemoUrl: 'https://taskflow-pro.example.com',
-    deployment: {
-        platform: 'AWS (ECS + RDS)',
-        url: 'https://taskflow-pro.example.com',
-        status: 'live',
-        lastDeployed: '2024-01-05',
-    },
-    startDate: '2023-06-01',
-    endDate: '2023-12-15',
-    status: 'maintained',
-    features: [
-        'AI-powered task prioritization and smart scheduling',
-        'Real-time collaboration with WebSocket connections',
-        'Advanced analytics dashboard with custom reports',
-        'Role-based access control (RBAC)',
-        'Third-party integrations (Slack, GitHub, Jira)',
-        'Mobile-responsive design with PWA support',
-        'Automated testing with 85%+ code coverage',
-        'Multi-tenant architecture with data isolation',
-    ],
-    challenges: [
-        'Implementing efficient real-time sync across thousands of concurrent users',
-        'Designing a scalable database schema that supports complex project hierarchies',
-        'Optimizing AI task prioritization to run in under 200ms',
-    ],
-    learnings: [
-        'WebSocket connection pooling and load balancing strategies',
-        'Database indexing patterns for multi-tenant applications',
-        'Cost optimization techniques for cloud infrastructure',
-    ],
-};
-
 const ProjectDetailsPage: React.FC = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
     const [imageLoaded, setImageLoaded] = useState(false);
 
     const { content } = useContent();
-
     const projectsList = content.projects;
-
-    const { id } = useParams()
+    const { id } = useParams();
 
     if (!id) {
-        return <div>Project ID not found</div>
+        return <div>Project ID not found</div>;
     }
-    console.log(id, "project Id: ");
 
     const project = projectsList.find((project) => project.id === id?.toString());
 
-
-    if (!project) return <div>Project not found</div>
+    if (!project) return <div>Project not found</div>;
 
     // Auto-play carousel
     useEffect(() => {
@@ -133,7 +65,7 @@ const ProjectDetailsPage: React.FC = () => {
         }, 5000);
 
         return () => clearInterval(interval);
-    }, [isAutoPlaying]);
+    }, [isAutoPlaying, project.images.length]);
 
     const nextImage = () => {
         setIsAutoPlaying(false);
@@ -168,46 +100,71 @@ const ProjectDetailsPage: React.FC = () => {
         development: 'bg-card border border-border text-blue-500',
     };
 
+
     return (
         <div className="min-h-screen scroll-bar-none scroll-smooth">
+            <Link
+                className='w-fit bg-card text-foreground fixed top-4 right-4 lg:left-8 z-50 flex items-center gap-2 text-sm cursor-pointer border border-border p-2 rounded-md hover:opacity-80 transition-colors duration-300 shadow-md'
+                href={"/"}
+                aria-label="Return to homepage"
+            >
+                <LucideArrowLeft size={15} aria-hidden="true" />
+                Back Home
+            </Link>
 
-            <Link className='w-fit bg-card text-foreground fixed top-4 right-4 lg:left-8 z-50 flex items-center gap-2 text-sm cursor-pointer border border-border p-2 rounded-md  hover:opacity-80 transition-colors duration-300 shadow-md' href={"/"}> <LucideArrowLeft size={15} /> Back Home</Link>
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-
+            <article
+                className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
+            >
                 {/* Header */}
-                <div className="mb-8 sm:mb-12 animate-fade-in">
+                <header className="mb-8 sm:mb-12 animate-fade-in">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div>
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-2">
+                            <h1
+                                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-2"
+                                itemProp="name"
+                            >
                                 {project.title}
                             </h1>
-                            <p className="text-lg sm:text-xl text-foreground">{project.tagline}</p>
+                            <p className="text-lg sm:text-xl text-foreground" itemProp="headline">
+                                {project.tagline}
+                            </p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className={`px-3 py-1 rounded-full border border-border text-sm font-medium ${project.status === 'completed' ? 'bg-card text-green-800' :
-                                project.status === 'in-progress' ? 'bg-card text-blue-800' :
-                                    'bg-card text-purple-800'
-                                }`}>
+                            <span
+                                className={`px-3 py-1 rounded-full border border-border text-sm font-medium ${project.status === 'completed' ? 'bg-card text-green-800' :
+                                    project.status === 'in-progress' ? 'bg-card text-blue-800' :
+                                        'bg-card text-purple-800'
+                                    }`}
+                                itemProp="creativeWorkStatus"
+                            >
                                 {project.status === 'in-progress' ? 'In Progress' :
                                     project.status === 'completed' ? 'Completed' : 'Maintained'}
                             </span>
                         </div>
                     </div>
-                </div>
+                </header>
 
                 {/* Image Carousel */}
-                <div className="mb-8 sm:mb-12">
-
+                <section
+                    className="mb-8 sm:mb-12"
+                    aria-label="Project screenshots gallery"
+                >
                     <div className="relative rounded-2xl border border-border overflow-hidden group">
-
-
-                        <div className="relative aspect-video ">
+                        <div className="relative aspect-video">
                             {project.images.map((image, index) => (
                                 <img
                                     key={index}
                                     src={image}
-                                    alt={`${project.title} screenshot ${index + 1}`}
+                                    alt={`${project.title} - Screenshot ${index + 1} showing ${index === 0 ? 'main interface' :
+                                        index === 1 ? 'dashboard view' :
+                                            index === 2 ? 'feature details' :
+                                                'additional functionality'
+                                        }`}
+                                    title={`${project.title} screenshot ${index + 1}`}
+                                    loading={index === 0 ? "eager" : "lazy"}
+                                    width="1200"
+                                    height="600"
+                                    itemProp={index === 0 ? "image" : undefined}
                                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${index === currentImageIndex
                                         ? 'opacity-100 scale-100'
                                         : 'opacity-0 scale-105'
@@ -220,27 +177,33 @@ const ProjectDetailsPage: React.FC = () => {
                             <button
                                 onClick={prevImage}
                                 className="cursor-pointer absolute left-4 top-1/2 -translate-y-1/2 bg-accent/90 hover:bg-accent p-2 sm:p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 text-foreground"
-                                aria-label="Previous image"
+                                aria-label="View previous screenshot"
                             >
-                                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
                             </button>
                             <button
                                 onClick={nextImage}
                                 className="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 bg-accent/90 hover:bg-accent p-2 sm:p-3 rounded-full transition-all opacity-0 group-hover:opacity-100 text-foreground"
-                                aria-label="Next image"
+                                aria-label="View next screenshot"
                             >
-                                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
                             </button>
 
                             {/* Image Counter */}
-                            <div className="absolute top-4 right-4 bg-card/70 text-white px-3 py-1 rounded-full text-sm">
+                            <div
+                                className="absolute top-4 right-4 bg-card/70 text-white px-3 py-1 rounded-full text-sm"
+                                aria-live="polite"
+                                aria-atomic="true"
+                            >
                                 {currentImageIndex + 1} / {project.images.length}
                             </div>
                         </div>
 
                         {/* Thumbnail Navigation */}
-                        <div className=" space-x-4 p-2
-                       ">
+                        <nav
+                            className="space-x-4 p-2"
+                            aria-label="Screenshot thumbnails"
+                        >
                             {project.images.map((image, index) => (
                                 <button
                                     key={index}
@@ -249,53 +212,59 @@ const ProjectDetailsPage: React.FC = () => {
                                         ? 'ring-2 ring-blue-500 scale-105'
                                         : 'opacity-60 hover:opacity-100'
                                         }`}
+                                    aria-label={`View screenshot ${index + 1}`}
+                                    aria-current={index === currentImageIndex ? "true" : "false"}
                                 >
                                     <img
                                         src={image}
                                         alt={`Thumbnail ${index + 1}`}
+                                        width="80"
+                                        height="64"
+                                        loading="lazy"
                                         className="w-full h-full object-cover"
                                     />
                                 </button>
                             ))}
-                        </div>
+                        </nav>
                     </div>
-                </div>
+                </section>
 
                 {/* Main Content Grid */}
                 <div className="grid lg:grid-cols-3 gap-8">
-
                     {/* Left Column - Main Content */}
                     <div className="lg:col-span-2 space-y-8">
-
                         {/* Description */}
-                        <div className="bg-card border border-border rounded-xl shadow-lg p-6 sm:p-8 animate-slide-up">
+                        <section className="bg-card border border-border rounded-xl shadow-lg p-6 sm:p-8 animate-slide-up">
                             <h2 className="text-2xl font-bold text-foreground mb-4">About the Project</h2>
-                            <div className="space-y-4 text-foreground leading-relaxed">
+                            <div
+                                className="space-y-4 text-foreground leading-relaxed"
+                                itemProp="description"
+                            >
                                 {project.fullDescription.map((paragraph, index) => (
                                     <p key={index}>{paragraph}</p>
                                 ))}
                             </div>
-                        </div>
+                        </section>
 
                         {/* Key Features */}
-                        <div className="bg-card border border-border rounded-xl shadow-lg p-6 sm:p-8 animate-slide-up" style={{ animationDelay: '100ms' }}>
+                        <section className="bg-card border border-border rounded-xl shadow-lg p-6 sm:p-8 animate-slide-up" style={{ animationDelay: '100ms' }}>
                             <h2 className="text-2xl font-bold text-foreground mb-4">Key Features</h2>
-                            <ul className="space-y-3">
+                            <ul className="space-y-3" itemProp="featureList">
                                 {project.features.map((feature, index) => (
                                     <li key={index} className="flex items-start gap-3">
-                                        <span className="flex-shrink-0 w-6 h-6 bg-accent text-foreground rounded-full flex items-center justify-center text-sm font-semibold mt-0.5">
+                                        <span className="flex-shrink-0 w-6 h-6 bg-accent text-foreground rounded-full flex items-center justify-center text-sm font-semibold mt-0.5" aria-hidden="true">
                                             {index + 1}
                                         </span>
                                         <span className="text-foreground">{feature}</span>
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </section>
 
                         {(project.challenges || project.learnings) && (
                             <div className="grid sm:grid-cols-2 gap-6 animate-slide-up" style={{ animationDelay: '200ms' }}>
                                 {project.challenges && (
-                                    <div className="bg-card border border-border rounded-xl shadow-lg p-6">
+                                    <section className="bg-card border border-border rounded-xl shadow-lg p-6">
                                         <h3 className="text-xl font-bold text-foreground mb-4">Technical Challenges</h3>
                                         <ul className="space-y-2">
                                             {project.challenges.map((challenge, index) => (
@@ -304,11 +273,11 @@ const ProjectDetailsPage: React.FC = () => {
                                                 </li>
                                             ))}
                                         </ul>
-                                    </div>
+                                    </section>
                                 )}
 
                                 {project.learnings && (
-                                    <div className="bg-card border border-border rounded-xl shadow-lg p-6">
+                                    <section className="bg-card border border-border rounded-xl shadow-lg p-6">
                                         <h3 className="text-xl font-bold text-foreground mb-4">Key Learnings</h3>
                                         <ul className="space-y-2">
                                             {project.learnings.map((learning, index) => (
@@ -317,27 +286,27 @@ const ProjectDetailsPage: React.FC = () => {
                                                 </li>
                                             ))}
                                         </ul>
-                                    </div>
+                                    </section>
                                 )}
                             </div>
                         )}
                     </div>
 
                     {/* Right Column - Sidebar */}
-                    <div className="space-y-6">
-
+                    <aside className="space-y-6">
                         {/* Links */}
-                        <div className="bg-card border border-border rounded-xl shadow-lg p-6 animate-slide-up" style={{ animationDelay: '300ms' }}>
+                        <section className="bg-card border border-border rounded-xl shadow-lg p-6 animate-slide-up" style={{ animationDelay: '300ms' }}>
                             <h3 className="text-xl font-bold text-foreground mb-4">Project Links</h3>
-                            <div className="space-y-3">
+                            <nav className="space-y-3" aria-label="Project external links">
                                 <a
                                     href={project.githubUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-3 p-3 bg-card border border-border
-                                        text-foreground rounded-lg transition-colors hover:border-accent"
+                                    className="flex items-center gap-3 p-3 bg-card border border-border text-foreground rounded-lg transition-colors hover:border-accent"
+                                    aria-label={`View ${project.title} source code on GitHub`}
+                                    itemProp="codeRepository"
                                 >
-                                    <Github className="w-5 h-5" />
+                                    <Github className="w-5 h-5" aria-hidden="true" />
                                     <span className="font-medium">View Repository</span>
                                 </a>
                                 {project.liveDemoUrl && (
@@ -345,67 +314,74 @@ const ProjectDetailsPage: React.FC = () => {
                                         href={project.liveDemoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-3 p-3 bg-foreground border border-border
-                                            text-card rounded-lg transition-colors hover:border-accent"
+                                        className="flex items-center gap-3 p-3 bg-foreground border border-border text-card rounded-lg transition-colors hover:border-accent"
+                                        aria-label={`Try ${project.title} live demo`}
+                                        itemProp="url"
                                     >
-                                        <ExternalLink className="w-5 h-5" />
+                                        <ExternalLink className="w-5 h-5" aria-hidden="true" />
                                         <span className="font-medium">Live Demo</span>
                                     </a>
                                 )}
-                            </div>
-                        </div>
+                            </nav>
+                        </section>
 
                         {/* Deployment Info */}
-                        <div className="bg-card border border-border rounded-xl shadow-lg p-6 animate-slide-up" style={{ animationDelay: '400ms' }}>
+                        <section className="bg-card border border-border rounded-xl shadow-lg p-6 animate-slide-up" style={{ animationDelay: '400ms' }}>
                             <h3 className="text-xl font-bold text-foreground mb-4">Deployment</h3>
-                            <div className="space-y-3">
+                            <dl className="space-y-3">
                                 <div className="flex items-start gap-3">
-                                    <Server className="w-5 h-5 text-accent mt-0.5" />
+                                    <Server className="w-5 h-5 text-accent mt-0.5" aria-hidden="true" />
                                     <div>
-                                        <p className="text-sm text-foreground">Platform</p>
-                                        <p className="font-medium text-foreground">{project.deployment.platform}</p>
+                                        <dt className="text-sm text-foreground">Platform</dt>
+                                        <dd className="font-medium text-foreground">{project.deployment.platform}</dd>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3">
-                                    <Tag className="w-5 h-5 text-accent mt-0.5" />
+                                    <Tag className="w-5 h-5 text-accent mt-0.5" aria-hidden="true" />
                                     <div>
-                                        <p className="text-sm text-foreground">Status</p>
-                                        <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${statusColors[project.deployment.status as keyof typeof statusColors]}`}>
-                                            {project.deployment.status.toUpperCase()}
-                                        </span>
+                                        <dt className="text-sm text-foreground">Status</dt>
+                                        <dd>
+                                            <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${statusColors[project.deployment.status as keyof typeof statusColors]}`}>
+                                                {project.deployment.status.toUpperCase()}
+                                            </span>
+                                        </dd>
                                     </div>
                                 </div>
                                 {project.deployment.lastDeployed && (
                                     <div className="flex items-start gap-3">
-                                        <Calendar className="w-5 h-5 text-accent mt-0.5" />
+                                        <Calendar className="w-5 h-5 text-accent mt-0.5" aria-hidden="true" />
                                         <div>
-                                            <p className="text-sm text-foreground">Last Deployed</p>
-                                            <p className="font-medium text-foreground">
-                                                {new Date(project.deployment.lastDeployed).toLocaleDateString()}
-                                            </p>
+                                            <dt className="text-sm text-foreground">Last Deployed</dt>
+                                            <dd className="font-medium text-foreground">
+                                                <time dateTime={project.deployment.lastDeployed}>
+                                                    {new Date(project.deployment.lastDeployed).toLocaleDateString()}
+                                                </time>
+                                            </dd>
                                         </div>
                                     </div>
                                 )}
-                            </div>
-                        </div>
+                            </dl>
+                        </section>
 
                         {/* Tech Stack */}
-                        <div className="bg-card border border-border rounded-xl  p-6 animate-slide-up" style={{ animationDelay: '500ms' }}>
+                        <section className="bg-card border border-border rounded-xl p-6 animate-slide-up" style={{ animationDelay: '500ms' }}>
                             <h3 className="text-xl font-bold text-foreground mb-4">Tech Stack</h3>
                             <div className="space-y-4">
+                                <meta itemProp="programmingLanguage" content={project.techStack.map(t => t.name).join(', ')} />
                                 {['frontend', 'backend', 'database', 'devops', 'other'].map((category) => {
                                     const techs = project.techStack.filter(t => t.category === category);
                                     if (techs.length === 0) return null;
 
                                     return (
                                         <div key={category}>
-                                            <p className="text-xs uppercase font-semibold text-foreground mb-2">
+                                            <h4 className="text-xs uppercase font-semibold text-foreground mb-2">
                                                 {category}
-                                            </p>
-                                            <div className="flex flex-wrap gap-2">
+                                            </h4>
+                                            <div className="flex flex-wrap gap-2" role="list" aria-label={`${category} technologies`}>
                                                 {techs.map((tech, index) => (
                                                     <span
                                                         key={index}
+                                                        role="listitem"
                                                         className={`px-3 py-1 rounded-full text-sm font-medium ${categoryColors[tech?.category as keyof typeof categoryColors]}`}
                                                     >
                                                         {tech?.name}
@@ -416,70 +392,80 @@ const ProjectDetailsPage: React.FC = () => {
                                     );
                                 })}
                             </div>
-                        </div>
+                        </section>
 
                         {/* Timeline */}
-                        <div className="bg-card border border-border rounded-xl shadow-lg p-6 animate-slide-up" style={{ animationDelay: '600ms' }}>
+                        <section className="bg-card border border-border rounded-xl shadow-lg p-6 animate-slide-up" style={{ animationDelay: '600ms' }}>
                             <h3 className="text-xl font-bold text-foreground mb-4">Timeline</h3>
-                            <div className="space-y-2">
+                            <dl className="space-y-2">
                                 <div>
-                                    <p className="text-sm text-foreground">Started</p>
-                                    <p className="font-medium text-accent">
-                                        {new Date(project.startDate).toLocaleDateString('en-US', {
-                                            month: 'long',
-                                            year: 'numeric'
-                                        })}
-                                    </p>
-                                </div>
-                                {project.endDate && (
-                                    <div>
-                                        <p className="text-sm text-foreground">Completed</p>
-                                        <p className="font-medium text-accent">
-                                            {new Date(project.endDate).toLocaleDateString('en-US', {
+                                    <dt className="text-sm text-foreground">Started</dt>
+                                    <dd className="font-medium text-accent">
+                                        <time
+                                            dateTime={project.startDate}
+                                            itemProp="dateCreated"
+                                        >
+                                            {new Date(project.startDate).toLocaleDateString('en-US', {
                                                 month: 'long',
                                                 year: 'numeric'
                                             })}
-                                        </p>
+                                        </time>
+                                    </dd>
+                                </div>
+                                {project.endDate && (
+                                    <div>
+                                        <dt className="text-sm text-foreground">Completed</dt>
+                                        <dd className="font-medium text-accent">
+                                            <time
+                                                dateTime={project.endDate}
+                                                itemProp="dateModified"
+                                            >
+                                                {new Date(project.endDate).toLocaleDateString('en-US', {
+                                                    month: 'long',
+                                                    year: 'numeric'
+                                                })}
+                                            </time>
+                                        </dd>
                                     </div>
                                 )}
-                            </div>
-                        </div>
-                    </div>
+                            </dl>
+                        </section>
+                    </aside>
                 </div>
-            </div>
+            </article>
 
             <style>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+                @keyframes fade-in {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
 
-        @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+                @keyframes slide-up {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
 
-        .animate-fade-in {
-          animation: fade-in 0.6s ease-out;
-        }
+                .animate-fade-in {
+                    animation: fade-in 0.6s ease-out;
+                }
 
-        .animate-slide-up {
-          animation: slide-up 0.6s ease-out;
-          animation-fill-mode: both;
-        }
-      `}</style>
+                .animate-slide-up {
+                    animation: slide-up 0.6s ease-out;
+                    animation-fill-mode: both;
+                }
+            `}</style>
         </div>
     );
 };
