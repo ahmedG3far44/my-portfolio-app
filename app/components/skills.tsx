@@ -1,4 +1,5 @@
 "use client";
+
 import { useMemo } from "react";
 import { useContent } from "../context/content/ContentContext";
 
@@ -6,7 +7,7 @@ const Skills = () => {
     const { content } = useContent();
     const techStack = content.hero.skills;
 
-    // Memoize the duplicated skills array to avoid recreation on every render
+    
     const skills = useMemo(() => {
         const techStackReversed = [...techStack];
         return techStack.concat(techStackReversed);
@@ -18,7 +19,6 @@ const Skills = () => {
             aria-label="Technical skills and technologies"
             role="list"
         >
-            {/* SEO: Hidden heading for search engines and screen readers */}
             <h2 className="sr-only">Skills & Technologies</h2>
 
             {skills.map((tech, index) => (

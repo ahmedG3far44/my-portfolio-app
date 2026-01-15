@@ -12,22 +12,19 @@ const ProjectCard = ({
     number,
     description,
     stack
-}: { 
-    id: string, 
-    title: string, 
-    thumbnail: string, 
-    number: number, 
-    description: string, 
-    stack: StackType[] 
+}: {
+    id: string,
+    title: string,
+    thumbnail: string,
+    number: number,
+    description: string,
+    stack: StackType[]
 }) => {
-    // Generate SEO-friendly slug from title
-    const projectSlug = title.toLowerCase().replace(/\s+/g, '-');
-    
     return (
         <article
             itemScope
             itemType="https://schema.org/CreativeWork"
-            className="group p-2 sm:p-4 md:p-6 rounded-md hover:border border-border hover:my-4 sm:hover:my-6 md:hover:my-8 cursor-pointer w-full sm:w-4/5 md:w-3/4 lg:w-3/5 mx-auto flex flex-col items-start justify-center gap-2 sm:gap-3 hover:shadow-xl transition-all duration-300"
+            className="group p-2 sm:p-4 md:p-6 rounded-md hover:border border-border hover:my-4 sm:hover:my-4 md:hover:my-4 cursor-pointer w-full sm:w-4/5 md:w-3/4 lg:w-3/5 mx-auto flex flex-col items-start justify-center gap-2 sm:gap-3 hover:shadow-xl transition-all duration-300"
         >
             <div className="hidden items-center justify-center group-hover:flex relative top-0 right-0 shadow-md z-50 rounded-xl sm:rounded-2xl w-full max-h-48 sm:max-h-64 md:max-h-80 lg:max-h-96 overflow-hidden animate-fill">
                 <img
@@ -41,13 +38,16 @@ const ProjectCard = ({
                     className="w-full h-full object-cover object-center"
                 />
             </div>
-  
+
             <div className="cursor-pointer w-full">
                 <Link
                     href={`/project/${id}`}
-                    className="w-full active text-start text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black italic transition-colors duration-300 whitespace-nowrap"
+
+                    className="w-full stroke-hover-text group-hover:text-accent text-start text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black italic transition-colors duration-300 group-hover:stroke-cyan-800 group-hover:stroke-2 hover:text-violet-400 whitespace-nowrap "
+
                     aria-label={`View ${title} project details`}
                     title={`Explore ${title} - ${description.substring(0, 60)}...`}
+
                 >
                     <h2 itemProp="name" className="inline">
                         {number}.{title}
@@ -55,11 +55,9 @@ const ProjectCard = ({
                 </Link>
             </div>
 
-            {/* Description and Stack - responsive */}
             <div className="hidden w-full group-hover:block transition-all duration-300 bg-card p-2 sm:p-3 md:p-4 shadow-sm rounded-md">
-                {/* Tech Stack */}
-                <div 
-                    className="flex items-start justify-start gap-1 sm:gap-1.5 md:gap-2 flex-wrap my-1 sm:my-2"
+                <div
+                    className="flex items-start justify-start gap-2 flex-wrap "
                     role="list"
                     aria-label="Technologies used"
                 >
@@ -76,8 +74,7 @@ const ProjectCard = ({
                     ))}
                 </div>
 
-                {/* Description */}
-                <p 
+                <p
                     itemProp="description"
                     className="text-xs sm:text-sm md:text-base text-start w-full text-accent leading-relaxed"
                 >

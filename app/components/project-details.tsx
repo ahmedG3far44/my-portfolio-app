@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Github, ExternalLink, Server, Calendar, Tag, LucideArrowLeft } from 'lucide-react';
 import { useContent } from '../context/content/ContentContext';
 import { useParams } from 'next/navigation';
+
+
 import Link from 'next/link';
 
 interface TechStack {
@@ -54,7 +56,6 @@ const ProjectDetailsPage: React.FC = () => {
 
     if (!project) return <div>Project not found</div>;
 
-    // Auto-play carousel
     useEffect(() => {
         if (!isAutoPlaying) return;
 
@@ -115,7 +116,6 @@ const ProjectDetailsPage: React.FC = () => {
             <article
                 className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
             >
-                {/* Header */}
                 <header className="mb-8 sm:mb-12 animate-fade-in">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <div>
@@ -144,7 +144,6 @@ const ProjectDetailsPage: React.FC = () => {
                     </div>
                 </header>
 
-                {/* Image Carousel */}
                 <section
                     className="mb-8 sm:mb-12"
                     aria-label="Project screenshots gallery"
@@ -172,9 +171,7 @@ const ProjectDetailsPage: React.FC = () => {
                                     onLoad={() => setImageLoaded(true)}
                                 />
                             ))}
-
-                            {/* Navigation Arrows */}
-                            <button
+                                <button
                                 onClick={prevImage}
                                 className="cursor-pointer absolute left-4 top-1/2 -translate-y-1/2 bg-accent/90 hover:bg-accent p-2 sm:p-3 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 text-foreground"
                                 aria-label="View previous screenshot"
@@ -187,9 +184,7 @@ const ProjectDetailsPage: React.FC = () => {
                                 aria-label="View next screenshot"
                             >
                                 <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
-                            </button>
-
-                            {/* Image Counter */}
+                            </button>                   
                             <div
                                 className="absolute top-4 right-4 bg-card/70 text-white px-3 py-1 rounded-full text-sm"
                                 aria-live="polite"
@@ -197,9 +192,7 @@ const ProjectDetailsPage: React.FC = () => {
                             >
                                 {currentImageIndex + 1} / {project.images.length}
                             </div>
-                        </div>
-
-                        {/* Thumbnail Navigation */}
+                        </div>  
                         <nav
                             className="space-x-4 p-2"
                             aria-label="Screenshot thumbnails"

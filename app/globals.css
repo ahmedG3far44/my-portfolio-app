@@ -41,7 +41,7 @@
     --primary: #000000;
     --secondary: #171717;
     --card: #ffffff;
-    --border: #c0bfbf;
+    --border: #d9d9d9;
 
     --hover: #e5e5e5;
     --hover-text: #171717;
@@ -77,18 +77,11 @@ body {
     z-index: -1;
 }
 
-
-.active {
+.stroke-hover-text:hover{
     -webkit-text-stroke-color: var(--accent);
-    -webkit-text-stroke-width: 1px;
-    color: var(--foreground);
-}
-.active:hover {
+    -webkit-text-stroke-width: 2px;
     color: transparent;
-    border:none;
 }
-
-
 
 @keyframes blob {
     0%,

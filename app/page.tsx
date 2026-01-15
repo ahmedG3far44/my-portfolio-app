@@ -71,12 +71,12 @@ export default function Home() {
     })
   }, [])
   return (
-    <div>
+    <div className="scroll-smooth scroll-polyfill w-full min-h-screen max-h-screen ">
       <div className="fixed flex items-center justify-center gap-2 top-4 right-4 z-50">
         <LanguageSelector />
         <ToggleTheme />
       </div>
-      <currentPage.component />
+      <currentPage.component setActivePage={setActivePage} />
     </div>
   )
 }

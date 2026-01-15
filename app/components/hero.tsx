@@ -9,27 +9,25 @@ import {
     Code2,
     Terminal,
     Sparkles,
-    Sun,
-    Moon
 } from 'lucide-react';
 
 import React, { useState, useEffect } from "react";
 
 import { useContent } from "../context/content/ContentContext"
-import { useTheme } from "../context/theme/ThemeProvider";
 
 import Card from "./ui/card";
-import DownloadCVButton from './ui/button';
+import DownloadCVButton from './ui/download-resume';
 import Skills from './skills';
 
 
-const HeroPage = () => {
+
+const HeroPage = ({ setActivePage }: { setActivePage: (page: number) => void }) => {
     const { content } = useContent();
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [mousePosition] = useState({ x: 0, y: 0 });
     const [typedText, setTypedText] = useState('');
     const [isTypingComplete, setIsTypingComplete] = useState(false);
 
-    const techStack = content.hero.skills;
+
 
 
     function randomRainbowColor() {
@@ -43,8 +41,8 @@ const HeroPage = () => {
         circle.classList.add("circle");
         circle.style.left = e.clientX + "px";
         circle.style.top = e.clientY + "px";
-        circle.style.width = "200" + "px";
-        circle.style.height = "200" + "px";
+        circle.style.width = "100" + "px";
+        circle.style.height = "100" + "px";
         circle.style.backgroundColor = randomRainbowColor();
         circle.style.transform = "translate(-50%, -50%)";
         circle.style.filter = "blur(30px)";
@@ -79,14 +77,12 @@ const HeroPage = () => {
             className="relative scroll-bar-none overflow-hidden min-h-screen flex flex-col items-center justify-center text-foreground bg-background px-4 sm:px-6 lg:px-8"
             onMouseMove={drawRandomsColors}
         >
-            {/* Background blobs - adjusted for mobile */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/4 -left-24 sm:-left-48 w-48 sm:w-96 h-48 sm:h-96 bg-emerald-500/20 rounded-full blur-3xl animate-blob"></div>
                 <div className="absolute top-1/3 -right-24 sm:-right-48 w-48 sm:w-96 h-48 sm:h-96 bg-cyan-500/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
                 <div className="absolute -bottom-16 sm:-bottom-32 left-1/3 w-48 sm:w-96 h-48 sm:h-96 bg-blue-500/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
             </div>
 
-            {/* Floating icons - hide on very small screens */}
             <div className="absolute inset-0 pointer-events-none hidden sm:block">
                 <div className="absolute top-20 left-4 sm:left-10 opacity-50 animate-float">
                     <Code2 className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -106,37 +102,39 @@ const HeroPage = () => {
                     transition: 'transform 0.3s ease-out'
                 }}
             >
-                
+
                 <div id="avatar" className="relative cursor-pointer group">
                     <div className="absolute inset-0 rounded-full blur-xl group-hover:blur-2xl transition-all opacity-50"></div>
 
                     <div className="flex items-center justify-center text-5xl overflow-hidden rounded-full group-hover:scale-105 transition-transform w-15 h-15 sm:w-24 sm:h-24 md:w-48 md:h-48 lg:w-32 lg:h-32">
                         <img
+                            width={40}
+                            height={40}
                             alt="avatar profile photo"
                             src={"./profile.png"}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-center object-cover mix-blend-multiply"
                         />
                     </div>
                 </div>
 
-                {/* Name - responsive text sizing */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight animate-slide-up px-2">
                     {content.hero.name}
                 </h1>
 
-                {/* Title - responsive text sizing */}
                 <div className="min-h-[2rem] sm:min-h-[3rem] text-foreground flex items-center justify-center px-2">
                     <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold animate-slide-up animation-delay-200">
                         {content.hero.title}
                     </h2>
                 </div>
 
-                {/* Tagline - responsive text sizing */}
-                <p className="text-base sm:text-lg md:text-xl text-accent max-w-2xl animate-slide-up animation-delay-400 px-4 hover:text-foreground transition-colors">
+
+                <p className="text-base sm:text-lg md:text-xl text-accent max-w-2xl animate-slide-up  animation-delay-400 px-4 hover:text-foreground opacity-80 transition-all">
                     {content.hero.tagline}
                 </p>
 
-                {/* Tech stack scroll - responsive height and padding */}
+
                 <div className="w-full overflow-hidden my-3 sm:my-4 md:my-6 animate-slide-up animation-delay-600">
                     <div className="relative border-t border-b border-border">
                         <div className="absolute left-0 top-0 bottom-0 w-10 sm:w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
@@ -146,7 +144,6 @@ const HeroPage = () => {
                     </div>
                 </div>
 
-                {/* CTA buttons - responsive layout */}
                 <div className="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4">
 
                     <div className="w-full">
@@ -183,6 +180,9 @@ const HeroPage = () => {
                             </a>
                         </Card>
                     </div>
+                </div>
+                <div className='block group lg:hidden'>
+                    <button className='bg-gradient-to-r from-violet-400 to-purple-900 text-white text-sm px-4 py-2 rounded-md my-8 cursor-pointer duration-300 transition-colors group-hover:opacity-70' onClick={() => setActivePage(1)}>Explore My Work</button>
                 </div>
 
             </div>

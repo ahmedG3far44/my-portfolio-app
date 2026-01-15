@@ -2,19 +2,16 @@
 
 import { useTheme } from "@/app/context/theme/ThemeProvider";
 import { Moon, Sun } from "lucide-react";
-import Card from "./card";
 
 function ToggleTheme() {
     const { toggleTheme, theme } = useTheme();
     return (
-        <Card>
-            <button
-                className="cursor-pointer flex items-center justify-center gap-2 group-hover:scale-110 transition-transform p-1 sm:p-0"
-                onClick={toggleTheme}
-            >
-                {theme === "light" ? <Sun size={18} className="sm:w-5 sm:h-5" /> : <Moon size={18} className="sm:w-5 sm:h-5" />}
-            </button>
-        </Card>
+        <button
+            className="bg-card border text-xs border-border cursor-pointer flex items-center justify-center gap-2 p-2 rounded-md hover:border-accent transition-all duration-200 hover:opacity-80"
+            onClick={toggleTheme}
+        >
+            {theme === "light" ? <Sun size={16} className="w-4 h-4" /> : <Moon size={16} className="w-4 h-4" />}
+        </button>
     )
 }
 
