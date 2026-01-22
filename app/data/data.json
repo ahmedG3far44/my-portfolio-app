@@ -469,7 +469,7 @@
         "liveDemoUrl": "https://folio-app.example.com",
         "deployment": {
           "platform": "AWS EC2 + NGINX",
-          "url": "https://folio-app.example.com",
+          "url": "https://app.folio.business",
           "status": "live",
           "lastDeployed": "2024-01-10"
         },
