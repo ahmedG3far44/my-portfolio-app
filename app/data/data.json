@@ -103,12 +103,13 @@
           "The platform supports flexible layouts, theme customization, and secure authentication using JWT.",
           "Performance was optimized using React Context for state management and Sharp for efficient image processing, ensuring fast load times even with media-heavy portfolios."
         ],
-        "thumbnail": "https://miro.medium.com/v2/resize:fit:1280/1*8uleb75powGpvzpgEk7mWA.gif",
+        "thumbnail": "./projects/folio-1.png",
         "images": [
-          "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=1200&h=600&fit=crop"
+          "./projects/folio-1.png",
+          "./projects/folio-2.png",
+          "./projects/folio-3.png",
+          "./projects/folio-4.png",
+          "./projects/folio-5.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -163,12 +164,13 @@
           "The application includes a complete shopping cart experience, order history, and an admin dashboard for managing products and users.",
           "RESTful APIs were designed with secure authentication, and AWS S3 was integrated for reliable media storage."
         ],
-        "thumbnail": "https://zenxpod.com/wp-content/uploads/2024/12/UI-UX-1.gif",
+        "thumbnail": "./projects/techpad-thumb.gif",
         "images": [
-          "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=1200&h=600&fit=crop"
+          "./projects/techpad-1.png",
+          "./projects/techpad-2.png",
+          "./projects/techpad-3.png",
+          "./projects/techpad-4.png",
+          "./projects/techpad-5.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -220,12 +222,11 @@
           "It integrates directly with GitHub, enabling users to select repositories, configure environment variables, and deploy projects with a single click.",
           "The platform also provides real-time monitoring features, including logs, request metrics, and traffic analytics, giving developers full visibility into their running applications."
         ],
-        "thumbnail": "https://line25.com/wp-content/uploads/2015/gifs/1.gif",
+        "thumbnail": "./projects/devpilot-thumb.png",
         "images": [
-          "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=1200&h=600&fit=crop"
+          "./projects/devpilot-1.png",
+          "./projects/devpilot-2.png",
+          "./projects/devpilot-3.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -281,12 +282,13 @@
           "The system supports role-based access for Admins and Users, allowing administrators to manage events, tickets, and analytics, while users can browse events and book tickets.",
           "Built with a modern UI and scalable backend, EventX provides real-time insights into revenue, attendance, and user engagement through interactive analytics dashboards."
         ],
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/0b225263544731.5ab4c4408e64a.gif",
+        "thumbnail": "./projects/eventx-thumb.gif",
         "images": [
-          "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=600&fit=crop"
+          "./projects/eventx-1.png",
+          "./projects/eventx-2.png",
+          "./projects/eventx-3.png",
+          "./projects/eventx-4.png",
+          "./projects/eventx-5.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -445,12 +447,10 @@
           "توفر المنصة تخطيطات مرنة، تخصيص الثيمات، ونظام مصادقة آمن باستخدام JWT.",
           "تم تحسين الأداء باستخدام React Context وإدارة الصور بكفاءة عبر Sharp لضمان سرعة التحميل."
         ],
-        "thumbnail": "https://miro.medium.com/v2/resize:fit:1280/1*8uleb75powGpvzpgEk7mWA.gif",
+        "thumbnail": "./projects/folio-thumb.png",
         "images": [
-          "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=1200&h=600&fit=crop"
+          "./projects/folio-1.png",
+          "./projects/folio-2.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -504,12 +504,13 @@
           "يتضمن تجربة تسوق كاملة، سجل الطلبات، ولوحة تحكم إدارية لإدارة المحتوى.",
           "تم تصميم واجهات REST آمنة ودمج AWS S3 لتخزين الوسائط."
         ],
-        "thumbnail": "https://zenxpod.com/wp-content/uploads/2024/12/UI-UX-1.gif",
+        "thumbnail": "./projects/techpad-thumb.png",
         "images": [
-          "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1492724441997-5dc865305da7?w=1200&h=600&fit=crop"
+          "./projects/techpad-1.png",
+          "./projects/techpad-2.png",
+          "./projects/techpad-3.png",
+          "./projects/techpad-4.png",
+          "./projects/techpad-5.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -561,12 +562,11 @@
           "تتكامل المنصة مباشرة مع GitHub، مما يسمح باختيار المستودعات، إعداد متغيرات البيئة، والنشر بنقرة واحدة.",
           "توفر المنصة ميزات مراقبة فورية تشمل السجلات، إحصائيات الطلبات، وتحليل حركة المرور للتطبيقات."
         ],
-        "thumbnail": "https://line25.com/wp-content/uploads/2015/gifs/1.gif",
+        "thumbnail": "./projects/devpilot-thumb.png",
         "images": [
-          "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=1200&h=600&fit=crop"
+          "./projects/devpilot-1.png",
+          "./projects/devpilot-2.png",
+          "./projects/devpilot-3.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -622,12 +622,13 @@
           "تدعم المنصة نظام صلاحيات يعتمد على الأدوار، حيث يمكن للمشرفين إدارة الفعاليات والتذاكر والتحليلات، بينما يمكن للمستخدمين تصفح الأحداث وحجز التذاكر.",
           "تم بناء النظام بواجهة مستخدم حديثة وخلفية قابلة للتوسع، مع لوحات تحليل تعرض الإيرادات والحضور ومعدلات التفاعل."
         ],
-        "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/0b225263544731.5ab4c4408e64a.gif",
+        "thumbnail": "./projects/eventx-thumb.png",
         "images": [
-          "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1515169067865-5387ec356754?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=1200&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=600&fit=crop"
+          "./projects/eventx-1.png",
+          "./projects/eventx-2.png",
+          "./projects/eventx-3.png",
+          "./projects/eventx-4.png",
+          "./projects/eventx-5.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },

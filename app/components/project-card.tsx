@@ -1,108 +1,138 @@
+import { LucideX } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
-interface StackType {
-    name: string;
-    category: string;
+interface ProjectType {
+    id: string;
+    title: string;
+    tagline: string;
+    description: string;
+    fullDescription: string[];
+    thumbnail: string;
+    images: string[];
+    techStack: {
+        name: string;
+        category: string;
+    }[];
+    githubUrl: string;
+    liveDemoUrl: string;
+    deployment: {
+        platform: string;
+        url: string;
+        status: string;
+        lastDeployed: string;
+    };
+    startDate: string;
+    endDate: string;
+    status: string;
+    features: string[];
+    challenges: string[];
+    learnings: string[];
 }
 
+
 const ProjectCard = ({
-    id,
-    title,
-    thumbnail,
-    number,
-    description,
-    stack
+    project
 }: {
-    id: string,
-    title: string,
-    thumbnail: string,
-    number: number,
-    description: string,
-    stack: StackType[]
+    project: ProjectType
 }) => {
+    const [showDescription, setShowDescription] = useState<boolean>(false);
+
+    const { id, title, description, thumbnail, techStack } = project;
     return (
-        <article
-            itemScope
-            itemType="https://schema.org/CreativeWork"
-            className="group p-2 sm:p-4 md:p-6 rounded-md hover:border border-border hover:my-4 sm:hover:my-4 md:hover:my-4 cursor-pointer w-full sm:w-4/5 md:w-3/4 lg:w-3/5 mx-auto flex flex-col items-start justify-center gap-2 sm:gap-3 hover:shadow-xl transition-all duration-300"
-        >
-            <div className="hidden items-center justify-center group-hover:flex relative top-0 right-0 shadow-md z-50 rounded-xl sm:rounded-2xl w-full max-h-48 sm:max-h-64 md:max-h-80 lg:max-h-96 overflow-hidden animate-fill">
-                <img
-                    src={thumbnail}
-                    alt={`${title} project screenshot - ${description.substring(0, 100)}`}
-                    title={title}
-                    loading="lazy"
-                    width="800"
-                    height="600"
-                    itemProp="image"
-                    className="w-full h-full object-cover object-center"
-                />
+        <div className="w-full h-full flex flex-col items-center justify-center gap-4">
+            <div className="flex flex-row items-center justify-center gap-8 text-6xl font-bold">
+                <h1
+                    className="cursor-pointer text-7xl font-black italic"
+                    onMouseEnter={() => setShowDescription(true)}
+                >{id}.{title}</h1>
+
             </div>
+            <>
+                {showDescription && (
+                    <article onMouseLeave={() => setShowDescription(false)}
+                        itemScope
+                        itemType="https://schema.org/CreativeWork"
+                        className="  animate-fill bg-background/90 backdrop-blur-sm  text-foreground fixed -translate-y-1/2 -translate-x-1/2 left-1/2 bottom-1/2 4 p-8 mx-auto shadow-2xl rounded-2xl border border-border  flex flex-col items-center justify-center gap-4 z-50  w-1/2 ">
 
-            <div className="cursor-pointer w-full">
-                <Link
-                    href={`/project/${id}`}
+                        <button onClick={() => setShowDescription(false)} className="cursor-pointer hover:bg-accent/70 transition-all duration-300 absolute top-4 right-4 bg-accent/50 backdrop-blur-sm p-2 rounded-full text-foreground">
+                            <LucideX size={12} />
+                        </button>
+                        <div className="w-full h-full rounded-xl overflow-hidden">
+                            <img
+                                src={thumbnail}
+                                alt={`${title} project screenshot - ${description}`}
+                                title={title}
+                                property='true'
+                                decoding="sync"
+                                itemProp="image"
+                                className="w-full h-full max-w-full max-h-full object-cover object-center"
+                            />
+                        </div>
 
-                    className="w-full stroke-hover-text group-hover:text-accent text-start text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black italic transition-colors duration-300 group-hover:stroke-cyan-800 group-hover:stroke-2 hover:text-violet-400 whitespace-nowrap "
+                        <div className="cursor-pointer w-full">
+                            <Link
+                                href={`/project/${id}`}
+                                className="text-5xl font-black italic text-foreground stroke-hover-text duration-300"
+                                aria-label={`View ${title} project details`}
+                            >
+                                <h2>{id}.{title}</h2>
+                            </Link>
+                        </div>
 
-                    aria-label={`View ${title} project details`}
-                    title={`Explore ${title} - ${description.substring(0, 60)}...`}
+                        <div className="w-full group-hover:block transition-all duration-300 p-2 sm:p-3 md:p-4 shadow-sm rounded-md">
+                            <div
+                                className="flex items-start justify-start gap-2 mb-4 flex-wrap "
+                                role="list"
+                                aria-label="Technologies used"
+                            >
+                                <meta itemProp="keywords" content={techStack.map(tech => tech.name).join(', ')} />
+                                {techStack.map((tech, index) => (
+                                    <span
+                                        key={index}
+                                        role="listitem"
+                                        itemProp="programmingLanguage"
+                                        className="text-xs sm:text-sm px-1.5 sm:px-2 py-0.5 sm:py-1 border border-border rounded-xl sm:rounded-2xl bg-card text-start text-accent"
+                                    >
+                                        {tech.name.toLowerCase()}
+                                    </span>
+                                ))}
+                            </div>
 
-                >
-                    <h2 itemProp="name" className="inline">
-                        {number}.{title}
-                    </h2>
-                </Link>
-            </div>
+                            <p
+                                itemProp="description"
+                                className="text-xs sm:text-sm md:text-base text-start w-full text-accent leading-relaxed"
+                            >
+                                {description}
+                            </p>
+                        </div>
 
-            <div className="hidden w-full group-hover:block transition-all duration-300 bg-card p-2 sm:p-3 md:p-4 shadow-sm rounded-md">
-                <div
-                    className="flex items-start justify-start gap-2 flex-wrap "
-                    role="list"
-                    aria-label="Technologies used"
-                >
-                    <meta itemProp="keywords" content={stack.map(tech => tech.name).join(', ')} />
-                    {stack.map((tech, index) => (
-                        <span
-                            key={index}
-                            role="listitem"
-                            itemProp="programmingLanguage"
-                            className="text-xs sm:text-sm px-1.5 sm:px-2 py-0.5 sm:py-1 border border-border rounded-xl sm:rounded-2xl bg-card text-start text-accent"
-                        >
-                            {tech.name.toLowerCase()}
-                        </span>
-                    ))}
-                </div>
-
-                <p
-                    itemProp="description"
-                    className="text-xs sm:text-sm md:text-base text-start w-full text-accent leading-relaxed"
-                >
-                    {description}
-                </p>
-            </div>
-
-            <style>
-                {`
-                    .animate-fill {
-                        animation: fill 0.5s ease-in-out forwards;
-                        transition: all 0.5s ease-in-out;
+                        <style>
+                            {`
+                .animate-fill {
+                    animation: fill-up 0.4s ease-in-out forwards;
+                    transition: all 0.4s ease-in-out;
+                }
+        
+                @keyframes fill-up {
+                    0% {
+                        opacity:0;
+                        bottom:-200%;
                     }
-                    @keyframes fill {
-                        0% {
-                            height: 0%;
-                            width: 0%;
-                            display: none;
-                        }
-                        100% {
-                            height: 100%;
-                            width: 100%;
-                            display: block;
-                        }
+                    100% {
+                        opacity:1;
+                        bottom:0;
                     }
-                `}
-            </style>
-        </article>
+                }
+            `}
+                        </style>
+                    </article>
+
+                )}</>
+
+
+
+        </div>
     );
 };
 

@@ -149,7 +149,7 @@ const ProjectDetailsPage: React.FC = () => {
                     aria-label="Project screenshots gallery"
                 >
                     <div className="relative rounded-2xl border border-border overflow-hidden group">
-                        <div className="relative aspect-video">
+                        <div className="relative aspect-video h-full w-full">
                             {project.images.map((image, index) => (
                                 <img
                                     key={index}
@@ -164,7 +164,7 @@ const ProjectDetailsPage: React.FC = () => {
                                     width="1200"
                                     height="600"
                                     itemProp={index === 0 ? "image" : undefined}
-                                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${index === currentImageIndex
+                                    className={`absolute inset-0 w-full max-w-full max-h-full object-center object-cover h-full transition-all duration-700 ${index === currentImageIndex
                                         ? 'opacity-100 scale-100'
                                         : 'opacity-0 scale-105'
                                         }`}

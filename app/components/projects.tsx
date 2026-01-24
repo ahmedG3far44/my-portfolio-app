@@ -4,31 +4,64 @@ import { useContent } from "../context/content/ContentContext";
 
 import ProjectCard from "./project-card";
 
+
+
+
 const ProjectsPage = () => {
     const { content } = useContent();
+
     const projects = content.projects;
 
     return (
-        <div className="w-full min-h-screen relative overflow-hidden px-4 sm:px-6 lg:px-8">
-            <span className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-emerald-500/20 opacity-20 absolute top-0 right-0 rounded-full blur-3xl animate-blob"></span>
+        <div className="w-full min-h-screen flex items-center justify-center overflow-hidden  relative  px-4 sm:px-6 lg:px-8">
+            <div className="fixed top-0 left-0 w-full h-full bg-foreground animate-fill z-[999]"></div>
             <div
                 id="projects"
-                className="relative z-50 py-8 sm:py-12 md:py-16 lg:py-20 w-full sm:w-11/12 md:w-5/6 lg:w-3/4 min-h-screen mx-auto slide-animate flex items-center justify-center gap-0 flex-col"
+                className="flex flex-col justify-center items-center gap-4 w-full h-full "
             >
                 {projects.map((project, index) => (
                     <ProjectCard
                         key={project.id}
-                        number={index + 1}
-                        id={project.id}
-                        title={project.title}
-                        thumbnail={project.thumbnail}
-                        description={project.description}
-                        stack={project.techStack}
+                        project={project}
                     />
                 ))}
             </div>
+            <style>
+                {`
+                .animate-fill {
+                    animation: fill-up 1s ease-in-out forwards;
+                    transition: all 1s ease-in-out;
+                }
+                    .fade-in {
+                        animation: fade-in 2s ease-in-out forwards ;
+                        animation-delay: 1s;
+                        transition: all 2s ease-in-out;
+                    }
+                        @keyframes fade-in {
+                            0% {
+                                opacity: 0;
+                            }
+                            100% {
+                                opacity: 1;
+                            }
+                        }
+
+                @keyframes fill-up {
+                    0% {
+                        transform: translateY(-100%);
+    
+                    }
+                    100% {
+
+                        transform: translateY(100%);
+                    }
+                }
+            `}
+            </style>
         </div>
+
     );
 };
 
 export default ProjectsPage;
+

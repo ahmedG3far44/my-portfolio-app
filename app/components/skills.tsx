@@ -7,7 +7,7 @@ const Skills = () => {
     const { content } = useContent();
     const techStack = content.hero.skills;
 
-    
+
     const skills = useMemo(() => {
         const techStackReversed = [...techStack];
         return techStack.concat(techStackReversed);
@@ -61,9 +61,7 @@ export function SkillCard({
                     src={`./${icon}`}
                     alt={`${name} technology logo`}
                     title={name}
-                    loading="lazy"
-                    decoding="async"
-                    itemProp="image"
+                    property="true"
                     className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
             )}

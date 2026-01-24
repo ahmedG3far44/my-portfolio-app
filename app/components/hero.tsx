@@ -24,8 +24,8 @@ import Skills from './skills';
 const HeroPage = ({ setActivePage }: { setActivePage: (page: number) => void }) => {
     const { content } = useContent();
     const [mousePosition] = useState({ x: 0, y: 0 });
-    const [typedText, setTypedText] = useState('');
-    const [isTypingComplete, setIsTypingComplete] = useState(false);
+    const [_, setTypedText] = useState('');
+    const [__, setIsTypingComplete] = useState(false);
 
 
 
@@ -107,13 +107,12 @@ const HeroPage = ({ setActivePage }: { setActivePage: (page: number) => void }) 
                     <div className="absolute inset-0 rounded-full blur-xl group-hover:blur-2xl transition-all opacity-50"></div>
 
                     <div className="flex items-center justify-center text-5xl overflow-hidden rounded-full group-hover:scale-105 transition-transform w-15 h-15 sm:w-24 sm:h-24 md:w-48 md:h-48 lg:w-32 lg:h-32">
-                        <img
+                        <img 
                             width={40}
                             height={40}
                             alt="avatar profile photo"
                             src={"./profile.png"}
-                            loading="lazy"
-                            decoding="async"
+                            property='true'
                             className="w-full h-full object-center object-cover mix-blend-multiply"
                         />
                     </div>
@@ -187,7 +186,7 @@ const HeroPage = ({ setActivePage }: { setActivePage: (page: number) => void }) 
 
             </div>
 
-            {/* Scroll indicator */}
+
             <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
                 <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-500" />
             </div>
