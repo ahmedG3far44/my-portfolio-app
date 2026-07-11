@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import Image from "next/image";
 import { useContent } from "../context/content/ContentContext";
 
 const Skills = () => {
@@ -55,13 +56,12 @@ export function SkillCard({
             <meta itemProp="name" content={name} />
 
             {icon && (
-                <img
-                    width={50}
-                    height={50}
-                    src={`./${icon}`}
+                <Image
+                    src={`/${icon}`}
                     alt={`${name} technology logo`}
                     title={name}
-                    property="true"
+                    width={50}
+                    height={50}
                     className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
                 />
             )}

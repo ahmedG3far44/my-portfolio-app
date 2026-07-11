@@ -19,17 +19,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ahmedg3far.vercel.app"),
   title: "Ahmed G3far | Full Stack Software Engineer",
-  description: "Ahmed G3far | Full Stack Software Engineer portoflio website to showcase projects and skills",
-  keywords: ["Ahmed G3far", "Full Stack Developer" , "Software Engineer", "Portfolio", "MERN Stack Developer", "Ahmed G3far Portfolio", "Ahmed G3far Portfolio", "Ahmed G3far Portfolio", "Developer Portfolio" , "Full Stack Engineer Portfolio"],
+  description: "Full-stack software engineer specializing in React, Next.js, and Node.js. Building scalable web products with clean architecture and delightful motion.",
+  keywords: ["Ahmed G3far", "Full Stack Developer", "Software Engineer", "Portfolio", "MERN Stack Developer", "Developer Portfolio", "Next.js Developer"],
   authors: [
     {
       name: "Ahmed G3far",
       url: "https://www.linkedin.com/in/ahmedg3far44",
     },
   ],
+  openGraph: {
+    title: "Ahmed G3far | Full Stack Software Engineer",
+    description: "Full-stack software engineer building scalable web products with clean architecture and delightful motion.",
+    url: "https://ahmedg3far.vercel.app",
+    siteName: "Ahmed G3far Portfolio",
+    images: [{ url: "/profile.png", width: 512, height: 512 }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ahmed G3far | Full Stack Software Engineer",
+    description: "Full-stack software engineer building scalable web products with clean architecture and delightful motion.",
+    images: ["/profile.png"],
+  },
   icons: {
-    icon: "./profile.png",
+    icon: "/profile.png",
   },
 };
 
@@ -39,9 +55,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-theme="dark" lang="en" dir="ltr">
+    <html lang="en" dir="ltr">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <ThemeProvider>
           <ContentProvider>

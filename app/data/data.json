@@ -103,13 +103,10 @@
           "The platform supports flexible layouts, theme customization, and secure authentication using JWT.",
           "Performance was optimized using React Context for state management and Sharp for efficient image processing, ensuring fast load times even with media-heavy portfolios."
         ],
-        "thumbnail": "./projects/folio-1.png",
+        "thumbnail": "/projects/folio-1.png",
         "images": [
-          "./projects/folio-1.png",
-          "./projects/folio-2.png",
-          "./projects/folio-3.png",
-          "./projects/folio-4.png",
-          "./projects/folio-5.png"
+          "/projects/folio-1.png",
+          "/projects/folio-2.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -164,13 +161,13 @@
           "The application includes a complete shopping cart experience, order history, and an admin dashboard for managing products and users.",
           "RESTful APIs were designed with secure authentication, and AWS S3 was integrated for reliable media storage."
         ],
-        "thumbnail": "./projects/techpad-thumb.gif",
+        "thumbnail": "/projects/techpad-thumb.gif",
         "images": [
-          "./projects/techpad-1.png",
-          "./projects/techpad-2.png",
-          "./projects/techpad-3.png",
-          "./projects/techpad-4.png",
-          "./projects/techpad-5.png"
+          "/projects/techpad-1.png",
+          "/projects/techpad-2.png",
+          "/projects/techpad-3.png",
+          "/projects/techpad-4.png",
+          "/projects/techpad-5.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -222,11 +219,11 @@
           "It integrates directly with GitHub, enabling users to select repositories, configure environment variables, and deploy projects with a single click.",
           "The platform also provides real-time monitoring features, including logs, request metrics, and traffic analytics, giving developers full visibility into their running applications."
         ],
-        "thumbnail": "./projects/devpilot-thumb.png",
+        "thumbnail": "/projects/devpilot-thumb.png",
         "images": [
-          "./projects/devpilot-1.png",
-          "./projects/devpilot-2.png",
-          "./projects/devpilot-3.png"
+          "/projects/devpilot-1.png",
+          "/projects/devpilot-2.png",
+          "/projects/devpilot-3.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -282,13 +279,13 @@
           "The system supports role-based access for Admins and Users, allowing administrators to manage events, tickets, and analytics, while users can browse events and book tickets.",
           "Built with a modern UI and scalable backend, EventX provides real-time insights into revenue, attendance, and user engagement through interactive analytics dashboards."
         ],
-        "thumbnail": "./projects/eventx-thumb.gif",
+        "thumbnail": "/projects/eventx-thumb.gif",
         "images": [
-          "./projects/eventx-1.png",
-          "./projects/eventx-2.png",
-          "./projects/eventx-3.png",
-          "./projects/eventx-4.png",
-          "./projects/eventx-5.png"
+          "/projects/eventx-1.png",
+          "/projects/eventx-2.png",
+          "/projects/eventx-3.png",
+          "/projects/eventx-4.png",
+          "/projects/eventx-5.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -447,10 +444,10 @@
           "توفر المنصة تخطيطات مرنة، تخصيص الثيمات، ونظام مصادقة آمن باستخدام JWT.",
           "تم تحسين الأداء باستخدام React Context وإدارة الصور بكفاءة عبر Sharp لضمان سرعة التحميل."
         ],
-        "thumbnail": "./projects/folio-thumb.png",
+        "thumbnail": "/projects/folio-1.png",
         "images": [
-          "./projects/folio-1.png",
-          "./projects/folio-2.png"
+          "/projects/folio-1.png",
+          "/projects/folio-2.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -504,13 +501,13 @@
           "يتضمن تجربة تسوق كاملة، سجل الطلبات، ولوحة تحكم إدارية لإدارة المحتوى.",
           "تم تصميم واجهات REST آمنة ودمج AWS S3 لتخزين الوسائط."
         ],
-        "thumbnail": "./projects/techpad-thumb.png",
+        "thumbnail": "/projects/techpad-thumb.gif",
         "images": [
-          "./projects/techpad-1.png",
-          "./projects/techpad-2.png",
-          "./projects/techpad-3.png",
-          "./projects/techpad-4.png",
-          "./projects/techpad-5.png"
+          "/projects/techpad-1.png",
+          "/projects/techpad-2.png",
+          "/projects/techpad-3.png",
+          "/projects/techpad-4.png",
+          "/projects/techpad-5.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -562,11 +559,11 @@
           "تتكامل المنصة مباشرة مع GitHub، مما يسمح باختيار المستودعات، إعداد متغيرات البيئة، والنشر بنقرة واحدة.",
           "توفر المنصة ميزات مراقبة فورية تشمل السجلات، إحصائيات الطلبات، وتحليل حركة المرور للتطبيقات."
         ],
-        "thumbnail": "./projects/devpilot-thumb.png",
+        "thumbnail": "/projects/devpilot-thumb.png",
         "images": [
-          "./projects/devpilot-1.png",
-          "./projects/devpilot-2.png",
-          "./projects/devpilot-3.png"
+          "/projects/devpilot-1.png",
+          "/projects/devpilot-2.png",
+          "/projects/devpilot-3.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },
@@ -622,13 +619,13 @@
           "تدعم المنصة نظام صلاحيات يعتمد على الأدوار، حيث يمكن للمشرفين إدارة الفعاليات والتذاكر والتحليلات، بينما يمكن للمستخدمين تصفح الأحداث وحجز التذاكر.",
           "تم بناء النظام بواجهة مستخدم حديثة وخلفية قابلة للتوسع، مع لوحات تحليل تعرض الإيرادات والحضور ومعدلات التفاعل."
         ],
-        "thumbnail": "./projects/eventx-thumb.png",
+        "thumbnail": "/projects/eventx-thumb.gif",
         "images": [
-          "./projects/eventx-1.png",
-          "./projects/eventx-2.png",
-          "./projects/eventx-3.png",
-          "./projects/eventx-4.png",
-          "./projects/eventx-5.png"
+          "/projects/eventx-1.png",
+          "/projects/eventx-2.png",
+          "/projects/eventx-3.png",
+          "/projects/eventx-4.png",
+          "/projects/eventx-5.png"
         ],
         "techStack": [
           { "name": "React", "category": "frontend" },

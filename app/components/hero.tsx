@@ -1,199 +1,186 @@
 "use client";
 
 import {
-    Github,
-    Linkedin,
-    Mail,
-    Download,
-    ChevronDown,
-    Code2,
-    Terminal,
-    Sparkles,
-} from 'lucide-react';
+  Github,
+  Linkedin,
+  Mail,
+  Download,
+  ChevronDown,
+  Code2,
+  Terminal,
+  Sparkles,
+} from "lucide-react";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
-import { useContent } from "../context/content/ContentContext"
+import { useContent } from "../context/content/ContentContext";
 
 import Card from "./ui/card";
-import DownloadCVButton from './ui/download-resume';
-import Skills from './skills';
+import DownloadCVButton from "./ui/download-resume";
+import Skills from "./skills";
 
+const HeroPage = ({ scrollToProjects }: { scrollToProjects?: () => void }) => {
+  const { content } = useContent();
+  const [typedText, setTypedText] = useState("");
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
 
+  function randomRainbowColor() {
+    const hue = Math.floor(Math.random() * 360);
+    return `hsl(${hue}, 100%, 50%)`;
+  }
 
-const HeroPage = ({ setActivePage }: { setActivePage: (page: number) => void }) => {
-    const { content } = useContent();
-    const [mousePosition] = useState({ x: 0, y: 0 });
-    const [_, setTypedText] = useState('');
-    const [__, setIsTypingComplete] = useState(false);
+  const drawRandomsColors = (e: React.MouseEvent<HTMLDivElement>) => {
+    const hero = document.getElementById("hero");
+    const circle = document.createElement("span");
+    circle.classList.add("circle");
+    circle.style.left = e.clientX + "px";
+    circle.style.top = e.clientY + "px";
+    circle.style.width = "100" + "px";
+    circle.style.height = "100" + "px";
+    circle.style.backgroundColor = randomRainbowColor();
+    circle.style.transform = "translate(-50%, -50%)";
+    circle.style.filter = "blur(30px)";
+    circle.style.opacity = "0.1";
+    circle.style.zIndex = "1";
+    hero?.appendChild(circle);
+    setTimeout(() => {
+      circle.remove();
+    }, 250);
+  };
 
+  useEffect(() => {
+    const text = content.hero.title;
+    let index = 0;
+    const timer = setInterval(() => {
+      if (index <= text.length) {
+        setTypedText(text.slice(0, index));
+        index++;
+      } else {
+        setIsTypingComplete(true);
+        clearInterval(timer);
+      }
+    }, 100);
 
+    return () => clearInterval(timer);
+  }, [content.hero.title]);
 
+  return (
+    <div
+      id="hero"
+      className="relative scroll-bar-none overflow-hidden min-h-screen flex flex-col items-center justify-center text-foreground bg-background px-4 sm:px-6 lg:px-8"
+      onMouseMove={drawRandomsColors}
+    >
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 -left-24 sm:-left-48 w-48 sm:w-96 h-48 sm:h-96 bg-emerald-500/20 rounded-full blur-3xl animate-blob"></div>
+        <div className="absolute top-1/3 -right-24 sm:-right-48 w-48 sm:w-96 h-48 sm:h-96 bg-cyan-500/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+      </div>
 
-    function randomRainbowColor() {
-        const hue = Math.floor(Math.random() * 360);
-        return `hsl(${hue}, 100%, 50%)`;
-    }
-
-    const drawRandomsColors = (e: React.MouseEvent<HTMLDivElement>) => {
-        const hero = document.getElementById("hero");
-        const circle = document.createElement("span");
-        circle.classList.add("circle");
-        circle.style.left = e.clientX + "px";
-        circle.style.top = e.clientY + "px";
-        circle.style.width = "100" + "px";
-        circle.style.height = "100" + "px";
-        circle.style.backgroundColor = randomRainbowColor();
-        circle.style.transform = "translate(-50%, -50%)";
-        circle.style.filter = "blur(30px)";
-        circle.style.opacity = "0.1";
-        circle.style.zIndex = "1";
-        hero?.appendChild(circle);
-        setTimeout(() => {
-            circle.remove();
-        }, 250)
-    }
-
-    useEffect(() => {
-        const text = content.hero.title;
-        let index = 0;
-        const timer = setInterval(() => {
-            if (index <= text.length) {
-                setTypedText(text.slice(0, index));
-                index++;
-            } else {
-                setIsTypingComplete(true);
-                clearInterval(timer);
-            }
-        }, 100);
-
-        return () => clearInterval(timer);
-    }, []);
-
-
-    return (
-        <div
-            id="hero"
-            className="relative scroll-bar-none overflow-hidden min-h-screen flex flex-col items-center justify-center text-foreground bg-background px-4 sm:px-6 lg:px-8"
-            onMouseMove={drawRandomsColors}
-        >
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 -left-24 sm:-left-48 w-48 sm:w-96 h-48 sm:h-96 bg-emerald-500/20 rounded-full blur-3xl animate-blob"></div>
-                <div className="absolute top-1/3 -right-24 sm:-right-48 w-48 sm:w-96 h-48 sm:h-96 bg-cyan-500/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
-                <div className="absolute -bottom-16 sm:-bottom-32 left-1/3 w-48 sm:w-96 h-48 sm:h-96 bg-blue-500/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
-            </div>
-
-            <div className="absolute inset-0 pointer-events-none hidden sm:block">
-                <div className="absolute top-20 left-4 sm:left-10 opacity-50 animate-float">
-                    <Code2 className="w-6 h-6 sm:w-8 sm:h-8" />
-                </div>
-                <div className="absolute top-40 right-10 sm:right-20 opacity-50 animate-float animation-delay-1000">
-                    <Terminal className="w-6 h-6 sm:w-8 sm:h-8" />
-                </div>
-                <div className="absolute bottom-32 left-1/4 opacity-50 animate-float animation-delay-2000">
-                    <Sparkles className="w-6 h-6 sm:w-8 sm:h-8" />
-                </div>
-            </div>
-
-            <div
-                className="relative z-10 flex flex-col items-center gap-2 sm:gap-3 w-full max-w-5xl mx-auto text-center"
-                style={{
-                    transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-                    transition: 'transform 0.3s ease-out'
-                }}
-            >
-
-                <div id="avatar" className="relative cursor-pointer group">
-                    <div className="absolute inset-0 rounded-full blur-xl group-hover:blur-2xl transition-all opacity-50"></div>
-
-                    <div className="flex items-center justify-center text-5xl overflow-hidden rounded-full group-hover:scale-105 transition-transform w-15 h-15 sm:w-24 sm:h-24 md:w-48 md:h-48 lg:w-32 lg:h-32">
-                        <img 
-                            width={40}
-                            height={40}
-                            alt="avatar profile photo"
-                            src={"./profile.png"}
-                            property='true'
-                            className="w-full h-full object-center object-cover mix-blend-multiply"
-                        />
-                    </div>
-                </div>
-
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight animate-slide-up px-2">
-                    {content.hero.name}
-                </h1>
-
-                <div className="min-h-[2rem] sm:min-h-[3rem] text-foreground flex items-center justify-center px-2">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold animate-slide-up animation-delay-200">
-                        {content.hero.title}
-                    </h2>
-                </div>
-
-
-                <p className="text-base sm:text-lg md:text-xl text-accent max-w-2xl animate-slide-up  animation-delay-400 px-4 hover:text-foreground opacity-80 transition-all">
-                    {content.hero.tagline}
-                </p>
-
-
-                <div className="w-full overflow-hidden my-3 sm:my-4 md:my-6 animate-slide-up animation-delay-600">
-                    <div className="relative border-t border-b border-border">
-                        <div className="absolute left-0 top-0 bottom-0 w-10 sm:w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
-                        <div className="absolute right-0 top-0 bottom-0 w-10 sm:w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
-
-                        <Skills />
-                    </div>
-                </div>
-
-                <div className="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4">
-
-                    <div className="w-full">
-                        <DownloadCVButton icon={<Download />} text="Download CV" />
-                    </div>
-
-                    <div className="flex gap-2 sm:gap-3 lg:gap-4 animate-fade-in animation-delay-1000">
-                        <Card>
-                            <a
-                                href={content.contact.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hover:border-emerald-500 transition-all hover:scale-110 group p-1 sm:p-0"
-                            >
-                                <Github className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-emerald-400 transition-colors" />
-                            </a>
-                        </Card>
-                        <Card>
-                            <a
-                                href={content.contact.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hover:border-blue-500 transition-all hover:scale-110 group p-1 sm:p-0"
-                            >
-                                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-blue-400 transition-colors" />
-                            </a>
-                        </Card>
-                        <Card>
-                            <a
-                                href={`mailto:${content.contact.email}`}
-                                className="hover:border-violet-500 p-1 sm:p-0"
-                            >
-                                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-violet-400 transition-colors hover:scale-110 hover:border-violet-500 group-hover:border-violet-500" />
-                            </a>
-                        </Card>
-                    </div>
-                </div>
-                <div className='block group lg:hidden'>
-                    <button className='bg-gradient-to-r from-violet-400 to-purple-900 text-white text-sm px-4 py-2 rounded-md my-8 cursor-pointer duration-300 transition-colors group-hover:opacity-70' onClick={() => setActivePage(1)}>Explore My Work</button>
-                </div>
-
-            </div>
-
-
-            <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-                <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-500" />
-            </div>
+      <div className="absolute inset-0 pointer-events-none hidden sm:block">
+        <div className="absolute top-20 left-4 sm:left-10 opacity-50 animate-float">
+          <Code2 className="w-6 h-6 sm:w-8 sm:h-8" />
         </div>
-    )
-}
+        <div className="absolute top-40 right-10 sm:right-20 opacity-50 animate-float animation-delay-1000">
+          <Terminal className="w-6 h-6 sm:w-8 sm:h-8" />
+        </div>
+        <div className="absolute bottom-32 left-1/4 opacity-50 animate-float animation-delay-2000">
+          <Sparkles className="w-6 h-6 sm:w-8 sm:h-8" />
+        </div>
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center gap-2 sm:gap-3 w-full max-w-5xl mx-auto text-center">
+        <div id="avatar" className="relative cursor-pointer group">
+          <div className="absolute inset-0 rounded-full blur-xl group-hover:blur-2xl transition-all opacity-50"></div>
+
+          <div className="flex items-center justify-center text-5xl overflow-hidden rounded-full group-hover:scale-105 transition-transform w-15 h-15 sm:w-24 sm:h-24 md:w-48 md:h-48 lg:w-32 lg:h-32">
+            <Image
+              src="/profile.png"
+              alt="avatar profile photo"
+              width={160}
+              height={160}
+              className="w-full h-full object-center object-cover mix-blend-multiply"
+            />
+          </div>
+        </div>
+
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight animate-slide-up px-2">
+          {content.hero.name}
+        </h1>
+
+        <div className="min-h-[2rem] sm:min-h-[3rem] text-foreground flex items-center justify-center px-2">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold animate-slide-up animation-delay-200">
+            {typedText}{!isTypingComplete && <span className="animate-blink">|</span>}
+          </h2>
+        </div>
+
+
+        <p className="text-base sm:text-lg md:text-xl text-accent max-w-2xl animate-slide-up  animation-delay-400 px-4 hover:text-foreground opacity-80 transition-all">
+          {content.hero.tagline}
+        </p>
+
+
+        <div className="w-full overflow-hidden my-3 sm:my-4 md:my-6 animate-slide-up animation-delay-600">
+          <div className="relative border-t border-b border-border">
+            <div className="absolute left-0 top-0 bottom-0 w-10 sm:w-20 bg-gradient-to-r from-background to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-10 sm:w-20 bg-gradient-to-l from-background to-transparent z-10"></div>
+
+            <Skills />
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4">
+          <div className="w-full">
+            <DownloadCVButton icon={<Download />} text="Download CV" />
+          </div>
+
+          <div className="flex gap-2 sm:gap-3 lg:gap-4 animate-fade-in animation-delay-1000">
+            <Card>
+              <a
+                href={content.contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:border-emerald-500 transition-all hover:scale-110 group p-1 sm:p-0"
+              >
+                <Github className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-emerald-400 transition-colors" />
+              </a>
+            </Card>
+            <Card>
+              <a
+                href={content.contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:border-blue-500 transition-all hover:scale-110 group p-1 sm:p-0"
+              >
+                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-blue-400 transition-colors" />
+              </a>
+            </Card>
+            <Card>
+              <a
+                href={`mailto:${content.contact.email}`}
+                className="hover:border-violet-500 p-1 sm:p-0"
+              >
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-violet-400 transition-colors hover:scale-110 hover:border-violet-500 group-hover:border-violet-500" />
+              </a>
+            </Card>
+          </div>
+        </div>
+        <div className="block group lg:hidden">
+          <button
+            className="bg-gradient-to-r from-violet-400 to-purple-900 text-white text-sm px-4 py-2 rounded-md my-8 cursor-pointer duration-300 transition-colors group-hover:opacity-70"
+            onClick={scrollToProjects}
+          >
+            Explore My Work
+          </button>
+        </div>
+
+      </div>
+
+
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-500" />
+      </div>
+    </div>
+  );
+};
 
 export default HeroPage
-
-

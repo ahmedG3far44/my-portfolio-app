@@ -17,36 +17,36 @@
 
 
 :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --accent: #4f4f4f;
+    --background: #09090b;
+    --foreground: #fafafa;
+    --accent: #a1a1aa;
 
-    --primary: #000000;
-    --secondary: #171717;
-    --card: #181717;
-    --border: #272626;
+    --primary: #fafafa;
+    --secondary: #1c1c1e;
+    --card: #121214;
+    --border: #2c2c2e;
 
-    --hover: #e5e5e5;
-    --hover-text: #171717;
-    --hover-border: #e5e5e5;
-    --hover-bg: #e5e5e5;
+    --hover: #27272a;
+    --hover-text: #fafafa;
+    --hover-border: #a1a1aa;
+    --hover-bg: #27272a;
 }
 
 
 [data-theme="light"] {
     --background: #ffffff;
-    --foreground: #171717;
-    --accent: #767676;
+    --foreground: #09090b;
+    --accent: #71717a;
 
-    --primary: #000000;
-    --secondary: #171717;
+    --primary: #09090b;
+    --secondary: #f4f4f5;
     --card: #ffffff;
-    --border: #d9d9d9;
+    --border: #e4e4e7;
 
-    --hover: #e5e5e5;
-    --hover-text: #171717;
-    --hover-border: #e5e5e5;
-    --hover-bg: #e5e5e5;
+    --hover: #e4e4e7;
+    --hover-text: #09090b;
+    --hover-border: #09090b;
+    --hover-bg: #e4e4e7;
 }
 
 
@@ -56,18 +56,9 @@ html {
 
 html,
 body {
-    font-family: "Poppins", sans-serif;
     background-color: var(--background);
     color: var(--foreground);
     transition: background-color 0.5s ease-in-out;
-}
-
-
-.slide-animate {
-    animation: slide-in 0.6s ease-in-out both;
-}
-.slide-animate-reverse {
-    animation: slide-in 0.6s ease-in-out both reverse;
 }
 
 .circle {
@@ -126,16 +117,6 @@ body {
     }
 }
 
-@keyframes blink {
-    0%,
-    100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-
 @keyframes scroll-left {
     0% {
         transform: translateX(0);
@@ -159,10 +140,6 @@ body {
 
 .animate-fade-in {
     animation: fade-in 1s ease-out forwards;
-}
-
-.animate-blink {
-    animation: blink 1s infinite;
 }
 
 .animate-scroll-left {
@@ -202,27 +179,4 @@ body {
 
 .animation-delay-4000 {
     animation-delay: 4s;
-}
-
-
-@keyframes gradient-shift {
-    0%,
-    100% {
-        background-position: 0 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
-
-@keyframes slide-in {
-    from {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
