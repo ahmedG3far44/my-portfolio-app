@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Upload, X, FileVideo, FileImage, Loader2 } from "lucide-react";
+import { Upload, X, FileVideo, FileImage, FileText, Loader2 } from "lucide-react";
 import { useAuth } from "@/app/context/auth/AuthContext";
 
 interface UploadedFile {
@@ -24,7 +24,7 @@ export const ImageUpload = ({
   onUpload,
   onRemove,
   files,
-  accept = "image/png,image/jpeg,image/gif,image/webp,video/mp4,video/webm",
+  accept = "image/png,image/jpeg,image/gif,image/webp,video/mp4,video/webm,application/pdf",
   multiple = false,
   label = "Upload files",
 }: ImageUploadProps) => {
@@ -127,14 +127,65 @@ export const ImageUpload = ({
       return "video";
     }
     if (ext === "gif") return "gif";
+    if (ext === "pdf") return "pdf";
+    if (ext === "docx" || ext === "doc") return "docx";
     return "image";
   };
+
+  const getFileName = (url: string) => {
+    const parts = url.split("/");
+    const last = parts[parts.length - 1];
+    const decoded = decodeURIComponent(last);
+    return decoded;
+  };
+
+  const hasDocument = files.some((url) => {
+    const t = getFileIcon(url);
+    return t === "pdf" || t === "docx";
+  });
 
   return (
     <div className="space-y-3">
       <label className="block text-sm font-medium text-foreground mb-1">
         {label}
       </label>
+
+      {/* Document preview — shown under label when a document is uploaded */}
+      {files.length > 0 && hasDocument && (
+        <div className="space-y-2">
+          {files.map((url) => {
+            const type = getFileIcon(url);
+            const isDocument = type === "pdf" || type === "docx";
+            if (!isDocument) return null;
+
+            return (
+              <div
+                key={url}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border bg-card"
+              >
+                <div className="shrink-0 w-10 h-10 rounded-lg bg-foreground/10 flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-foreground/70" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-foreground truncate">
+                    {getFileName(url)}
+                  </p>
+                  <p className="text-[11px] text-foreground/50 uppercase font-semibold">
+                    {type === "pdf" ? "PDF Document" : "Word Document"}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => onRemove(url)}
+                  className="shrink-0 w-7 h-7 rounded-full bg-red-500/80 hover:bg-red-500 flex items-center justify-center transition-colors"
+                >
+                  <X className="w-3.5 h-3.5 text-white" />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Drop zone */}
       <div
@@ -177,10 +228,10 @@ export const ImageUpload = ({
           <div className="space-y-2">
             <Upload className="w-8 h-8 mx-auto text-foreground/50" />
             <p className="text-sm text-foreground/70">
-              {label} (drag & drop or click)
+              {hasDocument ? "Click to replace" : `${label} (drag & drop or click)`}
             </p>
             <p className="text-xs text-foreground/50">
-              PNG, JPG, GIF, WebP, MP4, WebM (max 50MB)
+              PNG, JPG, GIF, WebP, MP4, WebM, PDF, DOCX (max 50MB)
             </p>
           </div>
         )}
@@ -192,11 +243,12 @@ export const ImageUpload = ({
         </p>
       )}
 
-      {/* File list */}
-      {files.length > 0 && (
+      {/* File list — images/videos only */}
+      {files.length > 0 && !hasDocument && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {files.map((url) => {
             const type = getFileIcon(url);
+
             return (
               <div
                 key={url}

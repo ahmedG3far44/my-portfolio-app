@@ -236,10 +236,10 @@ export const ProfileForm = ({
       </section>
 
       {/* Contact */}
-      <section className="bg-card border border-border rounded-xl p-6 space-y-4">
+      <section className="bg-card border border-border rounded-xl p-6 space-y-5">
         <h2 className="text-lg font-bold text-foreground">Contact Info</h2>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-foreground mb-1">
               Email
@@ -282,22 +282,23 @@ export const ProfileForm = ({
               className={inputClass("")}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-foreground mb-1">
-              Resume (file path)
-            </label>
-            <input
-              type="text"
-              value={form.resume}
-              onChange={(e) =>
-                setForm((prev) => ({ ...prev, resume: e.target.value }))
-              }
-              className={inputClass("")}
-            />
-          </div>
+          <BilingualField field="location" label="Location" />
         </div>
 
-        <BilingualField field="location" label="Location" />
+        <div className="pt-2 border-t border-border">
+          <ImageUpload
+            label="Upload Resume (PDF or DOCX)"
+            onUpload={(file) =>
+              setForm((prev) => ({ ...prev, resume: file.url }))
+            }
+            onRemove={() =>
+              setForm((prev) => ({ ...prev, resume: "" }))
+            }
+            files={form.resume ? [form.resume] : []}
+            multiple={false}
+            accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          />
+        </div>
       </section>
 
       {/* Highlights */}

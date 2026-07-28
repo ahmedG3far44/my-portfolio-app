@@ -32,19 +32,22 @@ export async function POST(request: Request) {
       "video/mp4",
       "video/webm",
       "video/quicktime",
+      "application/pdf",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     ];
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json(
         {
           error:
-            "Invalid file type. Allowed: JPEG, PNG, GIF, WebP, MP4, WebM, MOV",
+            "Invalid file type. Allowed: JPEG, PNG, GIF, WebP, MP4, WebM, MOV, PDF, DOCX",
         },
         { status: 400 }
       );
     }
 
     const isVideo = file.type.startsWith("video/");
-    const resourceType = isVideo ? "video" : "image";
+    const isRaw = file.type === "application/pdf" || file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+    const resourceType = isVideo ? "video" : isRaw ? "raw" : "image";
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
@@ -54,7 +57,7 @@ export async function POST(request: Request) {
         {
           resource_type: resourceType,
           folder: "portfolio",
-          transformation: isVideo
+          transformation: isVideo || isRaw
             ? undefined
             : [{ quality: "auto", fetch_format: "auto" }],
         },
