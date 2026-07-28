@@ -1,13 +1,12 @@
 "use client";
 import {useContext, createContext} from "react";
 
-import data from "../../data/data.json";
-
 
 export const ContentContext = createContext({
-    content: data['en'],
+    content: {} as any,
     changeLanguage: (lang : "en" | "ar") => {},
-    language: "en"
+    language: "en",
+    refreshData: async () => {}
 });
 
 

@@ -22,7 +22,7 @@ const Skills = () => {
         >
             <h2 className="sr-only">Skills & Technologies</h2>
 
-            {skills.map((tech, index) => (
+            {skills.map((tech: any, index: number) => (
                 <SkillCard
                     key={`${tech.name}-${index}`}
                     name={tech.name}

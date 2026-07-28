@@ -11,6 +11,7 @@ interface ProjectType {
     description: string;
     fullDescription: string[];
     thumbnail: string;
+    thumbnailType?: string;
     images: string[];
     techStack: {
         name: string;
@@ -41,7 +42,7 @@ const ProjectCard = ({
     index: number;
 }) => {
 
-    const { id, title, description, thumbnail, techStack } = project;
+    const { id, title, description, thumbnail, thumbnailType } = project;
     const cardRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -62,83 +63,94 @@ const ProjectCard = ({
         return () => observer.disconnect();
     }, []);
 
+    const getThumbnailBadge = () => {
+        if (thumbnailType === "video") {
+            return { label: "Video", className: "bg-purple-500/20 text-purple-400 border-purple-500/30" };
+        }
+        const ext = thumbnail?.split(".").pop()?.toLowerCase();
+        if (ext === "gif" || thumbnailType === "gif") {
+            return { label: "GIF", className: "bg-green-500/20 text-green-400 border-green-500/30" };
+        }
+        return null;
+    };
+
+    const badge = getThumbnailBadge();
+
     return (
-        <article
-            itemScope
-            itemType="https://schema.org/CreativeWork"
-            ref={cardRef}
-            className="project-card w-full flex flex-col rounded-2xl border border-border bg-card/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow overflow-hidden opacity-0 translate-y-8"
-            style={{ transitionDelay: `${index * 100}ms` }}
-        >
-            <style>{`
-                .project-card.animate-in {
-                    animation: card-enter 0.6s ease-out forwards;
-                }
-                @keyframes card-enter {
-                    from {
-                        opacity: 0;
-                        transform: translateY(2rem);
+        <Link href={`/project/${id}`} className="block">
+            <article
+                itemScope
+                itemType="https://schema.org/CreativeWork"
+                ref={cardRef}
+                className="project-card group relative rounded-2xl border border-border bg-card shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden opacity-0 translate-y-8"
+                style={{ transitionDelay: `${index * 100}ms` }}
+            >
+                <style>{`
+                    .project-card.animate-in {
+                        animation: card-enter 0.6s ease-out forwards;
                     }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
+                    @keyframes card-enter {
+                        from {
+                            opacity: 0;
+                            transform: translateY(2rem);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
                     }
-                }
-            `}</style>
-            <div className="w-full overflow-hidden">
-                <Image
-                    src={thumbnail}
-                    alt={`${title} project screenshot - ${description}`}
-                    title={title}
-                    width={1200}
-                    height={675}
-                    itemProp="image"
-                    className="w-full h-48 sm:h-56 object-cover object-center"
-                />
-            </div>
+                `}</style>
 
-            <div className="flex flex-col gap-3 p-5 sm:p-6">
-                <Link
-                    href={`/project/${id}`}
-                    className="text-xl sm:text-2xl font-black italic text-foreground hover:opacity-70 transition-opacity"
-                    aria-label={`View ${title} project details`}
-                >
-                    <h2>{id}.{title}</h2>
-                </Link>
+                {badge && (
+                    <span
+                        className={`absolute top-3 left-3 z-20 text-[10px] font-bold uppercase px-2 py-0.5 rounded-full border ${badge.className}`}
+                    >
+                        {badge.label}
+                    </span>
+                )}
 
-                <div
-                    className="flex items-start justify-start gap-1.5 flex-wrap"
-                    role="list"
-                    aria-label="Technologies used"
-                >
-                    <meta itemProp="keywords" content={techStack.map(tech => tech.name).join(', ')} />
-                    {techStack.map((tech, i) => (
-                        <span
-                            key={i}
-                            role="listitem"
-                            itemProp="programmingLanguage"
-                            className="text-xs px-2 py-0.5 border border-border rounded-xl bg-background text-accent"
-                        >
-                            {tech.name.toLowerCase()}
-                        </span>
-                    ))}
+                <div className="w-full aspect-[4/3] overflow-hidden">
+                    {thumbnailType === "video" ? (
+                        <video
+                            src={thumbnail}
+                            poster={thumbnail}
+                            className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700"
+                            muted
+                            autoPlay
+                            loop
+                            playsInline
+                        />
+                    ) : (
+                        <Image
+                            src={thumbnail}
+                            alt={`${title} project screenshot - ${description}`}
+                            title={title}
+                            width={1200}
+                            height={900}
+                            itemProp="image"
+                            className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700"
+                        />
+                    )}
                 </div>
 
-                <p
-                    itemProp="description"
-                    className="text-sm text-foreground/80 leading-relaxed line-clamp-3"
-                >
-                    {description}
-                </p>
-
-                <Link
-                    href={`/project/${id}`}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline mt-1"
-                >
-                    View Details &rarr;
-                </Link>
-            </div>
-        </article>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h2
+                            itemProp="name"
+                            className="text-lg sm:text-xl font-bold text-white truncate"
+                        >
+                            {title}
+                        </h2>
+                        <p
+                            itemProp="description"
+                            className="text-sm text-white/70 leading-relaxed line-clamp-2 mt-1"
+                        >
+                            {description}
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </Link>
     );
 };
 

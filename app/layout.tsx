@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./context/theme/ThemeProvider";
 
 import ContentProvider from "./context/content/ContentProvider";
+import { ClientLayoutWrapper } from "./components/client-layout-wrapper";
 
 import "./globals.css";
 
@@ -55,13 +56,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="en" dir="ltr" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <ThemeProvider>
           <ContentProvider>
-            {children}
+            <ClientLayoutWrapper>
+              {children}
+            </ClientLayoutWrapper>
           </ContentProvider>
         </ThemeProvider>
       </body>

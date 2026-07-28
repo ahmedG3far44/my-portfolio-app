@@ -2,12 +2,12 @@
 
 import HeroPage from "./components/hero";
 import ProjectsPage from "./components/projects";
-import LanguageSelector from "./components/ui/language-selector";
-import ToggleTheme from "./components/ui/toggle-theme";
+import { useSyncLanguage } from "./lib/sync-language";
 
 
 
 export default function Home() {
+  useSyncLanguage();
 
   const scrollToProjects = () => {
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
@@ -15,10 +15,6 @@ export default function Home() {
 
   return (
     <div className="w-full">
-      <div className="fixed flex items-center justify-center gap-2 top-4 right-4 z-50">
-        <LanguageSelector />
-        <ToggleTheme />
-      </div>
       <HeroPage scrollToProjects={scrollToProjects} />
       <ProjectsPage />
     </div>
