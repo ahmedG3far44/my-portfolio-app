@@ -13,6 +13,8 @@
     location JSONB NOT NULL DEFAULT '{}',
     resume TEXT NOT NULL DEFAULT '',
     profile_image TEXT NOT NULL DEFAULT '',
+    projects_columns INT2 NOT NULL DEFAULT 2 CHECK (projects_columns BETWEEN 1 AND 5),
+    projects_gap INT2 NOT NULL DEFAULT 8,
     created_at TIMESTAMPTZ DEFAULT now(),
     updated_at TIMESTAMPTZ DEFAULT now()
   );
@@ -60,6 +62,10 @@
     'resume.pdf',
     '/profile.png'
   WHERE NOT EXISTS (SELECT 1 FROM profile WHERE id = 1);
+
+  -- Add columns for existing databases (safe to run multiple times)
+  ALTER TABLE profile ADD COLUMN IF NOT EXISTS projects_columns INT2 NOT NULL DEFAULT 2 CHECK (projects_columns BETWEEN 1 AND 5);
+  ALTER TABLE profile ADD COLUMN IF NOT EXISTS projects_gap INT2 NOT NULL DEFAULT 8;
 
   -- Enable Row Level Security (optional, since we use service_role key for admin)
   ALTER TABLE profile ENABLE ROW LEVEL SECURITY;

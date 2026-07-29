@@ -128,20 +128,19 @@ const HeroPage = ({ scrollToProjects }: { scrollToProjects?: () => void }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4">
-          <div className="w-full">
-            <DownloadCVButton icon={<Download />} text="Download CV" />
-          </div>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 lg:gap-5 animate-slide-up animation-delay-800">
+          <DownloadCVButton icon={<Download />} text="Download CV" />
 
-          <div className="flex gap-2 sm:gap-3 lg:gap-4 animate-fade-in animation-delay-1000">
+          <div className="flex items-center gap-2 sm:gap-3 animate-fade-in animation-delay-1000" role="list" aria-label="Social links">
             <Card>
               <a
                 href={content.contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:border-emerald-500 transition-all hover:scale-110 group p-1 sm:p-0"
+                className="group/link block p-1"
+                aria-label="GitHub profile"
               >
-                <Github className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-emerald-400 transition-colors" />
+                <Github className="w-5 h-5 sm:w-6 sm:h-6 text-foreground/70 group-hover/link:text-emerald-400 transition-all duration-200" />
               </a>
             </Card>
             <Card>
@@ -149,17 +148,19 @@ const HeroPage = ({ scrollToProjects }: { scrollToProjects?: () => void }) => {
                 href={content.contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:border-blue-500 transition-all hover:scale-110 group p-1 sm:p-0"
+                className="group/link block p-1"
+                aria-label="LinkedIn profile"
               >
-                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-blue-400 transition-colors" />
+                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-foreground/70 group-hover/link:text-blue-400 transition-all duration-200" />
               </a>
             </Card>
             <Card>
               <a
                 href={`mailto:${content.contact.email}`}
-                className="hover:border-violet-500 p-1 sm:p-0"
+                className="group/link block p-1"
+                aria-label="Send email"
               >
-                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-violet-400 transition-colors hover:scale-110 hover:border-violet-500 group-hover:border-violet-500" />
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-foreground/70 group-hover/link:text-violet-400 transition-all duration-200" />
               </a>
             </Card>
           </div>

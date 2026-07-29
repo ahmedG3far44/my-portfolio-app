@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 
 interface ProjectType {
     id: string;
@@ -64,9 +63,6 @@ const ProjectCard = ({
     }, []);
 
     const getThumbnailBadge = () => {
-        if (thumbnailType === "video") {
-            return { label: "Video", className: "bg-purple-500/20 text-purple-400 border-purple-500/30" };
-        }
         const ext = thumbnail?.split(".").pop()?.toLowerCase();
         if (ext === "gif" || thumbnailType === "gif") {
             return { label: "GIF", className: "bg-green-500/20 text-green-400 border-green-500/30" };
@@ -109,26 +105,25 @@ const ProjectCard = ({
                     </span>
                 )}
 
-                <div className="w-full aspect-[4/3] overflow-hidden">
+                <div className="w-full aspect-[4/3] overflow-hidden bg-black/20">
                     {thumbnailType === "video" ? (
                         <video
                             src={thumbnail}
                             poster={thumbnail}
-                            className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700"
+                            className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
                             muted
                             autoPlay
                             loop
                             playsInline
                         />
                     ) : (
-                        <Image
+                        // eslint-disable-next-line @next/next-no-img-element
+                        <img
                             src={thumbnail}
                             alt={`${title} project screenshot - ${description}`}
                             title={title}
-                            width={1200}
-                            height={900}
                             itemProp="image"
-                            className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700"
+                            className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-700"
                         />
                     )}
                 </div>

@@ -36,6 +36,8 @@ export default function AdminProfilePage() {
           location: data.location,
           resume: data.resume,
           profile_image: data.profile_image,
+          projects_columns: data.projects_columns ?? 2,
+          projects_gap: data.projects_gap ?? 8,
         });
       }
     } catch (err) {

@@ -118,18 +118,24 @@ export default function AdminProjectsPage() {
               </span>
 
               <div className="w-16 h-12 rounded-lg overflow-hidden bg-background flex-shrink-0 border border-border">
-                {project.thumbnail ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={project.thumbnail}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-xs text-foreground/30">
-                    No img
-                  </div>
-                )}
+                {(() => {
+                  const thumbSrc =
+                    project.thumbnail_type === "video" && project.images?.length > 0
+                      ? project.images[0]
+                      : project.thumbnail;
+                  return thumbSrc ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={thumbSrc}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-xs text-foreground/30">
+                      No img
+                    </div>
+                  );
+                })()}
               </div>
 
               <div className="flex-1 min-w-0">

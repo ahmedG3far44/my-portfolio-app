@@ -60,6 +60,8 @@ export async function PUT(request: Request) {
         location: body.location,
         resume: body.resume,
         profile_image: body.profile_image,
+        projects_columns: body.projects_columns ?? 2,
+        projects_gap: body.projects_gap ?? 8,
         updated_at: new Date().toISOString(),
       })
       .eq("id", 1);

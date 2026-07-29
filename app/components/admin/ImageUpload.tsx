@@ -1,7 +1,16 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { Upload, X, FileVideo, FileImage, FileText, Loader2 } from "lucide-react";
+import { useState, useRef, useCallback } from "react";
+import {
+  Upload,
+  X,
+  FileVideo,
+  FileImage,
+  FileText,
+  Loader2,
+  RotateCcw,
+  Ban,
+} from "lucide-react";
 import { useAuth } from "@/app/context/auth/AuthContext";
 
 interface UploadedFile {
@@ -32,11 +41,14 @@ export const ImageUpload = ({
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState("");
   const [dragOver, setDragOver] = useState(false);
+  const [failedFile, setFailedFile] = useState<File | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const xhrRef = useRef<XMLHttpRequest | null>(null);
   const { token } = useAuth();
 
-  const handleUpload = async (file: File) => {
+  const uploadFile = useCallback(async (file: File) => {
     setError("");
+    setFailedFile(null);
     setUploading(true);
     setProgress(0);
 
@@ -51,6 +63,7 @@ export const ImageUpload = ({
 
     try {
       const xhr = new XMLHttpRequest();
+      xhrRef.current = xhr;
 
       const result = await new Promise<UploadedFile>((resolve, reject) => {
         xhr.upload.addEventListener("progress", (e) => {
@@ -73,6 +86,7 @@ export const ImageUpload = ({
         });
 
         xhr.addEventListener("error", () => reject(new Error("Upload failed")));
+        xhr.addEventListener("abort", () => reject(new Error("Upload cancelled")));
 
         xhr.open("POST", "/api/upload");
         xhr.setRequestHeader("Authorization", `Bearer ${token}`);
@@ -81,11 +95,23 @@ export const ImageUpload = ({
 
       onUpload(result);
     } catch (err: any) {
+      if (err.message === "Upload cancelled") return;
       setError(err.message || "Upload failed");
+      setFailedFile(file);
     } finally {
       setUploading(false);
       setProgress(0);
+      xhrRef.current = null;
     }
+  }, [token, onUpload]);
+
+  const cancelUpload = () => {
+    if (xhrRef.current) {
+      xhrRef.current.abort();
+      xhrRef.current = null;
+    }
+    setUploading(false);
+    setProgress(0);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,9 +119,9 @@ export const ImageUpload = ({
     if (!fileList) return;
 
     if (multiple) {
-      Array.from(fileList).forEach((file) => handleUpload(file));
+      Array.from(fileList).forEach((file) => uploadFile(file));
     } else {
-      handleUpload(fileList[0]);
+      uploadFile(fileList[0]);
     }
 
     if (inputRef.current) {
@@ -110,9 +136,9 @@ export const ImageUpload = ({
     if (!fileList.length) return;
 
     if (multiple) {
-      Array.from(fileList).forEach((file) => handleUpload(file));
+      Array.from(fileList).forEach((file) => uploadFile(file));
     } else {
-      handleUpload(fileList[0]);
+      uploadFile(fileList[0]);
     }
   };
 
@@ -136,12 +162,17 @@ export const ImageUpload = ({
     const parts = url.split("/");
     const last = parts[parts.length - 1];
     const decoded = decodeURIComponent(last);
-    return decoded;
+    return decoded.split("?")[0];
   };
 
-  const hasDocument = files.some((url) => {
+  const documents = files.filter((url) => {
     const t = getFileIcon(url);
     return t === "pdf" || t === "docx";
+  });
+
+  const mediaFiles = files.filter((url) => {
+    const t = getFileIcon(url);
+    return t !== "pdf" && t !== "docx";
   });
 
   return (
@@ -150,21 +181,18 @@ export const ImageUpload = ({
         {label}
       </label>
 
-      {/* Document preview — shown under label when a document is uploaded */}
-      {files.length > 0 && hasDocument && (
+      {/* Document preview */}
+      {documents.length > 0 && (
         <div className="space-y-2">
-          {files.map((url) => {
+          {documents.map((url) => {
             const type = getFileIcon(url);
-            const isDocument = type === "pdf" || type === "docx";
-            if (!isDocument) return null;
-
             return (
               <div
                 key={url}
                 className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border bg-card"
               >
-                <div className="shrink-0 w-10 h-10 rounded-lg bg-foreground/10 flex items-center justify-center">
-                  <FileText className="w-5 h-5 text-foreground/70" />
+                <div className="shrink-0 w-10 h-10 rounded-lg bg-blue-500/15 flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-blue-500" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-foreground truncate">
@@ -174,6 +202,14 @@ export const ImageUpload = ({
                     {type === "pdf" ? "PDF Document" : "Word Document"}
                   </p>
                 </div>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 text-xs text-blue-500 hover:text-blue-400 font-medium px-2 py-1 rounded-md hover:bg-blue-500/10 transition-colors"
+                >
+                  View
+                </a>
                 <button
                   type="button"
                   onClick={() => onRemove(url)}
@@ -195,10 +231,14 @@ export const ImageUpload = ({
         }}
         onDragLeave={() => setDragOver(false)}
         onDrop={handleDrop}
-        onClick={() => inputRef.current?.click()}
+        onClick={() => !uploading && inputRef.current?.click()}
         className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
           dragOver
             ? "border-foreground bg-hover"
+            : uploading
+            ? "border-foreground/30 bg-card pointer-events-auto"
+            : error
+            ? "border-red-500/50 hover:border-red-400"
             : "border-border hover:border-accent"
         }`}
       >
@@ -212,23 +252,34 @@ export const ImageUpload = ({
         />
 
         {uploading ? (
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Loader2 className="w-8 h-8 mx-auto text-foreground animate-spin" />
-            <p className="text-sm text-foreground">
-              Uploading... {progress}%
-            </p>
+            <p className="text-sm text-foreground">Uploading... {progress}%</p>
             <div className="w-full max-w-xs mx-auto bg-border rounded-full h-2 overflow-hidden">
               <div
                 className="h-full bg-foreground transition-all duration-300 rounded-full"
                 style={{ width: `${progress}%` }}
               />
             </div>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                cancelUpload();
+              }}
+              className="inline-flex items-center gap-1.5 text-xs text-red-400 hover:text-red-300 font-medium transition-colors"
+            >
+              <Ban className="w-3.5 h-3.5" />
+              Cancel upload
+            </button>
           </div>
         ) : (
           <div className="space-y-2">
             <Upload className="w-8 h-8 mx-auto text-foreground/50" />
             <p className="text-sm text-foreground/70">
-              {hasDocument ? "Click to replace" : `${label} (drag & drop or click)`}
+              {documents.length > 0
+                ? "Click to replace"
+                : `${label} (drag & drop or click)`}
             </p>
             <p className="text-xs text-foreground/50">
               PNG, JPG, GIF, WebP, MP4, WebM, PDF, DOCX (max 50MB)
@@ -237,18 +288,35 @@ export const ImageUpload = ({
         )}
       </div>
 
+      {/* Error state */}
       {error && (
-        <p className="text-sm text-red-500 bg-red-500/10 border border-red-500/20 rounded-md px-3 py-2">
-          {error}
-        </p>
+        <div className="flex items-center gap-2 text-sm text-red-500 bg-red-500/10 border border-red-500/20 rounded-md px-3 py-2">
+          <span className="flex-1">{error}</span>
+          {failedFile && (
+            <button
+              type="button"
+              onClick={() => uploadFile(failedFile)}
+              className="shrink-0 inline-flex items-center gap-1 text-xs font-medium text-red-400 hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 px-2 py-1 rounded-md transition-colors"
+            >
+              <RotateCcw className="w-3 h-3" />
+              Retry
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => { setError(""); setFailedFile(null); }}
+            className="shrink-0 p-1 hover:bg-red-500/10 rounded-md transition-colors"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
       )}
 
-      {/* File list — images/videos only */}
-      {files.length > 0 && !hasDocument && (
+      {/* Media preview grid */}
+      {mediaFiles.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {files.map((url) => {
+          {mediaFiles.map((url) => {
             const type = getFileIcon(url);
-
             return (
               <div
                 key={url}
@@ -259,7 +327,6 @@ export const ImageUpload = ({
                     <FileVideo className="w-8 h-8 text-foreground/50" />
                   </div>
                 ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={url}
                     alt="Uploaded"

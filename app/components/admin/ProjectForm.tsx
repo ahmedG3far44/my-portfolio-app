@@ -5,62 +5,165 @@ import { ImageUpload } from "./ImageUpload";
 import { Plus, Trash2, Check } from "lucide-react";
 
 const TECH_OPTIONS: { name: string; category: string }[] = [
+  // Frontend
+  { name: "HTML5", category: "frontend" },
+  { name: "CSS3", category: "frontend" },
+  { name: "JavaScript", category: "frontend" },
+  { name: "TypeScript", category: "frontend" },
   { name: "React", category: "frontend" },
   { name: "Next.js", category: "frontend" },
   { name: "Vue.js", category: "frontend" },
+  { name: "Nuxt.js", category: "frontend" },
   { name: "Angular", category: "frontend" },
   { name: "Svelte", category: "frontend" },
-  { name: "TypeScript", category: "frontend" },
-  { name: "JavaScript", category: "frontend" },
+  { name: "SvelteKit", category: "frontend" },
+  { name: "Remix", category: "frontend" },
+  { name: "Astro", category: "frontend" },
+  { name: "Vite", category: "frontend" },
   { name: "Tailwind CSS", category: "frontend" },
-  { name: "CSS", category: "frontend" },
-  { name: "HTML", category: "frontend" },
   { name: "Bootstrap", category: "frontend" },
-  { name: "Redux", category: "frontend" },
-  { name: "React Query", category: "frontend" },
-  { name: "Framer Motion", category: "frontend" },
-  { name: "Shadcn UI", category: "frontend" },
   { name: "Material UI", category: "frontend" },
+  { name: "Shadcn UI", category: "frontend" },
+  { name: "Chakra UI", category: "frontend" },
+  { name: "Ant Design", category: "frontend" },
+  { name: "Mantine", category: "frontend" },
+  { name: "Redux Toolkit", category: "frontend" },
+  { name: "Zustand", category: "frontend" },
+  { name: "React Query", category: "frontend" },
+  { name: "TanStack Query", category: "frontend" },
+  { name: "React Hook Form", category: "frontend" },
+  { name: "Framer Motion", category: "frontend" },
   { name: "Chart.js", category: "frontend" },
   { name: "Recharts", category: "frontend" },
+  { name: "D3.js", category: "frontend" },
+  { name: "Three.js", category: "frontend" },
+  { name: "Axios", category: "frontend" },
+  { name: "ESLint", category: "frontend" },
+  { name: "Prettier", category: "frontend" },
+
+  // Backend
   { name: "Node.js", category: "backend" },
-  { name: "Express.js", category: "backend" },
   { name: "Express", category: "backend" },
-  { name: "Prisma ORM", category: "backend" },
-  { name: "Zod", category: "backend" },
-  { name: "JWT", category: "backend" },
-  { name: "GraphQL", category: "backend" },
-  { name: "REST API", category: "backend" },
+  { name: "NestJS", category: "backend" },
+  { name: "Fastify", category: "backend" },
+  { name: "Hono", category: "backend" },
+  { name: "Bun", category: "backend" },
+  { name: "Deno", category: "backend" },
   { name: "Python", category: "backend" },
   { name: "Django", category: "backend" },
+  { name: "FastAPI", category: "backend" },
+  { name: "Flask", category: "backend" },
   { name: "PHP", category: "backend" },
   { name: "Laravel", category: "backend" },
-  { name: "Socket.io", category: "backend" },
+  { name: "Go", category: "backend" },
+  { name: "Gin", category: "backend" },
+  { name: "Java", category: "backend" },
+  { name: "Spring Boot", category: "backend" },
+  { name: "C#", category: "backend" },
+  { name: ".NET", category: "backend" },
+  { name: "ASP.NET Core", category: "backend" },
+  { name: "Prisma", category: "backend" },
+  { name: "Drizzle ORM", category: "backend" },
+  { name: "TypeORM", category: "backend" },
+  { name: "Mongoose", category: "backend" },
+  { name: "GraphQL", category: "backend" },
+  { name: "Apollo GraphQL", category: "backend" },
+  { name: "REST API", category: "backend" },
+  { name: "tRPC", category: "backend" },
+  { name: "Socket.IO", category: "backend" },
+  { name: "WebSockets", category: "backend" },
+  { name: "JWT", category: "backend" },
+  { name: "OAuth 2.0", category: "backend" },
+  { name: "Passport.js", category: "backend" },
+  { name: "Zod", category: "backend" },
+  { name: "OpenAPI", category: "backend" },
+  { name: "Swagger", category: "backend" },
+
+  // Database
   { name: "MongoDB", category: "database" },
   { name: "PostgreSQL", category: "database" },
   { name: "MySQL", category: "database" },
-  { name: "NeonDB", category: "database" },
-  { name: "Supabase", category: "database" },
+  { name: "MariaDB", category: "database" },
+  { name: "SQLite", category: "database" },
   { name: "Redis", category: "database" },
   { name: "Firebase", category: "database" },
+  { name: "Firestore", category: "database" },
+  { name: "Supabase", category: "database" },
+  { name: "Neon", category: "database" },
+  { name: "PlanetScale", category: "database" },
+  { name: "CockroachDB", category: "database" },
+  { name: "Oracle Database", category: "database" },
+  { name: "SQL Server", category: "database" },
+  { name: "Amazon RDS", category: "database" },
+  { name: "Amazon DynamoDB", category: "database" },
   { name: "AWS S3", category: "database" },
-  { name: "SQLite", category: "database" },
+
+  // DevOps & Cloud
   { name: "Docker", category: "devops" },
-  { name: "AWS EC2", category: "devops" },
-  { name: "AWS Lambda", category: "devops" },
+  { name: "Docker Compose", category: "devops" },
+  { name: "Kubernetes", category: "devops" },
   { name: "NGINX", category: "devops" },
+  { name: "Apache", category: "devops" },
   { name: "PM2", category: "devops" },
+  { name: "Linux", category: "devops" },
+  { name: "Ubuntu", category: "devops" },
+  { name: "GitHub Actions", category: "devops" },
+  { name: "GitLab CI", category: "devops" },
+  { name: "CI/CD", category: "devops" },
+  { name: "Terraform", category: "devops" },
+  { name: "Cloudflare", category: "devops" },
   { name: "Vercel", category: "devops" },
   { name: "Netlify", category: "devops" },
-  { name: "GitHub Actions", category: "devops" },
-  { name: "CI/CD", category: "devops" },
-  { name: "Linux", category: "devops" },
-  { name: "Nginx", category: "devops" },
+  { name: "Railway", category: "devops" },
+  { name: "Render", category: "devops" },
+  { name: "DigitalOcean", category: "devops" },
+  { name: "AWS EC2", category: "devops" },
+  { name: "AWS Lambda", category: "devops" },
+  { name: "AWS CloudFront", category: "devops" },
+  { name: "AWS Route 53", category: "devops" },
+  { name: "Azure", category: "devops" },
+  { name: "Google Cloud Platform", category: "devops" },
+
+  // AI & Data
+  { name: "OpenAI API", category: "ai" },
+  { name: "Anthropic Claude API", category: "ai" },
+  { name: "Google Gemini API", category: "ai" },
+  { name: "OpenRouter", category: "ai" },
+  { name: "Ollama", category: "ai" },
+  { name: "LangChain", category: "ai" },
+  { name: "LangGraph", category: "ai" },
+  { name: "LlamaIndex", category: "ai" },
+  { name: "Vector Database", category: "ai" },
+  { name: "Pinecone", category: "ai" },
+  { name: "ChromaDB", category: "ai" },
+  { name: "FAISS", category: "ai" },
+
+  // Mobile
+  { name: "React Native", category: "mobile" },
+  { name: "Expo", category: "mobile" },
+  { name: "Flutter", category: "mobile" },
+  { name: "Ionic", category: "mobile" },
+
+  // Other
   { name: "Git", category: "other" },
   { name: "GitHub", category: "other" },
+  { name: "GitLab", category: "other" },
+  { name: "Bitbucket", category: "other" },
   { name: "GitHub OAuth", category: "other" },
-  { name: "QR Code Generator", category: "other" },
+  { name: "Cloudinary", category: "other" },
+  { name: "Stripe", category: "other" },
+  { name: "Clerk", category: "other" },
+  { name: "Auth.js", category: "other" },
+  { name: "Firebase Auth", category: "other" },
   { name: "Sharp", category: "other" },
+  { name: "QR Code Generator", category: "other" },
+  { name: "Postman", category: "other" },
+  { name: "Insomnia", category: "other" },
+  { name: "Figma", category: "other" },
+  { name: "Jest", category: "other" },
+  { name: "Vitest", category: "other" },
+  { name: "Cypress", category: "other" },
+  { name: "Playwright", category: "other" },
 ];
 
 interface TechItem {
@@ -150,8 +253,7 @@ export const ProjectForm = ({
       errs["description.en"] = "English description is required";
     if (!form.description.ar.trim())
       errs["description.ar"] = "Arabic description is required";
-    if (!form.thumbnail.trim())
-      errs["thumbnail"] = "Thumbnail is required";
+    if (!form.thumbnail.trim()) errs["thumbnail"] = "Thumbnail is required";
 
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -163,11 +265,7 @@ export const ProjectForm = ({
     await onSubmit(form);
   };
 
-  const setBilingualField = (
-    field: string,
-    lang: "en" | "ar",
-    value: any
-  ) => {
+  const setBilingualField = (field: string, lang: "en" | "ar", value: any) => {
     setForm((prev: any) => ({
       ...prev,
       [field]: { ...prev[field], [lang]: value },
@@ -176,7 +274,7 @@ export const ProjectForm = ({
 
   const addArrayItem = (
     field: "full_description" | "features" | "challenges" | "learnings",
-    lang: "en" | "ar"
+    lang: "en" | "ar",
   ) => {
     setForm((prev: any) => ({
       ...prev,
@@ -190,15 +288,13 @@ export const ProjectForm = ({
   const removeArrayItem = (
     field: "full_description" | "features" | "challenges" | "learnings",
     lang: "en" | "ar",
-    index: number
+    index: number,
   ) => {
     setForm((prev: any) => ({
       ...prev,
       [field]: {
         ...prev[field],
-        [lang]: prev[field][lang].filter(
-          (_: string, i: number) => i !== index
-        ),
+        [lang]: prev[field][lang].filter((_: string, i: number) => i !== index),
       },
     }));
   };
@@ -207,14 +303,14 @@ export const ProjectForm = ({
     field: "full_description" | "features" | "challenges" | "learnings",
     lang: "en" | "ar",
     index: number,
-    value: string
+    value: string,
   ) => {
     setForm((prev: any) => ({
       ...prev,
       [field]: {
         ...prev[field],
         [lang]: prev[field][lang].map((item: string, i: number) =>
-          i === index ? value : item
+          i === index ? value : item,
         ),
       },
     }));
@@ -301,28 +397,26 @@ export const ProjectForm = ({
         {label} ({lang.toUpperCase()})
       </label>
       <div className="space-y-2">
-        {(form as any)[field][lang].map(
-          (item: string, index: number) => (
-            <div key={index} className="flex gap-2">
-              <input
-                type="text"
-                value={item}
-                onChange={(e) =>
-                  updateArrayItem(field, lang, index, e.target.value)
-                }
-                className={inputClass("")}
-                dir={lang === "ar" ? "rtl" : "ltr"}
-              />
-              <button
-                type="button"
-                onClick={() => removeArrayItem(field, lang, index)}
-                className="px-2 py-1 text-red-400 hover:text-red-300"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
-            </div>
-          )
-        )}
+        {(form as any)[field][lang].map((item: string, index: number) => (
+          <div key={index} className="flex gap-2">
+            <input
+              type="text"
+              value={item}
+              onChange={(e) =>
+                updateArrayItem(field, lang, index, e.target.value)
+              }
+              className={inputClass("")}
+              dir={lang === "ar" ? "rtl" : "ltr"}
+            />
+            <button
+              type="button"
+              onClick={() => removeArrayItem(field, lang, index)}
+              className="px-2 py-1 text-red-400 hover:text-red-300"
+            >
+              <Trash2 className="w-4 h-4" />
+            </button>
+          </div>
+        ))}
         <button
           type="button"
           onClick={() => addArrayItem(field, lang)}
@@ -408,9 +502,7 @@ export const ProjectForm = ({
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Basic Info */}
       <section className="bg-card border border-border rounded-xl p-6 space-y-4">
-        <h2 className="text-lg font-bold text-foreground">
-          Basic Information
-        </h2>
+        <h2 className="text-lg font-bold text-foreground">Basic Information</h2>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -450,7 +542,11 @@ export const ProjectForm = ({
 
         <LangTabs field="title" label="Project Title" />
         <LangTabs field="tagline" label="Tagline" />
-        <LangTabs field="description" label="Short Description" type="textarea" />
+        <LangTabs
+          field="description"
+          label="Short Description"
+          type="textarea"
+        />
       </section>
 
       {/* Full Description */}
@@ -478,9 +574,7 @@ export const ProjectForm = ({
                 onUpload={(file) =>
                   setForm((prev) => ({ ...prev, thumbnail: file.url }))
                 }
-                onRemove={() =>
-                  setForm((prev) => ({ ...prev, thumbnail: "" }))
-                }
+                onRemove={() => setForm((prev) => ({ ...prev, thumbnail: "" }))}
                 files={form.thumbnail ? [form.thumbnail] : []}
                 multiple={false}
               />
@@ -558,85 +652,105 @@ export const ProjectForm = ({
       <section className="bg-card border border-border rounded-xl p-6 space-y-6">
         <h2 className="text-lg font-bold text-foreground">Tech Stack</h2>
 
-        {(["frontend", "backend", "database", "devops", "other"] as const).map((category) => {
-          const categoryItems = TECH_OPTIONS.filter((t) => t.category === category);
-          const selectedInCategory = form.tech_stack.filter((t) => t.category === category).map((t) => t.name);
+        {(["frontend", "backend", "database", "devops", "other"] as const).map(
+          (category) => {
+            const categoryItems = TECH_OPTIONS.filter(
+              (t) => t.category === category,
+            );
+            const selectedInCategory = form.tech_stack
+              .filter((t) => t.category === category)
+              .map((t) => t.name);
 
-          return (
-            <div key={category}>
-              <h3 className="text-sm font-semibold text-foreground/70 uppercase tracking-wide mb-3">
-                {category}
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-                {categoryItems.map((tech) => {
-                  const isChecked = selectedInCategory.includes(tech.name);
-                  return (
-                    <label
-                      key={tech.name}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-md border cursor-pointer transition-colors text-sm ${
-                        isChecked
-                          ? "bg-foreground text-background border-foreground"
-                          : "bg-card text-foreground border-border hover:border-accent"
-                      }`}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={() => {
-                          if (isChecked) {
-                            setForm((prev) => ({
-                              ...prev,
-                              tech_stack: prev.tech_stack.filter(
-                                (t) => !(t.name === tech.name && t.category === tech.category)
-                              ),
-                            }));
-                          } else {
-                            setForm((prev) => ({
-                              ...prev,
-                              tech_stack: [
-                                ...prev.tech_stack,
-                                { name: tech.name, category: tech.category },
-                              ],
-                            }));
-                          }
-                        }}
-                        className="sr-only"
-                      />
-                      {isChecked && <Check className="w-3.5 h-3.5 flex-shrink-0" />}
-                      {!isChecked && <div className="w-3.5 h-3.5 flex-shrink-0 border border-border rounded" />}
-                      {tech.name}
-                    </label>
-                  );
-                })}
+            return (
+              <div key={category}>
+                <h3 className="text-sm font-semibold text-foreground/70 uppercase tracking-wide mb-3">
+                  {category}
+                </h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+                  {categoryItems.map((tech) => {
+                    const isChecked = selectedInCategory.includes(tech.name);
+                    return (
+                      <label
+                        key={tech.name}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-md border cursor-pointer transition-colors text-sm ${
+                          isChecked
+                            ? "bg-foreground text-background border-foreground"
+                            : "bg-card text-foreground border-border hover:border-accent"
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => {
+                            if (isChecked) {
+                              setForm((prev) => ({
+                                ...prev,
+                                tech_stack: prev.tech_stack.filter(
+                                  (t) =>
+                                    !(
+                                      t.name === tech.name &&
+                                      t.category === tech.category
+                                    ),
+                                ),
+                              }));
+                            } else {
+                              setForm((prev) => ({
+                                ...prev,
+                                tech_stack: [
+                                  ...prev.tech_stack,
+                                  { name: tech.name, category: tech.category },
+                                ],
+                              }));
+                            }
+                          }}
+                          className="sr-only"
+                        />
+                        {isChecked && (
+                          <Check className="w-3.5 h-3.5 flex-shrink-0" />
+                        )}
+                        {!isChecked && (
+                          <div className="w-3.5 h-3.5 flex-shrink-0 border border-border rounded" />
+                        )}
+                        {tech.name}
+                      </label>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          },
+        )}
 
         {form.tech_stack.length > 0 && (
           <div className="flex flex-wrap gap-1.5 pt-2 border-t border-border">
-            {[...new Map(form.tech_stack.map((t) => [t.name, t])).values()].map((tech) => (
-              <span
-                key={tech.name}
-                className="text-xs px-2 py-0.5 rounded-full bg-card border border-border text-foreground flex items-center gap-1"
-              >
-                {tech.name}
-                <button
-                  type="button"
-                  onClick={() =>
-                    setForm((prev) => ({
-                      ...prev,
-                      tech_stack: prev.tech_stack.filter(
-                        (t) => !(t.name === tech.name && t.category === tech.category)
-                      ),
-                    }))
-                  }
-                  className="hover:text-red-400"
+            {[...new Map(form.tech_stack.map((t) => [t.name, t])).values()].map(
+              (tech) => (
+                <span
+                  key={tech.name}
+                  className="text-xs px-2 py-0.5 rounded-full bg-card border border-border text-foreground flex items-center gap-1"
                 >
-                  <Trash2 className="w-3 h-3" />
-                </button>
-              </span>
-            ))}
+                  {tech.name}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setForm((prev) => ({
+                        ...prev,
+                        tech_stack: prev.tech_stack.filter(
+                          (t) =>
+                            !(
+                              t.name === tech.name &&
+                              t.category === tech.category
+                            ),
+                        ),
+                      }))
+                    }
+                    className="hover:text-red-400"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </button>
+                </span>
+              ),
+            )}
           </div>
         )}
       </section>

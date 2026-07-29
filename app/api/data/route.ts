@@ -79,7 +79,7 @@ export async function GET() {
         resume: p.resume,
       };
 
-      return { hero, about, projects, contact };
+      return { projectsColumns: p.projects_columns ?? 2, projectsGap: p.projects_gap ?? 8, hero, about, projects, contact };
     }
 
     return NextResponse.json({

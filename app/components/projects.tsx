@@ -13,6 +13,8 @@ const ProjectsPage = () => {
     const headingRef = useRef<HTMLHeadingElement>(null);
 
     const projects = content.projects;
+    const columns = Math.min(Math.max(content.projectsColumns ?? 2, 1), 5);
+    const gap = content.projectsGap ?? 8;
 
     useEffect(() => {
         const el = headingRef.current;
@@ -52,8 +54,29 @@ const ProjectsPage = () => {
                         from { opacity: 0; transform: translateY(1.5rem); }
                         to { opacity: 1; transform: translateY(0); }
                     }
+                    .projects-grid {
+                        display: grid;
+                        grid-template-columns: repeat(1, minmax(0, 1fr));
+                        gap: 1.5rem;
+                    }
+                    @media (min-width: 640px) {
+                        .projects-grid {
+                            gap: 2rem;
+                        }
+                    }
+                    @media (min-width: 768px) {
+                        .projects-grid {
+                            grid-template-columns: repeat(2, minmax(0, 1fr));
+                        }
+                    }
+                    @media (min-width: 1024px) {
+                        .projects-grid {
+                            grid-template-columns: repeat(${columns}, minmax(0, 1fr));
+                            gap: ${gap * 4}px;
+                        }
+                    }
                 `}</style>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div className="projects-grid">
                     {projects.map((project: any, index: number) => (
                         <ProjectCard
                             key={project.id}

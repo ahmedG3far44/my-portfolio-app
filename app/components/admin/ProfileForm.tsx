@@ -23,6 +23,8 @@ interface ProfileFormData {
   location: { en: string; ar: string };
   resume: string;
   profile_image: string;
+  projects_columns: number;
+  projects_gap: number;
 }
 
 interface ProfileFormProps {
@@ -44,6 +46,8 @@ const defaultProfile: ProfileFormData = {
   location: { en: "", ar: "" },
   resume: "",
   profile_image: "",
+  projects_columns: 2,
+  projects_gap: 8,
 };
 
 export const ProfileForm = ({
@@ -98,7 +102,7 @@ export const ProfileForm = ({
       highlights: {
         ...prev.highlights,
         [lang]: prev.highlights[lang].map((h: string, i: number) =>
-          i === index ? value : h
+          i === index ? value : h,
         ),
       },
     }));
@@ -110,7 +114,7 @@ export const ProfileForm = ({
       highlights: {
         ...prev.highlights,
         [lang]: prev.highlights[lang].filter(
-          (_: string, i: number) => i !== index
+          (_: string, i: number) => i !== index,
         ),
       },
     }));
@@ -128,7 +132,7 @@ export const ProfileForm = ({
     setForm((prev) => ({
       ...prev,
       skills: prev.skills.map((skill, i) =>
-        i === index ? { ...skill, [field]: value } : skill
+        i === index ? { ...skill, [field]: value } : skill,
       ),
     }));
   };
@@ -226,9 +230,7 @@ export const ProfileForm = ({
           onUpload={(file) =>
             setForm((prev) => ({ ...prev, profile_image: file.url }))
           }
-          onRemove={() =>
-            setForm((prev) => ({ ...prev, profile_image: "" }))
-          }
+          onRemove={() => setForm((prev) => ({ ...prev, profile_image: "" }))}
           files={form.profile_image ? [form.profile_image] : []}
           multiple={false}
           accept="image/png,image/jpeg,image/webp"
@@ -285,20 +287,6 @@ export const ProfileForm = ({
           <BilingualField field="location" label="Location" />
         </div>
 
-        <div className="pt-2 border-t border-border">
-          <ImageUpload
-            label="Upload Resume (PDF or DOCX)"
-            onUpload={(file) =>
-              setForm((prev) => ({ ...prev, resume: file.url }))
-            }
-            onRemove={() =>
-              setForm((prev) => ({ ...prev, resume: "" }))
-            }
-            files={form.resume ? [form.resume] : []}
-            multiple={false}
-            accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-          />
-        </div>
       </section>
 
       {/* Highlights */}
@@ -316,7 +304,9 @@ export const ProfileForm = ({
                   <input
                     type="text"
                     value={item}
-                    onChange={(e) => updateHighlight(lang, index, e.target.value)}
+                    onChange={(e) =>
+                      updateHighlight(lang, index, e.target.value)
+                    }
                     className={inputClass("")}
                     dir={lang === "ar" ? "rtl" : "ltr"}
                   />
@@ -383,6 +373,65 @@ export const ProfileForm = ({
             </button>
           </div>
         ))}
+      </section>
+
+      {/* Projects Layout */}
+      <section className="bg-card border border-border rounded-xl p-6 space-y-4">
+        <h2 className="text-lg font-bold text-foreground">Projects Layout</h2>
+        <p className="text-sm text-foreground/60">
+          Controls how projects are displayed on the landing page (applies on
+          desktop screens; mobile and tablet use responsive defaults).
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              Columns (desktop)
+            </label>
+            <select
+              value={form.projects_columns}
+              onChange={(e) =>
+                setForm((prev) => ({
+                  ...prev,
+                  projects_columns: Number(e.target.value),
+                }))
+              }
+              className="w-full px-3 py-2 bg-card border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+            >
+              {[1, 2, 3, 4, 5].map((n) => (
+                <option key={n} value={n}>
+                  {n} {n === 1 ? "column" : "columns"}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              Gap / Spacing (desktop)
+            </label>
+            <select
+              value={form.projects_gap}
+              onChange={(e) =>
+                setForm((prev) => ({
+                  ...prev,
+                  projects_gap: Number(e.target.value),
+                }))
+              }
+              className="w-full px-3 py-2 bg-card border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+            >
+              {[
+                { value: 4, label: "Small (4)" },
+                { value: 6, label: "Medium (6)" },
+                { value: 8, label: "Large (8)" },
+                { value: 10, label: "Extra Large (10)" },
+                { value: 12, label: "2X Large (12)" },
+              ].map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
       </section>
 
       {/* Submit */}

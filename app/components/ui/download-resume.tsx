@@ -1,25 +1,20 @@
-import { useContent } from "../../context/content/ContentContext";
-
-const DownloadCVButton = ({ text, icon }: { text: string; icon?: React.ReactNode }) => {
-  const { content } = useContent();
-
-  const raw = content.contact.resume;
-  if (!raw) return null;
-
-  const href = raw.startsWith("http") ? raw : "/" + raw;
-  const isCloudinary = href.includes("res.cloudinary.com");
-  const downloadUrl = isCloudinary
-    ? href.replace("/upload/", "/upload/fl_attachment/")
-    : href;
-
+const DownloadCVButton = ({
+  text,
+  icon,
+}: {
+  text: string;
+  icon?: React.ReactNode;
+}) => {
   return (
     <a
-      className="cursor-pointer bg-card rounded-md border border-border px-4 py-2 flex items-center justify-center gap-2 hover:border-accent hover:opacity-80 transition-all text-sm text-foreground w-fit"
-      href={downloadUrl}
+      className="inline-flex items-center gap-2 px-5 py-2.5 bg-card border border-border rounded-lg text-sm font-medium text-foreground hover:border-accent hover:bg-accent/5 active:scale-95 transition-all duration-200 w-fit cursor-pointer"
+      href={"./resume.pdf"}
       target="_blank"
       rel="noopener noreferrer"
     >
-      <span>{icon}</span>
+      <span className="text-foreground/70 group-hover:text-foreground transition-colors">
+        {icon}
+      </span>
       {text}
     </a>
   );

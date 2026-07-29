@@ -26,9 +26,7 @@ export const Sidebar = () => {
         <div className="p-6 border-b border-border">
           <Link href="/admin/projects" className="flex items-center gap-2">
             <LayoutDashboard className="w-5 h-5 text-foreground" />
-            <span className="font-bold text-foreground text-lg">
-              Dashboard
-            </span>
+            <span className="font-bold text-foreground text-lg">Dashboard</span>
           </Link>
         </div>
 
@@ -63,10 +61,10 @@ export const Sidebar = () => {
           </Link>
           <button
             onClick={logout}
-            className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
+            className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-foreground/70 hover:text-foreground hover:bg-hover transition-colors"
           >
             <LogOut className="w-4 h-4" />
-            Sign Out
+            Log Out
           </button>
         </div>
       </div>
@@ -80,9 +78,7 @@ export const Sidebar = () => {
               key={item.href}
               href={item.href}
               className={`flex flex-col items-center gap-1 text-xs transition-colors ${
-                isActive
-                  ? "text-foreground font-medium"
-                  : "text-foreground/50"
+                isActive ? "text-foreground font-medium" : "text-foreground/50"
               }`}
             >
               <item.icon className="w-5 h-5" />
@@ -92,10 +88,10 @@ export const Sidebar = () => {
         })}
         <button
           onClick={logout}
-          className="flex flex-col items-center gap-1 text-xs text-red-400"
+          className="flex flex-col items-center gap-1 text-xs "
         >
           <LogOut className="w-5 h-5" />
-          Sign Out
+          Log Out
         </button>
       </div>
     </>
