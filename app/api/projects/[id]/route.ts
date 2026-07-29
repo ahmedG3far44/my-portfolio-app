@@ -67,6 +67,7 @@ export async function PUT(
       .from("projects")
       .update({
         sort_order: body.sort_order,
+        published: body.published,
         title: body.title,
         tagline: body.tagline,
         description: body.description,

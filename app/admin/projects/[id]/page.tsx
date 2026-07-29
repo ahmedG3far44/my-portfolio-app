@@ -25,6 +25,7 @@ export default function EditProjectPage() {
       if (res.ok) {
         setProject({
           sort_order: data.sort_order,
+          published: data.published,
           title: data.title,
           tagline: data.tagline,
           description: data.description,

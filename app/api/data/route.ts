@@ -25,7 +25,7 @@ export async function GET() {
 
     const [profileResult, projectsResult] = await Promise.all([
       supabaseAdmin.from("profile").select("*").eq("id", 1).single(),
-      supabaseAdmin.from("projects").select("*").order("sort_order", { ascending: true }),
+      supabaseAdmin.from("projects").select("*").eq("published", true).order("sort_order", { ascending: true }),
     ]);
 
     if (profileResult.error) throw profileResult.error;

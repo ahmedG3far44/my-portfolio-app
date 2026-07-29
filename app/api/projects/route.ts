@@ -48,6 +48,7 @@ export async function POST(request: Request) {
       .from("projects")
       .insert({
         sort_order: body.sort_order ?? 0,
+        published: body.published ?? true,
         title: body.title,
         tagline: body.tagline,
         description: body.description,

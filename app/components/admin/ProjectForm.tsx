@@ -173,6 +173,7 @@ interface TechItem {
 
 interface ProjectFormData {
   sort_order: number;
+  published: boolean;
   title: { en: string; ar: string };
   tagline: { en: string; ar: string };
   description: { en: string; ar: string };
@@ -206,6 +207,7 @@ interface ProjectFormProps {
 
 const emptyForm: ProjectFormData = {
   sort_order: 0,
+  published: true,
   title: { en: "", ar: "" },
   tagline: { en: "", ar: "" },
   description: { en: "", ar: "" },
@@ -538,6 +540,34 @@ export const ProjectForm = ({
               <option value="in-progress">In Progress</option>
             </select>
           </div>
+        </div>
+
+        <div className="flex items-center justify-between p-4 bg-background rounded-lg border border-border">
+          <div>
+            <p className="text-sm font-medium text-foreground">Published</p>
+            <p className="text-xs text-foreground/50 mt-0.5">
+              {form.published
+                ? "Visible on the landing page"
+                : "Hidden from the landing page"}
+            </p>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={form.published}
+            onClick={() =>
+              setForm((prev) => ({ ...prev, published: !prev.published }))
+            }
+            className={`relative w-12 h-6 rounded-full transition-colors ${
+              form.published ? "bg-green-500" : "bg-foreground/20"
+            }`}
+          >
+            <span
+              className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${
+                form.published ? "translate-x-6" : "translate-x-0"
+              }`}
+            />
+          </button>
         </div>
 
         <LangTabs field="title" label="Project Title" />

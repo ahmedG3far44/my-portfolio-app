@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { supabaseAdmin } from "@/app/lib/supabase";
 import ProjectDetailsPage from "@/app/components/project-details";
 import { SyncLanguageWrapper } from "@/app/components/sync-language-wrapper";
@@ -16,11 +17,11 @@ export async function generateMetadata(
 
   const { data } = await supabaseAdmin
     .from("projects")
-    .select("title, tagline, description, thumbnail, images, tech_stack, updated_at")
+    .select("title, tagline, description, thumbnail, images, tech_stack, updated_at, published")
     .eq("id", id)
     .single();
 
-  if (!data) {
+  if (!data || !data.published) {
     return { title: "Project Not Found" };
   }
 
@@ -76,9 +77,13 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       .from("projects")
       .select("*")
       .eq("id", id)
+      .eq("published", true)
       .single();
 
-    if (data) {
+    if (!data) {
+      notFound();
+    }
+
       const title = data.title?.en || data.title?.ar || "";
       const description = data.tagline?.en || data.tagline?.ar || data.description?.en || "";
       const image = data.thumbnail || data.images?.[0] || "/profile.png";
@@ -98,7 +103,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         dateCreated: data.start_date || undefined,
         datePublished: data.end_date || undefined,
       };
-    }
   }
 
   return (

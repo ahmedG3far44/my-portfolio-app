@@ -154,6 +154,15 @@ export default function AdminProjectsPage() {
                       project.thumbnail
                     )}
                   </span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${
+                      project.published
+                        ? "text-green-500 bg-green-500/10"
+                        : "text-foreground/40 bg-foreground/5"
+                    }`}
+                  >
+                    {project.published ? "published" : "private"}
+                  </span>
                 </div>
                 <p className="text-xs text-foreground/50 truncate mt-0.5">
                   {project.tagline?.en || project.tagline?.ar || ""}

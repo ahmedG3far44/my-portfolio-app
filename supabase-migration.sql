@@ -38,6 +38,7 @@
     start_date TEXT NOT NULL DEFAULT '',
     end_date TEXT NOT NULL DEFAULT '',
     status TEXT NOT NULL DEFAULT 'completed',
+    published BOOLEAN NOT NULL DEFAULT true,
     features JSONB NOT NULL DEFAULT '{}',
     challenges JSONB NOT NULL DEFAULT '{}',
     learnings JSONB NOT NULL DEFAULT '{}',
@@ -66,6 +67,7 @@
   -- Add columns for existing databases (safe to run multiple times)
   ALTER TABLE profile ADD COLUMN IF NOT EXISTS projects_columns INT2 NOT NULL DEFAULT 2 CHECK (projects_columns BETWEEN 1 AND 5);
   ALTER TABLE profile ADD COLUMN IF NOT EXISTS projects_gap INT2 NOT NULL DEFAULT 8;
+  ALTER TABLE projects ADD COLUMN IF NOT EXISTS published BOOLEAN NOT NULL DEFAULT true;
 
   -- Enable Row Level Security (optional, since we use service_role key for admin)
   ALTER TABLE profile ENABLE ROW LEVEL SECURITY;
