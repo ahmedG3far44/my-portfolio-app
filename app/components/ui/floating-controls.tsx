@@ -53,43 +53,66 @@ export const FloatingControls = () => {
 
   const popover = (
     <div
-      className={`transition-all duration-200 ${
+      className={`absolute right-0 transition-all duration-200 origin-top-right ${
+        isMobile ? "top-full mt-2" : "bottom-full mb-2 origin-bottom-right"
+      } ${
         open
           ? "scale-100 opacity-100 pointer-events-auto"
           : "scale-75 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="flex items-center gap-1 bg-background/80 backdrop-blur-xl border border-border rounded-full px-1.5 py-1 shadow-xl">
-        <button
-          onClick={toggleLang}
-          className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium text-foreground/80 hover:text-foreground hover:bg-hover transition-colors cursor-pointer"
-        >
-          <Languages className="w-3 h-3" />
-          <span>{language === "en" ? "EN" : "AR"}</span>
-        </button>
-        <div className="w-px h-4 bg-border" />
-        <button
-          onClick={toggleTheme}
-          className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium text-foreground/80 hover:text-foreground hover:bg-hover transition-colors cursor-pointer"
-        >
-          {theme === "light" ? <Moon className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
-          <span>{theme === "light" ? "Dark" : "Light"}</span>
-        </button>
-      </div>
+      {isMobile ? (
+        <div className="flex flex-col items-center gap-1 bg-background/80 backdrop-blur-xl border border-border rounded-2xl px-1 py-1.5 shadow-xl">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="w-8 h-8 flex items-center justify-center rounded-xl text-foreground/80 hover:text-foreground hover:bg-hover transition-colors cursor-pointer"
+          >
+            {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+          </button>
+          <div className="w-4 h-px bg-border" />
+          <button
+            onClick={toggleLang}
+            aria-label="Switch language"
+            className="w-8 h-8 flex items-center justify-center rounded-xl text-foreground/80 hover:text-foreground hover:bg-hover transition-colors cursor-pointer"
+          >
+            <span className="text-[10px] font-bold leading-none">
+              {language === "en" ? "EN" : "AR"}
+            </span>
+          </button>
+        </div>
+      ) : (
+        <div className="flex items-center gap-1 bg-background/80 backdrop-blur-xl border border-border rounded-full px-1.5 py-1 shadow-xl">
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium text-foreground/80 hover:text-foreground hover:bg-hover transition-colors cursor-pointer"
+          >
+            <Languages className="w-3 h-3" />
+            <span>{language === "en" ? "EN" : "AR"}</span>
+          </button>
+          <div className="w-px h-4 bg-border" />
+          <button
+            onClick={toggleTheme}
+            className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium text-foreground/80 hover:text-foreground hover:bg-hover transition-colors cursor-pointer"
+          >
+            {theme === "light" ? <Moon className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
+            <span>{theme === "light" ? "Dark" : "Light"}</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 
-  if (isMobile) {
-    return (
-      <div ref={popoverRef} className="fixed top-4 right-4 z-[100] flex flex-col items-end gap-2">
-        {popover}
-        {btn}
-      </div>
-    );
-  }
-
   return (
-    <div ref={popoverRef} className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-2">
+    <div
+      ref={popoverRef}
+      dir="ltr"
+      className={
+        isMobile
+          ? "fixed top-4 right-4 z-[100]"
+          : "fixed bottom-6 right-6 z-[100]"
+      }
+    >
       {popover}
       {btn}
     </div>
