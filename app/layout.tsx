@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 
 import ContentProvider from "./context/content/ContentProvider";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
