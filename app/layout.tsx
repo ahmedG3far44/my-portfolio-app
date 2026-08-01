@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./context/theme/ThemeProvider";
-
-import ContentProvider from "./context/content/ContentProvider";
 import { ClientLayoutWrapper } from "./components/client-layout-wrapper";
 
+import ContentProvider from "./context/content/ContentProvider";
+import Script from "next/script";
+
 import "./globals.css";
-
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,13 +26,26 @@ export const metadata: Metadata = {
     default: "Ahmed G3far | Full Stack Software Engineer",
     template: "%s | Ahmed G3far",
   },
-  description: "Full-stack software engineer specializing in React, Next.js, and Node.js. Building scalable web products with clean architecture and delightful motion. Explore my portfolio of web development projects.",
+  description:
+    "Full-stack software engineer specializing in React, Next.js, and Node.js. Building scalable web products with clean architecture and delightful motion. Explore my portfolio of web development projects.",
   keywords: [
-    "Ahmed G3far", "Ahmed Jaafar", "Full Stack Developer", "Software Engineer",
-    "Portfolio", "MERN Stack Developer", "Developer Portfolio", "Next.js Developer",
-    "React Developer", "Node.js Developer", "Web Developer Egypt",
-    "Frontend Engineer", "Backend Developer", "Full Stack Web Developer",
-    "Alexandria Egypt Developer", "JavaScript Developer", "TypeScript Developer",
+    "Ahmed G3far",
+    "Ahmed Jaafar",
+    "Full Stack Developer",
+    "Software Engineer",
+    "Portfolio",
+    "MERN Stack Developer",
+    "Developer Portfolio",
+    "Next.js Developer",
+    "React Developer",
+    "Node.js Developer",
+    "Web Developer Egypt",
+    "Frontend Engineer",
+    "Backend Developer",
+    "Full Stack Web Developer",
+    "Alexandria Egypt Developer",
+    "JavaScript Developer",
+    "TypeScript Developer",
   ],
   authors: [
     {
@@ -46,13 +58,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: baseUrl,
     languages: {
-      "en": baseUrl,
-      "ar": baseUrl,
+      en: baseUrl,
+      ar: baseUrl,
     },
   },
   openGraph: {
     title: "Ahmed G3far | Full Stack Software Engineer",
-    description: "Full-stack software engineer building scalable web products with clean architecture and delightful motion.",
+    description:
+      "Full-stack software engineer building scalable web products with clean architecture and delightful motion.",
     url: baseUrl,
     siteName: "Ahmed G3far Portfolio",
     images: [
@@ -69,7 +82,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ahmed G3far | Full Stack Software Engineer",
-    description: "Full-stack software engineer building scalable web products with clean architecture and delightful motion.",
+    description:
+      "Full-stack software engineer building scalable web products with clean architecture and delightful motion.",
     images: ["/profile.png"],
   },
   icons: {
@@ -109,7 +123,16 @@ export default function RootLayout({
       "https://github.com/ahmedG3far44",
       "https://www.linkedin.com/in/ahmedg3far44",
     ],
-    knowsAbout: ["React", "Next.js", "Node.js", "TypeScript", "MongoDB", "PostgreSQL", "Docker", "AWS"],
+    knowsAbout: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "TypeScript",
+      "MongoDB",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+    ],
   };
 
   return (
@@ -119,15 +142,30 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-N1TFJYCWP3"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+
+            gtag('config', 'G-N1TFJYCWP3', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <ThemeProvider>
           <ContentProvider>
-            <ClientLayoutWrapper>
-              {children}
-            </ClientLayoutWrapper>
+            <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
           </ContentProvider>
         </ThemeProvider>
       </body>
