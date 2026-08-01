@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./context/theme/ThemeProvider";
 import { ClientLayoutWrapper } from "./components/client-layout-wrapper";
+import { Analytics } from "@vercel/analytics/next";
 
 import ContentProvider from "./context/content/ContentProvider";
 import Script from "next/script";
@@ -168,6 +169,7 @@ export default function RootLayout({
             <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
           </ContentProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import HeroPage from "./components/hero";
 import ProjectsPage from "./components/projects";
+
 import { useSyncLanguage } from "./lib/sync-language";
 
 
