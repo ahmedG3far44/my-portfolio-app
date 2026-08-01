@@ -5,6 +5,7 @@ import { ClientLayoutWrapper } from "./components/client-layout-wrapper";
 
 import ContentProvider from "./context/content/ContentProvider";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
@@ -168,6 +169,7 @@ export default function RootLayout({
             <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
           </ContentProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
